@@ -203,7 +203,7 @@ Item {
                     closePolicy:                        Popup.CloseOnEscape | Popup.CloseOnPressOutside
                     background: Rectangle {
                         color:                          qgcPal.window
-                        opacity:                        0.8
+                        ///opacity:                        0.8
                     } 
                     ButtonGroup {
                         id:                             buttonGroup
@@ -516,7 +516,7 @@ Item {
 
      //EDIT SKYDRONES FLY TIME----------
     Item {
-        width: 900
+        width: 1200
         height: 10
         anchors {
             left: parent.left
