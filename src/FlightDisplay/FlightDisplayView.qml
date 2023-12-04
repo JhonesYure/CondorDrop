@@ -930,6 +930,7 @@ Item {
                     name: _guidedController.takeoffTitle,
                     iconSource: "/qmlimages/TakeOffIcon.svg",
                     action: _guidedController.actionTakeoff,
+                    visible:    true
                 },
             ]
 

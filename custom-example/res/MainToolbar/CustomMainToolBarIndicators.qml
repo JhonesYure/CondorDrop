@@ -67,7 +67,7 @@ Item {
         }
         QGCLabel {
             anchors.verticalCenter: parent.verticalCenter
-            text:                   qsTr("Waiting for a vehicle")
+            text:                   qsTr("Esperando Conectar com Drone")
             font.pointSize:         ScreenTools.mediumFontPointSize
             font.family:            ScreenTools.demiboldFontFamily
         }

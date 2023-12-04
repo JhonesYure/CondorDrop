@@ -59,7 +59,7 @@ Rectangle {
 
             QGCLabel {
                 Layout.fillWidth:       true
-                text:                   qsTr("Application Settings")
+                text:                   qsTr("Configurações do Aplicativo")
                 wrapMode:               Text.WordWrap
                 horizontalAlignment:    Text.AlignHCenter
                 visible:                !ScreenTools.isShortScreen

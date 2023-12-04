@@ -108,7 +108,7 @@ Item {
                     columns:            2
                     anchors.horizontalCenter: parent.horizontalCenter
 
-                    QGCLabel { text: qsTr("Voltage,:") }
+                    QGCLabel { text: qsTr("Voltagem:") }
                     QGCLabel { 
                         text: (activeVehicle && activeVehicle.battery.voltage.value !== -1) ? (activeVehicle.battery.voltage.valueString + " " + activeVehicle.battery.voltage.units) : "N/A" 
                         color: activeVehicle && activeVehicle.battery.voltage.value > 40.9 ? qgcPal.buttonText : "red"

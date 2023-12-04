@@ -36,8 +36,8 @@ Item {
         function getPositionForBatteryPercentage() {
             if (activeVehicle && activeVehicle.battery.voltage.value !== -1) {
                 var batteryVoltage = activeVehicle.battery.voltage.value;
-                var minVoltage = 22.8;
-                var maxVoltage = 26.1;
+                var minVoltage = 10.8;
+                var maxVoltage = 13.1;
 
                 var position = (batteryVoltage - minVoltage) / (maxVoltage - minVoltage);
 
@@ -198,8 +198,8 @@ Item {
                 Drawer {
                     id:                                 drawer
                     y:                                  header.height
-                    width:                              navButtonWidth
                     height:                             mainWindow.height - header.height
+                    width:                              innerLayout.width + (_margins * 2)
                     closePolicy:                        Popup.CloseOnEscape | Popup.CloseOnPressOutside
                     background: Rectangle {
                         color:                          qgcPal.window
@@ -227,8 +227,8 @@ Item {
                             id:                 flyButton
                             Layout.fillWidth:           true
                             spacing:                    1
-                            icon.source:        "/qmlimages/PaperPlane.svg"
-                            text:               qsTr("Fly")
+                            icon.source:        "/res/QGCLogoFull"
+                            text:               qsTr("Voltar")
                             onClicked: {
                                 if (mainWindow.preventViewSwitch()) {
                                     return
@@ -283,8 +283,8 @@ Item {
                             id:                 configButton
                             Layout.fillWidth:           true
                             spacing:                    1
-                            text:               qsTr("Settings")
-                            icon.source:        "/qmlimages/Hamburger.svg"
+                            text:               qsTr("Configuração do Aplicativo")
+                            icon.source:        "/qmlimages/Gears.svg"
                             onClicked: {
                                 if (mainWindow.preventViewSwitch()) {
                                         return
@@ -306,8 +306,8 @@ Item {
                             id:                 setupButton
                             Layout.fillWidth:           true
                             spacing:                    1
-                            icon.source:        "/qmlimages/Gears.svg"
-                            text:               qsTr("Vehicle Setup")
+                            icon.source:        "/qmlimages/Quad.svg"
+                            text:               qsTr("Configuração do Drone")
                             onClicked: {
                                 if (mainWindow.preventViewSwitch()) {
                                     return
@@ -330,7 +330,7 @@ Item {
                             Layout.fillWidth:           true
                             spacing:                    1
                             icon.source:        "/qmlimages/Analyze.svg"
-                            text:               qsTr("Analyze")
+                            text:               qsTr("Ferramenta de Análise")
                             visible:            QGroundControl.corePlugin.showAdvancedUI
                             onClicked: {
                                 if (mainWindow.preventViewSwitch()) {
@@ -506,7 +506,7 @@ Item {
         anchors.rightMargin:    ScreenTools.defaultFontPixelWidth
         anchors.right:          parent.right
         anchors.verticalCenter: parent.verticalCenter
-        text:                   qsTr("Waiting For Vehicle Connection")
+        text:                   qsTr("Esperando Conectar com Drone")
         font.pointSize:         ScreenTools.mediumFontPointSize
         font.family:            ScreenTools.demiboldFontFamily
         color:                  qgcPal.colorRed
@@ -524,7 +524,7 @@ Item {
             top: parent.top
             topMargin: 88
         }
-        Rectangle {
+        /* Rectangle {
             width: parent.width * 0.75 // 30% em amarelo
             height: 10//parent.height
             color: "#FFDA24"
@@ -556,6 +556,12 @@ Item {
                 color: "#FFDA24" // Cor inicial da bolinha
                 anchors.verticalCenter: parent.verticalCenter
             }
+        } */
+        Image {
+            source: "/res/StatusBattery"
+            //width: 1200
+            //height: 30
+            fillMode: Image.PreserveAspectCrop
         }
         Rectangle {
             id:                     testIndicator

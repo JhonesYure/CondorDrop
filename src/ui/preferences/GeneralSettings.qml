@@ -69,7 +69,7 @@ Rectangle {
 
             Item {
                 id:     outerItem
-            width:  Math.max(_root.width, settingsColumn.width)
+                width:  Math.max(_root.width, settingsColumn.width)
                 height: settingsColumn.height
 
                 ColumnLayout {
@@ -78,7 +78,7 @@ Rectangle {
 
                     QGCLabel {
                         id:         unitsSectionLabel
-                        text:       qsTr("Units")
+                        text:       qsTr("Unidades")
                         visible:    QGroundControl.settingsManager.unitsSettings.visible
                     }
                     Rectangle {
@@ -98,7 +98,7 @@ Rectangle {
                             rows:                       4
 
                             Repeater {
-                                model: [ qsTr("Distance"), qsTr("Area"), qsTr("Speed"), qsTr("Temperature") ]
+                                model: [ qsTr("Distância"), qsTr("Area"), qsTr("Velocidade"), qsTr("Temperatura") ]
                                 QGCLabel { text: modelData }
                             }
                             Repeater {
@@ -116,7 +116,7 @@ Rectangle {
 
                     QGCLabel {
                         id:         miscSectionLabel
-                        text:       qsTr("Miscellaneous")
+                        text:       qsTr("Diversos")
                         visible:    QGroundControl.settingsManager.appSettings.visible
                     }
                     Rectangle {
@@ -140,7 +140,7 @@ Rectangle {
                                 columns:                    2
 
                                 QGCLabel {
-                                    text:           qsTr("Language")
+                                    text:           qsTr("Linguagem")
                                     visible: QGroundControl.settingsManager.appSettings.language.visible
                                 }
                                 FactComboBox {
@@ -151,7 +151,7 @@ Rectangle {
                                 }
 
                                 QGCLabel {
-                                    text:           qsTr("Color Scheme")
+                                    text:           qsTr("Cor de Tema")
                                     visible: QGroundControl.settingsManager.appSettings.indoorPalette.visible
                                 }
                                 FactComboBox {
@@ -162,7 +162,7 @@ Rectangle {
                                 }
 
                                 QGCLabel {
-                                    text:       qsTr("Map Provider")
+                                    text:       qsTr("Provedor de Mapas")
                                     width:      _labelWidth
                                 }
                                 
@@ -182,7 +182,7 @@ Rectangle {
                                     }
                                 }
                                 QGCLabel {
-                                    text:       qsTr("Map Type")
+                                    text:       qsTr("Tipo de Mapa")
                                     width:      _labelWidth
                                 }
                                 QGCComboBox {
@@ -201,7 +201,7 @@ Rectangle {
                                 }
 
                                 QGCLabel {
-                                    text:                   qsTr("Stream GCS Position")
+                                    text:                   qsTr("Transmitir posição do GCS")
                                     visible:                _followTarget.visible
                                 }
                                 FactComboBox {
@@ -211,7 +211,7 @@ Rectangle {
                                     visible:                _followTarget.visible
                                 }
                                 QGCLabel {
-                                    text:                           qsTr("UI Scaling")
+                                    text:                           qsTr("Escala UI")
                                     visible:                        _appFontPointSize.visible
                                     Layout.alignment:               Qt.AlignVCenter
                                 }
@@ -276,28 +276,28 @@ Rectangle {
                                 spacing:                    _margins
 
                                 FactCheckBox {
-                                    text:       qsTr("Use Vehicle Pairing")
+                                    text:       qsTr("Usar Emparelhamento do Drone")
                                     fact:       _usePairing
                                     visible:    _usePairing.visible && QGroundControl.supportsPairing
                                     property Fact _usePairing: QGroundControl.settingsManager.appSettings.usePairing
                                 }
 
                                 FactCheckBox {
-                                    text:       qsTr("Mute all audio output")
+                                    text:       qsTr("Mutar Todas Saídas de Aúdio")
                                     fact:       _audioMuted
                                     visible:    _audioMuted.visible
                                     property Fact _audioMuted: QGroundControl.settingsManager.appSettings.audioMuted
                                 }
 
                                 FactCheckBox {
-                                    text:       qsTr("Check for Internet connection")
+                                    text:       qsTr("Checar Conexão com Internet")
                                     fact:       _checkInternet
                                     visible:    _checkInternet && _checkInternet.visible
                                     property Fact _checkInternet: QGroundControl.settingsManager.appSettings.checkInternet
                                 }
 
                                 FactCheckBox {
-                                    text:       qsTr("AutoLoad Missions")
+                                    text:       qsTr("Auto Carregar Missão")
                                     fact:       _autoLoad
                                     visible:    _autoLoad && _autoLoad.visible
 
@@ -306,7 +306,7 @@ Rectangle {
 
                                 QGCCheckBox {
                                     id:         clearCheck
-                                    text:       qsTr("Clear all settings on next start")
+                                    text:       qsTr("Limpar Todas Configurções na Próxima Inicialização")
                                     checked:    false
                                     onClicked: {
                                         checked ? clearDialog.visible = true : QGroundControl.clearDeleteAllSettingsNextBoot()
@@ -316,7 +316,7 @@ Rectangle {
                                         visible:            false
                                         icon:               StandardIcon.Warning
                                         standardButtons:    StandardButton.Yes | StandardButton.No
-                                        title:              qsTr("Clear Settings")
+                                        title:              qsTr("Limpar Configurações")
                                         text:               qsTr("All saved settings will be reset the next time you start %1. Is this really what you want?").arg(QGroundControl.appName)
                                         onYes: {
                                             QGroundControl.deleteAllSettingsNextBoot()
@@ -367,14 +367,14 @@ Rectangle {
                             QGCTextField {
                                 Layout.fillWidth:   true
                                 readOnly:           true
-                                text:               _savePath.rawValue === "" ? qsTr("<not set>") : _savePath.value
+                                text:               _savePath.rawValue === "" ? qsTr("<Não configurado>") : _savePath.value
                             }
                             QGCButton {
-                                text:       qsTr("Browse")
+                                text:       qsTr("Navegar")
                                 onClicked:  savePathBrowseDialog.openForLoad()
                                 QGCFileDialog {
                                     id:             savePathBrowseDialog
-                                    title:          qsTr("Choose the location to save/load files")
+                                    title:          qsTr("Escolha Local para Salvar/Carregar Arquivos")
                                     folder:         _savePath.rawValue
                                     selectExisting: true
                                     selectFolder:   true

@@ -561,7 +561,7 @@ SetupPage {
                         }
                     }
 
-                    QGCButton {
+                    /*  QGCButton {
                         width:  _buttonWidth
                         text:   _levelHorizonText
 
@@ -574,29 +574,29 @@ SetupPage {
                                 mainWindow.showComponentDialog(levelHorizonDialogComponent, _levelHorizonText, mainWindow.showDialogDefaultWidth, StandardButton.Cancel | StandardButton.Ok)
                             }
                         }
-                    }
+                    } */
 
-                    QGCButton {
+                    /* QGCButton {
                         width:      _buttonWidth
                         text:       _calibratePressureText
                         onClicked:  mainWindow.showComponentDialog(calibratePressureDialogComponent, _calibratePressureText, mainWindow.showDialogDefaultWidth, StandardButton.Cancel | StandardButton.Ok)
 
                         readonly property string _calibratePressureText: activeVehicle.fixedWing ? qsTr("Cal Baro/Airspeed") : qsTr("Calibrate Pressure")
-                    }
+                    } */
 
-                    QGCButton {
+                    /* QGCButton {
                         width:      _buttonWidth
                         text:       qsTr("CompassMot")
                         visible:    activeVehicle ? activeVehicle.supportsMotorInterference : false
 
                         onClicked:  mainWindow.showComponentDialog(compassMotDialogComponent, qsTr("CompassMot - Compass Motor Interference Calibration"), mainWindow.showDialogFullWidth, StandardButton.Cancel | StandardButton.Ok)
-                    }
+                    } */
 
-                    QGCButton {
+                    /* QGCButton {
                         width:      _buttonWidth
                         text:       qsTr("Sensor Settings")
                         onClicked:  showOrientationsDialog(_calTypeSet)
-                    }
+                    } */
                 } // Column - Cal Buttons
 
                 Column {

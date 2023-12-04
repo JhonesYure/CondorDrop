@@ -226,7 +226,7 @@ Rectangle {
                 }
             }
 
-            SubMenuButton {
+            /* SubMenuButton {
                 id:                 summaryButton
                 imageResource:      "/qmlimages/VehicleSummaryIcon.png"
                 setupIndicator:     false
@@ -236,9 +236,9 @@ Rectangle {
                 Layout.fillWidth:   true
 
                 onClicked: showSummaryPanel()
-            }
+            } */
 
-            SubMenuButton {
+            /* SubMenuButton {
                 id:                 firmwareButton
                 imageResource:      "/qmlimages/FirmwareUpgradeIcon.png"
                 setupIndicator:     false
@@ -248,9 +248,9 @@ Rectangle {
                 Layout.fillWidth:   true
 
                 onClicked: showPanel(this, "FirmwareUpgrade.qml")
-            }
+            } */
 
-            SubMenuButton {
+            /* SubMenuButton {
                 id:                 px4FlowButton
                 exclusiveGroup:     setupButtonGroup
                 visible:            QGroundControl.multiVehicleManager.activeVehicle ? QGroundControl.multiVehicleManager.activeVehicle.priorityLink.isPX4Flow : false
@@ -258,9 +258,9 @@ Rectangle {
                 text:               qsTr("PX4Flow")
                 Layout.fillWidth:   true
                 onClicked:          showPanel(this, "PX4FlowSensor.qml")
-            }
+            } */
 
-            SubMenuButton {
+            /* SubMenuButton {
                 id:                 joystickButton
                 setupIndicator:     true
                 setupComplete:      true
@@ -269,13 +269,25 @@ Rectangle {
                 text:               qsTr("Buttons")
                 Layout.fillWidth:   true
                 onClicked:          showPanel(this, "JoystickConfig.qml")
+            } */
+            SubMenuButton {
+                id:                 px4FlowButton
+                exclusiveGroup:     setupButtonGroup
+                visible:             QGroundControl.multiVehicleManager.parameterReadyVehicleAvailable &&
+                                    !QGroundControl.multiVehicleManager.activeVehicle.usingHighLatencyLink &&
+                                    _corePlugin.showAdvancedUI
+                setupIndicator:     false
+                text:               qsTr("Calibração")
+                imageResource:      "/qmlimages/SensorsComponentIcon.png"
+                Layout.fillWidth:   true
+                onClicked:          showPanel(this, "APMSensorsComponent.qml")
             }
 
             Repeater {
                 id:     componentRepeater
                 model:  _fullParameterVehicleAvailable ? QGroundControl.multiVehicleManager.activeVehicle.autopilot.vehicleComponents : 0
 
-                SubMenuButton {
+                /* SubMenuButton {
                     imageResource:      modelData.iconResource
                     setupIndicator:     modelData.requiresSetup
                     setupComplete:      modelData.setupComplete
@@ -284,10 +296,10 @@ Rectangle {
                     visible:            modelData.setupSource.toString() !== ""
                     Layout.fillWidth:   true
                     onClicked:          showVehicleComponentPanel(modelData)
-                }
+                } */
             }
 
-            SubMenuButton {
+            /* SubMenuButton {
                 setupIndicator:     false
                 exclusiveGroup:     setupButtonGroup
                 visible:            QGroundControl.multiVehicleManager.parameterReadyVehicleAvailable &&
@@ -296,7 +308,7 @@ Rectangle {
                 text:               qsTr("Parameters")
                 Layout.fillWidth:   true
                 onClicked:          showPanel(this, "SetupParameterEditor.qml")
-            }
+            } */
 
         }
     }
@@ -324,11 +336,11 @@ Rectangle {
         anchors.top:            parent.top
         anchors.bottom:         parent.bottom
 
-        function setSource(source, vehicleComponent) {
+        /* function setSource(source, vehicleComponent) {
             panelLoader.source = ""
             panelLoader.vehicleComponent = vehicleComponent
             panelLoader.source = source
-        }
+        } */
 
         function setSourceComponent(sourceComponent, vehicleComponent) {
             panelLoader.sourceComponent = undefined

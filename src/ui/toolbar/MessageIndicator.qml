@@ -95,7 +95,7 @@ Item {
     anchors.top:    parent.top
     anchors.bottom: parent.bottom
 
-    property bool showIndicator: true
+    //property bool showIndicator: true
 
     function getCamSignal() {
         if (!activeVehicle || !activeVehicle.videoManager) {
