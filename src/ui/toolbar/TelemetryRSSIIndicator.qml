@@ -145,7 +145,7 @@ Item {
 
                 QGCLabel {
                     id:             joystickLabel
-                    text:           qsTr("Joystick Status")
+                    text:           qsTr("Status do Controle")
                     font.family:    ScreenTools.demiboldFontFamily
                     anchors.horizontalCenter: parent.horizontalCenter
                 }
@@ -157,12 +157,12 @@ Item {
                     columns:            2
                     anchors.horizontalCenter: parent.horizontalCenter
 
-                    QGCLabel { text: qsTr("Connected:") }
+                    QGCLabel { text: qsTr("Conectado:") }
                     QGCLabel {
                         text:  joystickManager.activeJoystick ? "Yes" : "No"
                         color: joystickManager.activeJoystick ? qgcPal.buttonText : "red"
                     }
-                    QGCLabel { text: qsTr("Enabled:") }
+                    QGCLabel { text: qsTr("Habilitado:") }
                     QGCLabel {
                         text:  activeVehicle && activeVehicle.joystickEnabled ? "Yes" : "No"
                         color: activeVehicle && activeVehicle.joystickEnabled ? qgcPal.buttonText : "red"

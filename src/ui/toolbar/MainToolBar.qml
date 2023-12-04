@@ -516,7 +516,7 @@ Item {
 
      //EDIT SKYDRONES FLY TIME----------
     Item {
-        width: 700
+        width: 900
         height: 10
         anchors {
             left: parent.left

@@ -75,7 +75,7 @@ Item {
 
                 QGCLabel {
                     id:             gpsLabel
-                    text:           (activeVehicle && activeVehicle.gps.count.value >= 0) ? qsTr("GPS Status") : qsTr("GPS Data Unavailable")
+                    text:           (activeVehicle && activeVehicle.gps.count.value >= 0) ? qsTr("Status do GPS") : qsTr("Dados GPS inválidos")
                     font.family:    ScreenTools.demiboldFontFamily
                     anchors.horizontalCenter: parent.horizontalCenter
                 }
@@ -88,17 +88,17 @@ Item {
                     anchors.horizontalCenter: parent.horizontalCenter
                     columns: 2
 
-                    QGCLabel { text: qsTr("GPS Count:") }
+                    QGCLabel { text: qsTr("Sátelites GPS:") }
                     QGCLabel { text: activeVehicle ? activeVehicle.gps.count.valueString : qsTr("N/A", "No data to display") }
-                    QGCLabel { text: qsTr("GPS Lock:") }
+                    QGCLabel { text: qsTr("Tranca GPS:") }
                     QGCLabel { text: activeVehicle ? activeVehicle.gps.lock.enumStringValue : qsTr("N/A", "No data to display") }
-                    QGCLabel { text: qsTr("Signal GPS:")}
+                    QGCLabel { text: qsTr("Sinal do  GPS:")}
                     QGCLabel { text: activeVehicle ? (activeVehicle.gps.hdop.rawValue + "%") : 0 }
                     QGCLabel { text: qsTr("HDOP:") }
                     QGCLabel { text: activeVehicle ? activeVehicle.gps.hdop.valueString : qsTr("--.--", "No data to display") }
                     QGCLabel { text: qsTr("VDOP:") }
                     QGCLabel { text: activeVehicle ? activeVehicle.gps.vdop.valueString : qsTr("--.--", "No data to display") }
-                    QGCLabel { text: qsTr("Course Over Ground:") }
+                    QGCLabel { text: qsTr("Curso sobre o solo:") }
                     QGCLabel { text: activeVehicle ? activeVehicle.gps.courseOverGround.valueString : qsTr("--.--", "No data to display") }
                 }
             }

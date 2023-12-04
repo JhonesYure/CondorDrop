@@ -127,7 +127,7 @@ Item {
 
                 QGCLabel {
                     id:             camLabel
-                    text:           qsTr("Camera Status")
+                    text:           qsTr("Status da Camera")
                     font.family:    ScreenTools.demiboldFontFamily
                     anchors.horizontalCenter: parent.horizontalCenter
                 }
@@ -139,7 +139,7 @@ Item {
                     columns:            2
                     anchors.horizontalCenter: parent.horizontalCenter
 
-                QGCLabel { text: qsTr("Signal Camera:")}
+                QGCLabel { text: qsTr("Sinal da Camera:")}
                     QGCLabel { text: activeVehicle ? (activeVehicle._cameraStatus.rawValue + "%") : 0 }
                 }
             }

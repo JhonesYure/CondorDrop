@@ -96,7 +96,7 @@ Item {
 
                 QGCLabel {
                     id:             battLabel
-                    text:           qsTr("Battery Status")
+                    text:           qsTr("Status da Bateria")
                     font.family:    ScreenTools.demiboldFontFamily
                     anchors.horizontalCenter: parent.horizontalCenter
                 }
@@ -108,12 +108,12 @@ Item {
                     columns:            2
                     anchors.horizontalCenter: parent.horizontalCenter
 
-                    QGCLabel { text: qsTr("Voltage:") }
+                    QGCLabel { text: qsTr("Voltage,:") }
                     QGCLabel { 
                         text: (activeVehicle && activeVehicle.battery.voltage.value !== -1) ? (activeVehicle.battery.voltage.valueString + " " + activeVehicle.battery.voltage.units) : "N/A" 
                         color: activeVehicle && activeVehicle.battery.voltage.value > 40.9 ? qgcPal.buttonText : "red"
                         }
-                    QGCLabel { text: qsTr("Accumulated Consumption:") }
+                    QGCLabel { text: qsTr("Consumo Acumulado:") }
                     QGCLabel { text: (activeVehicle && activeVehicle.battery.mahConsumed.value !== -1) ? (activeVehicle.battery.mahConsumed.valueString + " " + activeVehicle.battery.mahConsumed.units) : "N/A" }
                 }
             }
