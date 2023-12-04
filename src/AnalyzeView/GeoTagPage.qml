@@ -23,8 +23,8 @@ import QGroundControl.Controllers   1.0
 AnalyzePage {
     id:                 geoTagPage
     pageComponent:      pageComponent
-    pageName:           qsTr("GeoTag Images")
-    pageDescription:    qsTr("GeoTag Images is used to tag a set of images from a survey mission with gps coordinates. You must provide the binary log from the flight as well as the directory which contains the images to tag.")
+    pageName:           qsTr("GeoTag")
+    pageDescription:    qsTr("GeoTag Imagens é usado para marcar um conjunto de imagens de uma missão de pesquisa com coordenadas GPS. Você deve fornecer o log binário do voo, bem como o diretório que contém as imagens a serem marcadas.")
 
     readonly property real _margin:     ScreenTools.defaultFontPixelWidth * 2
     readonly property real _minWidth:   ScreenTools.defaultFontPixelWidth * 20
@@ -65,7 +65,7 @@ AnalyzePage {
             //-----------------------------------------------------------------
             //-- Log File
             QGCButton {
-                text:               qsTr("Select log file")
+                text:               qsTr("Selecione Arquivo")
                 onClicked:          openLogFile.open()
                 Layout.minimumWidth:_minWidth
                 Layout.maximumWidth:_maxWidth
@@ -73,7 +73,7 @@ AnalyzePage {
                 Layout.alignment:   Qt.AlignVCenter
                 FileDialog {
                     id:             openLogFile
-                    title:          qsTr("Select log file")
+                    title:          qsTr("Selecione Arquivo")
                     folder:         shortcuts.home
                     nameFilters:    [qsTr("ULog file (*.ulg)"), qsTr("PX4 log file (*.px4log)"), qsTr("All Files (*.*)")]
                     defaultSuffix:  "ulg"
@@ -93,7 +93,7 @@ AnalyzePage {
             //-----------------------------------------------------------------
             //-- Image Directory
             QGCButton {
-                text:               qsTr("Select image directory")
+                text:               qsTr("Selecione local da imagem")
                 onClicked:          selectImageDir.open()
                 Layout.minimumWidth:_minWidth
                 Layout.maximumWidth:_maxWidth
@@ -101,7 +101,7 @@ AnalyzePage {
                 Layout.alignment:   Qt.AlignVCenter
                 FileDialog {
                     id:             selectImageDir
-                    title:          qsTr("Select image directory")
+                    title:          qsTr("Selecione local da imagem")
                     folder:         shortcuts.home
                     selectFolder:   true
                     selectExisting: true
@@ -120,7 +120,7 @@ AnalyzePage {
             //-----------------------------------------------------------------
             //-- Save Directory
             QGCButton {
-                text:               qsTr("(Optionally) Select save directory")
+                text:               qsTr("(Opcional) Selecione onde salvar")
                 onClicked:          selectDestDir.open()
                 Layout.minimumWidth:_minWidth
                 Layout.maximumWidth:_maxWidth
@@ -128,7 +128,7 @@ AnalyzePage {
                 Layout.alignment:   Qt.AlignVCenter
                 FileDialog {
                     id:             selectDestDir
-                    title:          qsTr("Select save directory")
+                    title:          qsTr("Selecione local para salvar")
                     folder:         shortcuts.home
                     selectFolder:   true
                     selectExisting: true
@@ -139,7 +139,7 @@ AnalyzePage {
                 }
             }
             QGCLabel {
-                text:               geoController.saveDirectory === "" ? (geoController.imageDirectory === "" ? "/TAGGED folder in your image folder" : geoController.imageDirectory + "/TAGGED") : geoController.saveDirectory
+                text:               geoController.saveDirectory === "" ? (geoController.imageDirectory === "" ? "/Pasta TAGED na sua pasta de imagens" : geoController.imageDirectory + "/TAGGED") : geoController.saveDirectory
                 elide:              Text.ElideLeft
                 Layout.fillWidth:   true
                 Layout.alignment:   Qt.AlignVCenter
@@ -147,7 +147,7 @@ AnalyzePage {
             //-----------------------------------------------------------------
             //-- Execute
             QGCButton {
-                text:               geoController.inProgress ? qsTr("Cancel Tagging") : qsTr("Start Tagging")
+                text:               geoController.inProgress ? qsTr("Cancelar Marcação") : qsTr("Iniciar Marcação")
                 width:              ScreenTools.defaultFontPixelWidth * 30
                 enabled:            (geoController.imageDirectory !== "" && geoController.logFile !== "") || geoController.inProgress
                 Layout.alignment:   Qt.AlignHCenter

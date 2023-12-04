@@ -317,7 +317,7 @@ Rectangle {
                                         icon:               StandardIcon.Warning
                                         standardButtons:    StandardButton.Yes | StandardButton.No
                                         title:              qsTr("Limpar Configurações")
-                                        text:               qsTr("All saved settings will be reset the next time you start %1. Is this really what you want?").arg(QGroundControl.appName)
+                                        text:               qsTr("Todas as configurações salvas serão redefinidas na próxima vez que você iniciar %1. É mesmo isto que queres?").arg(QGroundControl.appName)
                                         onYes: {
                                             QGroundControl.deleteAllSettingsNextBoot()
                                             clearDialog.visible = false
@@ -334,7 +334,7 @@ Rectangle {
 
                                     QGCCheckBox {
                                         id:         announcePercentCheckbox
-                                        text:       qsTr("Announce battery lower than")
+                                        text:       qsTr("Anunciar bateria abaixo de")
                                         checked:    _percentRemainingAnnounce.value !== 0
                                         onClicked: {
                                             if (checked) {
@@ -363,7 +363,7 @@ Rectangle {
                             anchors.top:        miscColItem.bottom
                             visible:            _savePath.visible && !ScreenTools.isMobile
 
-                            QGCLabel { text: qsTr("Application Load/Save Path") }
+                            QGCLabel { text: qsTr("Caminho de carregamento/salvamento do aplicativo") }
                             QGCTextField {
                                 Layout.fillWidth:   true
                                 readOnly:           true
@@ -387,7 +387,7 @@ Rectangle {
                     Item { width: 1; height: _margins }
                     QGCLabel {
                         id:         loggingSectionLabel
-                        text:       qsTr("Data Persistence")
+                        text:       qsTr("Persistência de dados")
                     }
                     Rectangle {
                         Layout.preferredHeight: dataPersistCol.height + (_margins * 2)
@@ -402,13 +402,13 @@ Rectangle {
                             spacing:                    _margins * 1.5
                             FactCheckBox {
                                 id:         disableDataPersistence
-                                text:       qsTr("Disable all data persistence")
+                                text:       qsTr("Desative toda a persistência de dados")
                                 fact:       _disableDataPersistence
                                 visible:    _disableDataPersistence.visible
                                 property Fact _disableDataPersistence: QGroundControl.settingsManager.appSettings.disableAllPersistence
                             }
                             QGCLabel {
-                                text:       qsTr("When Data Persistence is disabled, all telemetry logging and map tile caching is disabled and not written to disk.")
+                                text:       qsTr("Quando a Persistência de Dados está desabilitada, todo o log de telemetria e o cache de blocos de mapas são desabilitados e não são gravados no disco.")
                                 wrapMode:   Text.WordWrap
                                 font.pointSize:       ScreenTools.smallFontPointSize
                                 Layout.maximumWidth:  logIfNotArmed.visible ? logIfNotArmed.width : disableDataPersistence.width * 1.5
@@ -418,7 +418,7 @@ Rectangle {
 
                     Item { width: 1; height: _margins }
                     QGCLabel {
-                        text:       qsTr("Telemetry Logs from Vehicle")
+                        text:       qsTr("Registros de telemetria do veículo")
                         visible:    telemetryRect.visible
                     }
                     Rectangle {
@@ -436,7 +436,7 @@ Rectangle {
                             spacing:                    _margins
                             FactCheckBox {
                                 id:         promptSaveLog
-                                text:       qsTr("Save log after each flight")
+                                text:       qsTr("Salvar registro após cada voo")
                                 fact:       _telemetrySave
                                 visible:    _telemetrySave.visible
                                 enabled:    !disableDataPersistence.checked
@@ -444,7 +444,7 @@ Rectangle {
                             }
                             FactCheckBox {
                                 id:         logIfNotArmed
-                                text:       qsTr("Save logs even if vehicle was not armed")
+                                text:       qsTr("Salve registros mesmo se o veículo não estiver armado")
                                 fact:       _telemetrySaveNotArmed
                                 visible:    _telemetrySaveNotArmed.visible
                                 enabled:    promptSaveLog.checked && !disableDataPersistence.checked
@@ -452,7 +452,7 @@ Rectangle {
                             }
                             FactCheckBox {
                                 id:         promptSaveCsv
-                                text:       qsTr("Save CSV log of telemetry data")
+                                text:       qsTr("Salvar log CSV de dados de telemetria")
                                 fact:       _saveCsvTelemetry
                                 visible:    _saveCsvTelemetry.visible
                                 enabled:    !disableDataPersistence.checked
@@ -464,7 +464,7 @@ Rectangle {
                     Item { width: 1; height: _margins }
                     QGCLabel {
                         id:         flyViewSectionLabel
-                        text:       qsTr("Fly View")
+                        text:       qsTr("Visualização de voo")
                         visible:    QGroundControl.settingsManager.flyViewSettings.visible
                     }
                     Rectangle {
@@ -483,7 +483,7 @@ Rectangle {
 
                             FactCheckBox {
                                 id:             useCheckList
-                                text:           qsTr("Use Preflight Checklist")
+                                text:           qsTr("Use a lista de verificação de comprovação")
                                 fact:           _useChecklist
                                 visible:        _useChecklist.visible && QGroundControl.corePlugin.options.preFlightChecklistUrl.toString().length
 
@@ -491,7 +491,7 @@ Rectangle {
                             }
 
                             FactCheckBox {
-                                text:           qsTr("Enforce Preflight Checklist")
+                                text:           qsTr("Aplicar lista de verificação de comprovação")
                                 fact:           _enforceChecklist
                                 enabled:        QGroundControl.settingsManager.appSettings.useChecklist.value
                                 visible:        useCheckList.visible && _enforceChecklist.visible && QGroundControl.corePlugin.options.preFlightChecklistUrl.toString().length
@@ -500,7 +500,7 @@ Rectangle {
                             }
 
                             FactCheckBox {
-                                text:       qsTr("Keep Map Centered On Vehicle")
+                                text:       qsTr("Mantenha o mapa centralizado no veículo")
                                 fact:       _keepMapCenteredOnVehicle
                                 visible:    _keepMapCenteredOnVehicle.visible
 
@@ -508,7 +508,7 @@ Rectangle {
                             }
 
                             FactCheckBox {
-                                text:       qsTr("Show Telemetry Log Replay Status Bar")
+                                text:       qsTr("Mostrar barra de status de repetição do registro de telemetria")
                                 fact:       _showLogReplayStatusBar
                                 visible:    _showLogReplayStatusBar.visible
 
@@ -519,13 +519,13 @@ Rectangle {
                                 spacing: ScreenTools.defaultFontPixelWidth
 
                                 FactCheckBox {
-                                    text:       qsTr("Virtual Joystick")
+                                    text:       qsTr("Controle Virtual")
                                     visible:    _virtualJoystick.visible
                                     fact:       _virtualJoystick
                                 }
 
                                 FactCheckBox {
-                                    text:       qsTr("Auto-Center Throttle")
+                                    text:       qsTr("Acelerador centralizado automático")
                                     visible:    _virtualJoystickAutoCenterThrottle.visible
                                     enabled:    _virtualJoystick.rawValue
                                     fact:       _virtualJoystickAutoCenterThrottle
@@ -533,21 +533,21 @@ Rectangle {
                             }
 
                             FactCheckBox {
-                                text:       qsTr("Use Vertical Instrument Panel")
+                                text:       qsTr("Use painel de instrumentos vertical")
                                 visible:    _alternateInstrumentPanel.visible
                                 fact:       _alternateInstrumentPanel
 
                                 property Fact _alternateInstrumentPanel: QGroundControl.settingsManager.flyViewSettings.alternateInstrumentPanel
                             }
                             FactCheckBox {
-                                text:       qsTr("Show additional heading indicators on Compass")
+                                text:       qsTr("Mostrar indicadores de direção adicionais no Compass")
                                 visible:    _showAdditionalIndicatorsCompass.visible
                                 fact:       _showAdditionalIndicatorsCompass
 
                                 property Fact _showAdditionalIndicatorsCompass: QGroundControl.settingsManager.flyViewSettings.showAdditionalIndicatorsCompass
                             }
                             FactCheckBox {
-                                text:       qsTr("Lock Compass Nose-Up")
+                                text:       qsTr("Bloquear o nariz da bússola para cima")
                                 visible:    _lockNoseUpCompass.visible
                                 fact:       _lockNoseUpCompass
 
@@ -563,7 +563,7 @@ Rectangle {
                                 property Fact _maxGoToLocationDistance: QGroundControl.settingsManager.flyViewSettings.maxGoToLocationDistance
 
                                 QGCLabel {
-                                    text:                   qsTr("Guided Minimum Altitude")
+                                    text:                   qsTr("Altitude mínima guiada")
                                     visible:                parent._guidedMinimumAltitude.visible
                                 }
                                 FactTextField {
@@ -573,7 +573,7 @@ Rectangle {
                                 }
 
                                 QGCLabel {
-                                    text:                   qsTr("Guided Maximum Altitude")
+                                    text:                   qsTr("Altitude Máxima Guiada")
                                     visible:                parent._guidedMaximumAltitude.visible
                                 }
                                 FactTextField {
@@ -583,7 +583,7 @@ Rectangle {
                                 }
 
                                 QGCLabel {
-                                    text:                   qsTr("Go To Location Max Distance")
+                                    text:                   qsTr("Vá para a distância máxima do local")
                                     visible:                parent._maxGoToLocationDistance.visible
                                 }
                                 FactTextField {
@@ -599,7 +599,7 @@ Rectangle {
 
                     QGCLabel {
                         id:         planViewSectionLabel
-                        text:       qsTr("Plan View")
+                        text:       qsTr("Plano de Visualização")
                         visible:    _planViewSettings.visible
                     }
                     Rectangle {
@@ -620,7 +620,7 @@ Rectangle {
                                 spacing:    ScreenTools.defaultFontPixelWidth
                                 visible:    QGroundControl.settingsManager.appSettings.defaultMissionItemAltitude.visible
 
-                                QGCLabel { text: qsTr("Default Mission Altitude") }
+                                QGCLabel { text: qsTr("Altitude da missão padrão") }
                                 FactTextField {
                                     Layout.preferredWidth:  _valueFieldWidth
                                     fact:                   QGroundControl.settingsManager.appSettings.defaultMissionItemAltitude
@@ -628,7 +628,7 @@ Rectangle {
                             }
 
                             FactCheckBox {
-                                text:       qsTr("Missions Do Not Require Takeoff Item")
+                                text:       qsTr("Missões não exigem item de decolagem")
                                 fact:       _planViewSettings.takeoffItemNotRequired
                                 visible:    _planViewSettings.takeoffItemNotRequired.visible
                             }
@@ -639,7 +639,7 @@ Rectangle {
 
                     QGCLabel {
                         id:         autoConnectSectionLabel
-                        text:       qsTr("AutoConnect to the following devices")
+                        text:       qsTr("AutoConnect aos seguintes dispositivos")
                         visible:    QGroundControl.settingsManager.autoConnectSettings.visible
                     }
                     Rectangle {
@@ -753,7 +753,7 @@ Rectangle {
 
                     Item { width: 1; height: _margins }
 
-                    QGCLabel {
+                    /* QGCLabel {
                         id:         rtkSectionLabel
                         text:       qsTr("RTK GPS")
                         visible:    QGroundControl.settingsManager.rtkSettings.visible
@@ -948,7 +948,7 @@ Rectangle {
                                 Layout.preferredWidth:  _valueFieldWidth
                             }
                         }
-                    }
+                    } */
 
                     Item { width: 1; height: _margins }
 
@@ -973,7 +973,7 @@ Rectangle {
                             Layout.fillHeight:          false
                             columns:                    2
                             QGCLabel {
-                                text:                   qsTr("Video Source")
+                                text:                   qsTr("Video Fonte")
                                 visible:                QGroundControl.settingsManager.videoSettings.videoSource.visible
                             }
                             FactComboBox {
@@ -1014,7 +1014,7 @@ Rectangle {
                                 visible:                _isTCP && QGroundControl.settingsManager.videoSettings.tcpUrl.visible
                             }
                             QGCLabel {
-                                text:                   qsTr("Aspect Ratio")
+                                text:                   qsTr("Proporção da tela")
                                 visible:                _isGst && QGroundControl.settingsManager.videoSettings.aspectRatio.visible
                             }
                             FactTextField {
@@ -1024,7 +1024,7 @@ Rectangle {
                             }
 
                             QGCLabel {
-                                text:                   qsTr("Disable When Disarmed")
+                                text:                   qsTr("Desativar quando desarmado")
                                 visible:                _isGst && QGroundControl.settingsManager.videoSettings.disableWhenDisarmed.visible
                             }
                             FactCheckBox {
@@ -1034,7 +1034,7 @@ Rectangle {
                             }
 
                             QGCLabel {
-                                text:                   qsTr("Low Latency Mode")
+                                text:                   qsTr("Modo de baixa latência")
                                 visible:                _isGst && QGroundControl.settingsManager.videoSettings.lowLatencyMode.visible
                             }
                             FactCheckBox {
@@ -1049,7 +1049,7 @@ Rectangle {
 
                     QGCLabel {
                         id:                             videoRecSectionLabel
-                        text:                           qsTr("Video Recording")
+                        text:                           qsTr("Gravação de vídeo")
                         visible:                        (QGroundControl.settingsManager.videoSettings.visible && _isGst) || QGroundControl.videoManager.autoStreamConfigured
                     }
                     Rectangle {
@@ -1068,7 +1068,7 @@ Rectangle {
                             columns:                    2
 
                             QGCLabel {
-                                text:                   qsTr("Auto-Delete Files")
+                                text:                   qsTr("Excluir arquivos automaticamente")
                                 visible:                QGroundControl.settingsManager.videoSettings.enableStorageLimit.visible
                             }
                             FactCheckBox {
@@ -1078,7 +1078,7 @@ Rectangle {
                             }
 
                             QGCLabel {
-                                text:                   qsTr("Max Storage Usage")
+                                text:                   qsTr("Uso máximo de armazenamento")
                                 visible:                QGroundControl.settingsManager.videoSettings.maxVideoSize.visible && QGroundControl.settingsManager.videoSettings.enableStorageLimit.value
                             }
                             FactTextField {
@@ -1088,7 +1088,7 @@ Rectangle {
                             }
 
                             QGCLabel {
-                                text:                   qsTr("Video File Format")
+                                text:                   qsTr("Formato de arquivo de vídeo")
                                 visible:                QGroundControl.settingsManager.videoSettings.recordingFormat.visible
                             }
                             FactComboBox {
@@ -1103,7 +1103,7 @@ Rectangle {
 
                     QGCLabel {
                         id:         brandImageSectionLabel
-                        text:       qsTr("Brand Image")
+                        text:       qsTr("Imagem de marca")
                         visible:    QGroundControl.settingsManager.brandImageSettings.visible && !ScreenTools.isMobile
                     }
                     Rectangle {
@@ -1122,7 +1122,7 @@ Rectangle {
                             columns:            3
 
                             QGCLabel {
-                                text:           qsTr("Indoor Image")
+                                text:           qsTr("Imagem interna")
                                 visible:        _userBrandImageIndoor.visible
                             }
                             QGCTextField {
@@ -1131,11 +1131,11 @@ Rectangle {
                                 text:               _userBrandImageIndoor.valueString.replace("file:///","")
                             }
                             QGCButton {
-                                text:       qsTr("Browse")
+                                text:       qsTr("Navegar")
                                 onClicked:  userBrandImageIndoorBrowseDialog.openForLoad()
                                 QGCFileDialog {
                                     id:                 userBrandImageIndoorBrowseDialog
-                                    title:              qsTr("Choose custom brand image file")
+                                    title:              qsTr("Escolha o arquivo de imagem de marca personalizado")
                                     folder:             _userBrandImageIndoor.rawValue.replace("file:///","")
                                     selectExisting:     true
                                     selectFolder:       false
@@ -1144,7 +1144,7 @@ Rectangle {
                             }
 
                             QGCLabel {
-                                text:       qsTr("Outdoor Image")
+                                text:       qsTr("Imagem externa")
                                 visible:    _userBrandImageOutdoor.visible
                             }
                             QGCTextField {
@@ -1153,11 +1153,11 @@ Rectangle {
                                 text:                _userBrandImageOutdoor.valueString.replace("file:///","")
                             }
                             QGCButton {
-                                text:       qsTr("Browse")
+                                text:       qsTr("Navegar")
                                 onClicked:  userBrandImageOutdoorBrowseDialog.openForLoad()
                                 QGCFileDialog {
                                     id:                 userBrandImageOutdoorBrowseDialog
-                                    title:              qsTr("Choose custom brand image file")
+                                    title:              qsTr("Escolha o arquivo de imagem de marca personalizado")
                                     folder:             _userBrandImageOutdoor.rawValue.replace("file:///","")
                                     selectExisting:     true
                                     selectFolder:       false
@@ -1165,7 +1165,7 @@ Rectangle {
                                 }
                             }
                             QGCButton {
-                                text:               qsTr("Reset Default Brand Image")
+                                text:               qsTr("Redefinir imagem de marca padrão")
                                 Layout.columnSpan:  3
                                 Layout.alignment:   Qt.AlignHCenter
                                 onClicked:  {
@@ -1179,11 +1179,11 @@ Rectangle {
                     Item { width: 1; height: _margins }
 
                     QGCLabel {
-                        text:               qsTr("%1 Version").arg(QGroundControl.appName)
+                        text:               "CondorDrop Versão"//qsTr("%1 Version").arg(QGroundControl.appName)
                         Layout.alignment:   Qt.AlignHCenter
                     }
                     QGCLabel {
-                        text:               QGroundControl.qgcVersion
+                        text:               "1.0.0"//QGroundControl.qgcVersion
                         Layout.alignment:   Qt.AlignHCenter
                     }
                 } // settingsColumn

@@ -32,10 +32,10 @@ Rectangle {
     readonly property real      _horizontalMargin:  _defaultTextWidth / 2
     readonly property real      _verticalMargin:    _defaultTextHeight / 2
     readonly property real      _buttonWidth:       _defaultTextWidth * 18
-    readonly property string    _armedVehicleText:  qsTr("This operation cannot be performed while the vehicle is armed.")
+    readonly property string    _armedVehicleText:  qsTr("Esta operação não pode ser realizada enquanto o veículo estiver armado.")
 
     property bool   _vehicleArmed:                  QGroundControl.multiVehicleManager.activeVehicle ? QGroundControl.multiVehicleManager.activeVehicle.armed : false
-    property string _messagePanelText:              qsTr("missing message panel text")
+    property string _messagePanelText:              qsTr("texto do painel de mensagens ausente")
     property bool   _fullParameterVehicleAvailable: QGroundControl.multiVehicleManager.parameterReadyVehicleAvailable && !QGroundControl.multiVehicleManager.activeVehicle.parameterManager.missingParameters
     property var    _corePlugin:                    QGroundControl.corePlugin
 
@@ -73,7 +73,7 @@ Rectangle {
         var autopilotPlugin = QGroundControl.multiVehicleManager.activeVehicle.autopilot
         var prereq = autopilotPlugin.prerequisiteSetup(vehicleComponent)
         if (prereq !== "") {
-            _messagePanelText = qsTr("%1 setup must be completed prior to %2 setup.").arg(prereq).arg(vehicleComponent.name)
+            _messagePanelText = qsTr("A configuração %1 deve ser concluída antes da configuração %2.").arg(prereq).arg(vehicleComponent.name)
             panelLoader.setSourceComponent(messagePanelComponent)
         } else {
             panelLoader.setSource(vehicleComponent.setupSource, vehicleComponent)
@@ -125,8 +125,8 @@ Rectangle {
                 horizontalAlignment:    Text.AlignHCenter
                 wrapMode:               Text.WordWrap
                 font.pointSize:         ScreenTools.mediumFontPointSize
-                text:                   qsTr("%1 does not currently support setup of your vehicle type. ").arg(QGroundControl.appName) +
-                                        "If your vehicle is already configured you can still Fly."
+                text:                   qsTr("%1 atualmente não suporta a configuração do seu tipo de veículo. ").arg(QGroundControl.appName) +
+                                        "Se o seu veículo já estiver configurado você ainda poderá voar."
                 onLinkActivated: Qt.openUrlExternally(link)
             }
         }
@@ -143,8 +143,8 @@ Rectangle {
                 horizontalAlignment:    Text.AlignHCenter
                 wrapMode:               Text.WordWrap
                 font.pointSize:         ScreenTools.largeFontPointSize
-                text:                   qsTr("Vehicle settings and info will display after connecting your vehicle.") +
-                                        (ScreenTools.isMobile || !_corePlugin.options.showFirmwareUpgrade ? "" : " Click Firmware on the left to upgrade your vehicle.")
+                text:                   qsTr("As configurações e informações do veículo serão exibidas após conectar") +
+                                        (ScreenTools.isMobile || !_corePlugin.options.showFirmwareUpgrade ? "" : " Clique em Firmware à esquerda para atualizar seu veículo.")
 
                 onLinkActivated: Qt.openUrlExternally(link)
             }
@@ -164,8 +164,8 @@ Rectangle {
                 horizontalAlignment:    Text.AlignHCenter
                 wrapMode:               Text.WordWrap
                 font.pointSize:         ScreenTools.mediumFontPointSize
-                text:                   qsTr("You are currently connected to a vehicle but it did not return the full parameter list. ") +
-                                        qsTr("As a result, the full set of vehicle setup options are not available.")
+                text:                   qsTr("Você está atualmente conectado a um veículo, mas ele não retornou a lista completa de parâmetros. ") +
+                                        qsTr("Como resultado, o conjunto completo de opções de configuração do veículo não está disponível.")
 
                 onLinkActivated: Qt.openUrlExternally(link)
             }
@@ -204,13 +204,15 @@ Rectangle {
             id:         buttonColumn
             spacing:    _defaultTextHeight / 2
 
-            QGCLabel {
-                Layout.fillWidth:       true
-                text:                   qsTr("Vehicle Setup")
-                wrapMode:               Text.WordWrap
-                horizontalAlignment:    Text.AlignHCenter
-                visible:                !ScreenTools.isShortScreen
-            }
+                QGCLabel {
+                    Layout.fillWidth: true
+                    text: qsTr("Configuração do Drone")
+                    wrapMode: Text.WordWrap
+                    horizontalAlignment: Text.AlignHCenter
+                    visible: !ScreenTools.isShortScreen
+                }
+            
+
 
             Repeater {
                 model:                  _corePlugin ? _corePlugin.settingsPages : []

@@ -867,7 +867,7 @@ Item {
 
             model: [
                 {
-                    name: _guidedController.rtlTitle,
+                    //name: _guidedController.rtlTitle,
                     iconSource: "/qmlimages/AtHome.svg",
                     //buttonVisible: _guidedController.showTakeoff,
                     //buttonEnabled: _guidedController.showTakeoff,
@@ -927,7 +927,7 @@ Item {
 
             model: [
                 {
-                    name: _guidedController.takeoffTitle,
+                    //name: _guidedController.takeoffTitle,
                     iconSource: "/qmlimages/TakeOffIcon.svg",
                     action: _guidedController.actionTakeoff,
                     visible:    true

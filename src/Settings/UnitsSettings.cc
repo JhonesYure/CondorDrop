@@ -23,11 +23,11 @@ DECLARE_SETTINGSFACT_NO_FUNC(UnitsSettings, distanceUnits)
         // Distance/Area/Speed units settings can't be loaded from json since it creates an infinite loop of meta data loading.
         QStringList     enumStrings;
         QVariantList    enumValues;
-        enumStrings << "Feet" << "Meters";
+        enumStrings << "Pés" << "Metros";
         enumValues << QVariant::fromValue(static_cast<uint32_t>(DistanceUnitsFeet)) << QVariant::fromValue(static_cast<uint32_t>(DistanceUnitsMeters));
         FactMetaData* metaData = new FactMetaData(FactMetaData::valueTypeUint32, this);
         metaData->setName(distanceUnitsName);
-        metaData->setShortDescription("Distance units");
+        metaData->setShortDescription("Unidades de Distância");
         metaData->setEnumInfo(enumStrings, enumValues);
         metaData->setRawDefaultValue(DistanceUnitsMeters);
         metaData->setQGCRebootRequired(true);
@@ -42,7 +42,7 @@ DECLARE_SETTINGSFACT_NO_FUNC(UnitsSettings, areaUnits)
         // Distance/Area/Speed units settings can't be loaded from json since it creates an infinite loop of meta data loading.
         QStringList     enumStrings;
         QVariantList    enumValues;
-        enumStrings << "SquareFeet" << "SquareMeters" << "SquareKilometers" << "Hectares" << "Acres" << "SquareMiles";
+        enumStrings <<  "Pés ( ft² ) " << "Metros ( m² )" << "Quilometros ( Km² )" << "Hectares" << "Acres" << "Milhas( mi² )";
         enumValues <<
             QVariant::fromValue(static_cast<uint32_t>(AreaUnitsSquareFeet)) <<
             QVariant::fromValue(static_cast<uint32_t>(AreaUnitsSquareMeters)) <<
@@ -52,7 +52,7 @@ DECLARE_SETTINGSFACT_NO_FUNC(UnitsSettings, areaUnits)
             QVariant::fromValue(static_cast<uint32_t>(AreaUnitsSquareMiles));
         FactMetaData* metaData = new FactMetaData(FactMetaData::valueTypeUint32, this);
         metaData->setName(areaUnitsName);
-        metaData->setShortDescription("Area units");
+        metaData->setShortDescription("Unidade em Area");
         metaData->setEnumInfo(enumStrings, enumValues);
         metaData->setRawDefaultValue(AreaUnitsSquareMeters);
         metaData->setQGCRebootRequired(true);
@@ -67,7 +67,7 @@ DECLARE_SETTINGSFACT_NO_FUNC(UnitsSettings, speedUnits)
         // Distance/Area/Speed units settings can't be loaded from json since it creates an infinite loop of meta data loading.
         QStringList     enumStrings;
         QVariantList    enumValues;
-        enumStrings << "Feet/second" << "Meters/second" << "Miles/hour" << "Kilometers/hour" << "Knots";
+        enumStrings << "Pés/segundos ( ft/s )" << "Metros/segundos ( m/s )" << "Milhas/hora ( mi/h )" << "quilometros/hora ( km/h )" << "Knots";
         enumValues <<
             QVariant::fromValue(static_cast<uint32_t>(SpeedUnitsFeetPerSecond)) <<
             QVariant::fromValue(static_cast<uint32_t>(SpeedUnitsMetersPerSecond)) <<
@@ -76,7 +76,7 @@ DECLARE_SETTINGSFACT_NO_FUNC(UnitsSettings, speedUnits)
             QVariant::fromValue(static_cast<uint32_t>(SpeedUnitsKnots));
         FactMetaData* metaData = new FactMetaData(FactMetaData::valueTypeUint32, this);
         metaData->setName(speedUnitsName);
-        metaData->setShortDescription("Speed units");
+        metaData->setShortDescription("Unidade em Velocidade");
         metaData->setEnumInfo(enumStrings, enumValues);
         metaData->setRawDefaultValue(SpeedUnitsMetersPerSecond);
         metaData->setQGCRebootRequired(true);
@@ -95,7 +95,7 @@ DECLARE_SETTINGSFACT_NO_FUNC(UnitsSettings, temperatureUnits)
         enumValues << QVariant::fromValue(static_cast<uint32_t>(TemperatureUnitsCelsius)) << QVariant::fromValue(static_cast<uint32_t>(TemperatureUnitsFarenheit));
         FactMetaData* metaData = new FactMetaData(FactMetaData::valueTypeUint32, this);
         metaData->setName(temperatureUnitsName);
-        metaData->setShortDescription("Temperature units");
+        metaData->setShortDescription("Unidade de Temperatura");
         metaData->setEnumInfo(enumStrings, enumValues);
         metaData->setRawDefaultValue(TemperatureUnitsCelsius);
         metaData->setQGCRebootRequired(true);

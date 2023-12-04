@@ -37,16 +37,16 @@ SetupPage {
             // Help text which is shown both in the status text area prior to pressing a cal button and in the
             // pre-calibration dialog.
 
-            readonly property string orientationHelpSet:    qsTr("If mounted in the direction of flight, select None.")
-            readonly property string orientationHelpCal:    qsTr("Before calibrating make sure rotation settings are correct. ") + orientationHelpSet
-            readonly property string compassRotationText:   qsTr("If the compass or GPS module is mounted in flight direction, leave the default value (None)")
+            readonly property string orientationHelpSet:    qsTr("Se montado na direção do vôo, selecione Nenhum.")
+            readonly property string orientationHelpCal:    qsTr("Antes de calibrar, certifique-se de que as configurações de rotação estejam corretas. ") + orientationHelpSet
+            readonly property string compassRotationText:   qsTr("Se a bússola ou módulo GPS estiver montado na direção do vôo, deixe o valor padrão (Nenhum)")
 
-            readonly property string compassHelp:   qsTr("For Compass calibration you will need to rotate your vehicle through a number of positions.")
-            readonly property string gyroHelp:      qsTr("For Gyroscope calibration you will need to place your vehicle on a surface and leave it still.")
-            readonly property string accelHelp:     qsTr("For Accelerometer calibration you will need to place your vehicle on all six sides on a perfectly level surface and hold it still in each orientation for a few seconds.")
-            readonly property string levelHelp:     qsTr("To level the horizon you need to place the vehicle in its level flight position and press OK.")
+            readonly property string compassHelp:   qsTr("Para a calibração da bússola, você precisará girar o veículo em várias posições.")
+            readonly property string gyroHelp:      qsTr("Para a calibração do giroscópio você precisará colocar seu veículo em uma superfície e deixá-lo imóvel.")
+            readonly property string accelHelp:     qsTr("Para a calibração do acelerômetro, você precisará colocar o veículo em todos os seis lados em uma superfície perfeitamente nivelada e mantê-lo imóvel em cada orientação por alguns segundos.")
+            readonly property string levelHelp:     qsTr("Para nivelar o horizonte é necessário colocar o veículo na posição de vôo nivelado e pressionar OK.")
 
-            readonly property string statusTextAreaDefaultText: qsTr("Start the individual calibration steps by clicking one of the buttons to the left.")
+            readonly property string statusTextAreaDefaultText: qsTr("Inicie as etapas de calibração individuais clicando em um dos botões à esquerda.")
 
             // Used to pass help text to the preCalibrationDialog dialog
             property string preCalibrationDialogHelp
@@ -54,8 +54,8 @@ SetupPage {
             property string _postCalibrationDialogText
             property var    _postCalibrationDialogParams
 
-            readonly property string _badCompassCalText: qsTr("The calibration for Compass %1 appears to be poor. ") +
-                                                         qsTr("Check the compass position within your vehicle and re-do the calibration.")
+            readonly property string _badCompassCalText: qsTr("A calibração da Bússola %1 parece ser ruim.") +
+                                                         qsTr("Verifique a posição da bússola no seu veículo e refaça a calibração.")
 
             readonly property int sideBarH1PointSize:  ScreenTools.mediumFontPointSize
             readonly property int mainTextH1PointSize: ScreenTools.mediumFontPointSize // Seems to be unused
@@ -91,13 +91,13 @@ SetupPage {
                 case _calTypeCompass:
                     _orientationsDialogShowCompass = true
                     _orientationDialogHelp = orientationHelpCal
-                    dialogTitle = qsTr("Calibrate Compass")
+                    dialogTitle = qsTr("Calibrar Bússola")
                     buttons |= StandardButton.Cancel
                     break
                 case _calTypeAccel:
                     _orientationsDialogShowCompass = false
                     _orientationDialogHelp = orientationHelpCal
-                    dialogTitle = qsTr("Calibrate Accelerometer")
+                    dialogTitle = qsTr("Calibrar Acelerômetro")
                     buttons |= StandardButton.Cancel
                     break
                 case _calTypeSet:
@@ -129,20 +129,20 @@ SetupPage {
 
                 onWaitingForCancelChanged: {
                     if (controller.waitingForCancel) {
-                        mainWindow.showComponentDialog(waitForCancelDialogComponent, qsTr("Calibration Cancel"), mainWindow.showDialogDefaultWidth, 0)
+                        mainWindow.showComponentDialog(waitForCancelDialogComponent, qsTr("Cancelar Calibração "), mainWindow.showDialogDefaultWidth, 0)
                     }
                 }
 
                 onCalibrationComplete: {
                     switch (calType) {
                     case APMSensorsComponentController.CalTypeAccel:
-                        mainWindow.showComponentDialog(postCalibrationComponent, qsTr("Accelerometer calibration complete"), mainWindow.showDialogDefaultWidth, StandardButton.Ok)
+                        mainWindow.showComponentDialog(postCalibrationComponent, qsTr("Calibração do Acelerômetro Completo"), mainWindow.showDialogDefaultWidth, StandardButton.Ok)
                         break
                     case APMSensorsComponentController.CalTypeOffboardCompass:
-                        mainWindow.showComponentDialog(postCalibrationComponent, qsTr("Compass calibration complete"), mainWindow.showDialogDefaultWidth, StandardButton.Ok)
+                        mainWindow.showComponentDialog(postCalibrationComponent, qsTr("Calibração da Bússola Completa"), mainWindow.showDialogDefaultWidth, StandardButton.Ok)
                         break
                     case APMSensorsComponentController.CalTypeOnboardCompass:
-                        mainWindow.showComponentDialog(postOnboardCompassCalibrationComponent, qsTr("Calibration complete"), mainWindow.showDialogDefaultWidth, StandardButton.Ok)
+                        mainWindow.showComponentDialog(postOnboardCompassCalibrationComponent, qsTr("Calibração Completa"), mainWindow.showDialogDefaultWidth, StandardButton.Ok)
                         break
                     }
                 }
@@ -156,7 +156,7 @@ SetupPage {
                 var usingUDP = controller.usingUDPLink()
                 var isSub = QGroundControl.multiVehicleManager.activeVehicle.sub;
                 if (usingUDP && !isSub) {
-                    mainWindow.showMessageDialog(qsTr("Sensor Calibration"), qsTr("Performing sensor calibration over a WiFi connection can be unreliable. If you run into problems try using a direct USB connection instead."))
+                    mainWindow.showMessageDialog(qsTr("Calibração do Sensor"), qsTr("A calibração do sensor através de uma conexão WiFi pode não ser confiável. Se você tiver problemas, tente usar uma conexão USB direta."))
                 }
             }
 
@@ -166,7 +166,7 @@ SetupPage {
                 id: waitForCancelDialogComponent
 
                 QGCViewMessage {
-                    message: qsTr("Waiting for Vehicle to response to Cancel. This may take a few seconds.")
+                    message: qsTr("Aguardando a resposta do Veículo para Cancelar. Isso pode demorar alguns segundos.")
 
                     Connections {
                         target: controller
@@ -237,16 +237,16 @@ SetupPage {
                         spacing:            Math.round(ScreenTools.defaultFontPixelHeight / 4)
 
                         QGCLabel {
-                            text: qsTr("Compass ") + (index+1) + " " +
-                                  (sensorParams.rgCompassPrimary[index] ? qsTr("(primary") : qsTr("(secondary")) +
+                            text: qsTr("Bússola ") + (index+1) + " " +
+                                  (sensorParams.rgCompassPrimary[index] ? qsTr("(primario") : qsTr("(secondario")) +
                                   (sensorParams.rgCompassExternalParamAvailable[index] ?
-                                       (sensorParams.rgCompassExternal[index] ? qsTr(", external") : qsTr(", internal" )) :
+                                       (sensorParams.rgCompassExternal[index] ? qsTr(", externo") : qsTr(", interno" )) :
                                        "") +
                                   ")"
                         }
 
                         FactCheckBox {
-                            text:       qsTr("Use Compass")
+                            text:       qsTr("Usar Bússola")
                             fact:       sensorParams.rgCompassUseFact[index]
                             visible:    sensorParams.rgCompassUseParamAvailable[index] && !sensorParams.rgCompassPrimary[index]
                         }
@@ -273,15 +273,15 @@ SetupPage {
                             anchors.left:   parent.left
                             anchors.right:  parent.right
                             wrapMode:       Text.WordWrap
-                            text:           qsTr("Shown in the indicator bars is the quality of the calibration for each compass.\n\n") +
-                                            qsTr("- Green indicates a well functioning compass.\n") +
-                                            qsTr("- Yellow indicates a questionable compass or calibration.\n") +
-                                            qsTr("- Red indicates a compass which should not be used.\n\n") +
-                                            qsTr("YOU MUST REBOOT YOUR VEHICLE AFTER EACH CALIBRATION.")
+                            text:           qsTr("Nas barras indicadoras é mostrada a qualidade da calibração de cada bússola.\n\n") +
+                                            qsTr("- Verde indica uma bússola funcionando bem.\n") +
+                                            qsTr("- Amarelo indica uma bússola ou calibração questionável.\n") +
+                                            qsTr("- Vermelho indica uma bússola que não deve ser usada.\n\n") +
+                                            qsTr("VOCÊ DEVE REINICIAR SEU VEÍCULO APÓS CADA CALIBRAÇÃO.")
                         }
 
                         QGCButton {
-                            text:       qsTr("Reboot Vehicle")
+                            text:       qsTr("Reiniciar Drone")
                             onClicked: {
                                 controller.vehicle.rebootVehicle()
                                 hideDialog()
@@ -305,11 +305,11 @@ SetupPage {
                             anchors.left:   parent.left
                             anchors.right:  parent.right
                             wrapMode:       Text.WordWrap
-                            text:           qsTr("YOU MUST REBOOT YOUR VEHICLE AFTER EACH CALIBRATION.")
+                            text:           qsTr("VOCÊ DEVE REINICIALIZAR SEU VEÍCULO APÓS CADA CALIBRAÇÃO.")
                         }
 
                         QGCButton {
-                            text:       qsTr("Reboot Vehicle")
+                            text:       qsTr("Reiniciar Drone")
                             onClicked: {
                                 controller.vehicle.rebootVehicle()
                                 hideDialog()
@@ -327,10 +327,10 @@ SetupPage {
                     visible: sensorParams.rgCompassAvailable[index]
 
                     QGCLabel {
-                        text: qsTr("Compass ") + (index+1) + " " +
-                              (sensorParams.rgCompassPrimary[index] ? qsTr("(primary") :qsTr( "(secondary")) +
+                        text: qsTr("Bússola ") + (index+1) + " " +
+                              (sensorParams.rgCompassPrimary[index] ? qsTr("(primario") :qsTr( "(secondario")) +
                               (sensorParams.rgCompassExternalParamAvailable[index] ?
-                                   (sensorParams.rgCompassExternal[index] ? qsTr(", external") : qsTr(", internal") ) :
+                                   (sensorParams.rgCompassExternal[index] ? qsTr(", externo") : qsTr(", interno") ) :
                                    "") +
                               ")"
                     }
@@ -341,7 +341,7 @@ SetupPage {
                         spacing:            Math.round(ScreenTools.defaultFontPixelHeight / 4)
 
                         FactCheckBox {
-                            text:       qsTr("Use Compass")
+                            text:       qsTr("Usar Bússola")
                             fact:       sensorParams.rgCompassUseFact[index]
                             visible:    sensorParams.rgCompassUseParamAvailable[index] && !sensorParams.rgCompassPrimary[index]
                         }
@@ -349,7 +349,7 @@ SetupPage {
                         Column {
                             visible: !_compassAutoRot && sensorParams.rgCompassExternal[index] && sensorParams.rgCompassRotParamAvailable[index]
 
-                            QGCLabel { text: qsTr("Orientation:") }
+                            QGCLabel { text: qsTr("Orientação:") }
 
                             FactComboBox {
                                 width:      rotationColumnWidth
@@ -396,7 +396,7 @@ SetupPage {
                             }
 
                             Column {
-                                QGCLabel { text: qsTr("Autopilot Rotation:") }
+                                QGCLabel { text: qsTr("Rotação do piloto automático:") }
 
                                 FactComboBox {
                                     width:      rotationColumnWidth
@@ -442,38 +442,38 @@ SetupPage {
                                 anchors.left:   parent.left
                                 anchors.right:  parent.right
                                 wrapMode:       Text.WordWrap
-                                text:           qsTr("This is recommended for vehicles that have only an internal compass and on vehicles where there is significant interference on the compass from the motors, power wires, etc. ") +
-                                                qsTr("CompassMot only works well if you have a battery current monitor because the magnetic interference is linear with current drawn. ") +
-                                                qsTr("It is technically possible to set-up CompassMot using throttle but this is not recommended.")
+                                text:           qsTr("Isto é recomendado para veículos que possuem apenas uma bússola interna e em veículos onde há interferência significativa na bússola proveniente de motores, fios de alimentação, etc. ") +
+                                                qsTr("O CompassMot só funciona bem se você tiver um monitor de corrente da bateria porque a interferência magnética é linear com a corrente consumida. ") +
+                                                qsTr("É tecnicamente possível configurar o CompassMot usando acelerador, mas isso não é recomendado.")
                             }
 
                             QGCLabel {
                                 anchors.left:   parent.left
                                 anchors.right:  parent.right
                                 wrapMode:       Text.WordWrap
-                                text:           qsTr("Disconnect your props, flip them over and rotate them one position around the frame. ") +
-                                                qsTr("In this configuration they should push the copter down into the ground when the throttle is raised.")
+                                text:           qsTr("Desconecte seus adereços, vire-os e gire-os em uma posição ao redor do quadro.") +
+                                                qsTr("Nesta configuração eles devem empurrar o helicóptero para o chão quando o acelerador for aumentado.")
                             }
 
                             QGCLabel {
                                 anchors.left:   parent.left
                                 anchors.right:  parent.right
                                 wrapMode:       Text.WordWrap
-                                text:           qsTr("Secure the copter (perhaps with tape) so that it does not move.")
+                                text:           qsTr("Prenda o helicóptero (talvez com fita adesiva) para que ele não se mova.")
                             }
 
                             QGCLabel {
                                 anchors.left:   parent.left
                                 anchors.right:  parent.right
                                 wrapMode:       Text.WordWrap
-                                text:           qsTr("Turn on your transmitter and keep throttle at zero.")
+                                text:           qsTr("Ligue o transmissor e mantenha o acelerador em zero.")
                             }
 
                             QGCLabel {
                                 anchors.left:   parent.left
                                 anchors.right:  parent.right
                                 wrapMode:       Text.WordWrap
-                                text:           qsTr("Click Ok to start CompassMot calibration.")
+                                text:           qsTr("Clique em Ok para iniciar a calibração do CompassMot.")
                             }
                         } // Column
                     } // QGCFlickable
@@ -495,7 +495,7 @@ SetupPage {
                         anchors.left:   parent.left
                         anchors.right:  parent.right
                         wrapMode:       Text.WordWrap
-                        text:           qsTr("To level the horizon you need to place the vehicle in its level flight position and press Ok.")
+                        text:           qsTr("Para nivelar o horizonte você precisa colocar o veículo em posição de vôo nivelado e pressionar OK.")
                     }
                 } // QGCViewDialog
             } // Component - levelHorizonDialogComponent
@@ -517,9 +517,9 @@ SetupPage {
                         wrapMode:       Text.WordWrap
                         text:           _helpText
 
-                        readonly property string _altText:      activeVehicle.sub ? qsTr("depth") : qsTr("altitude")
-                        readonly property string _helpText:     qsTr("Pressure calibration will set the %1 to zero at the current pressure reading. %2").arg(_altText).arg(_helpTextFW)
-                        readonly property string _helpTextFW:   activeVehicle.fixedWing ? qsTr("To calibrate the airspeed sensor shield it from the wind. Do not touch the sensor or obstruct any holes during the calibration.") : ""
+                        readonly property string _altText:      activeVehicle.sub ? qsTr("profundidade") : qsTr("altitude")
+                        readonly property string _helpText:     qsTr("A calibração de pressão definirá %1 como zero na leitura de pressão atual. %2").arg(_altText).arg(_helpTextFW)
+                        readonly property string _helpTextFW:   activeVehicle.fixedWing ? qsTr("Para calibrar o sensor de velocidade no ar, proteja-o do vento. Não toque no sensor nem obstrua nenhum orifício durante a calibração.") : ""
                     }
                 } // QGCViewDialog
             } // Component - calibratePressureDialogComponent
@@ -541,7 +541,7 @@ SetupPage {
 
                     IndicatorButton {
                         width:          _buttonWidth
-                        text:           qsTr("Accelerometer")
+                        text:           qsTr("Acelerômetro")
                         indicatorGreen: !accelCalNeeded
 
                         onClicked: showOrientationsDialog(_calTypeAccel)
@@ -549,12 +549,12 @@ SetupPage {
 
                     IndicatorButton {
                         width:          _buttonWidth
-                        text:           qsTr("Compass")
+                        text:           qsTr("Bússola")
                         indicatorGreen: !compassCalNeeded
 
                         onClicked: {
                             if (controller.accelSetupNeeded) {
-                                mainWindow.showMessageDialog(qsTr("Calibrate Compass"), qsTr("Accelerometer must be calibrated prior to Compass."))
+                                mainWindow.showMessageDialog(qsTr("Calibrar Bússola"), qsTr("O acelerômetro deve ser calibrado antes da bússola."))
                             } else {
                                 showOrientationsDialog(_calTypeCompass)
                             }
@@ -609,7 +609,7 @@ SetupPage {
                     QGCButton {
                         id:         nextButton
                         width:      _buttonWidth
-                        text:       qsTr("Next")
+                        text:       qsTr("Próximo")
                         enabled:    false
                         onClicked:  controller.nextClicked()
                     }
@@ -617,7 +617,7 @@ SetupPage {
                     QGCButton {
                         id:         cancelButton
                         width:      _buttonWidth
-                        text:       qsTr("Cancel")
+                        text:       qsTr("Cancelar")
                         enabled:    false
                         onClicked:  controller.cancelCalibration()
                     }

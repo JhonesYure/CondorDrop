@@ -61,7 +61,7 @@ Rectangle {
             anchors.right:          parent.right
             wrapMode:               Text.WordWrap
             horizontalAlignment:    Text.AlignHCenter
-            text:                   qsTr("New Alt(rel)")
+            text:                   qsTr("Altura")
         }
 
         QGCLabel {

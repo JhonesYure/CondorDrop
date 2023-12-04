@@ -38,16 +38,16 @@ UrlFactory::UrlFactory() : _timeout(5 * 1000) {
     // Warning : in _providersTable, keys needs to follow this format :
     // "Provider Type"
 #ifndef QGC_NO_GOOGLE_MAPS
-    _providersTable["Google Street Map"] = new GoogleStreetMapProvider(this);
-    _providersTable["Google Satellite"]  = new GoogleSatelliteMapProvider(this);
-    _providersTable["Google Terrain"]    = new GoogleTerrainMapProvider(this);
-    _providersTable["Google Hybrid"]    = new GoogleHybridMapProvider(this);
-    _providersTable["Google Labels"]     = new GoogleTerrainMapProvider(this);
+    _providersTable["Google  Mapa da rua"] = new GoogleStreetMapProvider(this);
+    _providersTable["Google Satelite"]  = new GoogleSatelliteMapProvider(this);
+    _providersTable["Google Terreno"]    = new GoogleTerrainMapProvider(this);
+    _providersTable["Google Híbrido"]    = new GoogleHybridMapProvider(this);
+    _providersTable["Google Etiquetas"]     = new GoogleTerrainMapProvider(this);
 #endif
 
-    _providersTable["Bing Road"]      = new BingRoadMapProvider(this);
-    _providersTable["Bing Satellite"] = new BingSatelliteMapProvider(this);
-    _providersTable["Bing Hybrid"]    = new BingHybridMapProvider(this);
+    _providersTable["Bing Estrada"]      = new BingRoadMapProvider(this);
+    _providersTable["Bing Satelite"] = new BingSatelliteMapProvider(this);
+    _providersTable["Bing Híbrido"]    = new BingHybridMapProvider(this);
 
     _providersTable["Statkart Topo"] = new StatkartMapProvider(this);
 
@@ -58,21 +58,21 @@ UrlFactory::UrlFactory() : _timeout(5 * 1000) {
     //_providersTable["Esri World Satellite"] = new EsriWorldSatelliteMapProvider(this);
     //_providersTable["Esri Terrain"] = new EsriTerrainMapProvider(this);
 
-    _providersTable["Mapbox Streets"]      = new MapboxStreetMapProvider(this);
-    _providersTable["Mapbox Light"]        = new MapboxLightMapProvider(this);
-    _providersTable["Mapbox Dark"]         = new MapboxDarkMapProvider(this);
-    _providersTable["Mapbox Satellite"]    = new MapboxSatelliteMapProvider(this);
-    _providersTable["Mapbox Hybrid"]       = new MapboxHybridMapProvider(this);
-    _providersTable["Mapbox StreetsBasic"] = new MapboxStreetsBasicMapProvider(this);
-    _providersTable["Mapbox Outdoors"]     = new MapboxOutdoorsMapProvider(this);
-    _providersTable["Mapbox RunBikeHike"]  = new MapboxRunBikeHikeMapProvider(this);
-    _providersTable["Mapbox HighContrast"] = new MapboxHighContrastMapProvider(this);
+    _providersTable["Mapbox Ruas"]      = new MapboxStreetMapProvider(this);
+    _providersTable["Mapbox Claro"]        = new MapboxLightMapProvider(this);
+    _providersTable["Mapbox Escuro"]         = new MapboxDarkMapProvider(this);
+    _providersTable["Mapbox Satelite"]    = new MapboxSatelliteMapProvider(this);
+    _providersTable["Mapbox Híbrido"]       = new MapboxHybridMapProvider(this);
+    _providersTable["Mapbox Rua básica"] = new MapboxStreetsBasicMapProvider(this);
+    _providersTable["Mapbox Ao ar livre"]     = new MapboxOutdoorsMapProvider(this);
+    _providersTable["Mapbox Brilhante"]  = new MapboxRunBikeHikeMapProvider(this);
+    _providersTable["Mapbox Customizado"] = new MapboxHighContrastMapProvider(this);
 
     //_providersTable["MapQuest Map"] = new MapQuestMapMapProvider(this);
     //_providersTable["MapQuest Sat"] = new MapQuestSatMapProvider(this);
     
-    _providersTable["VWorld Street Map"] = new VWorldStreetMapProvider(this);
-    _providersTable["VWorld Satellite Map"] = new VWorldSatMapProvider(this);
+    _providersTable["VWorld Mapa de ruas"] = new VWorldStreetMapProvider(this);
+    _providersTable["VWorld Mapa de Satélite"] = new VWorldSatMapProvider(this);
 
     _providersTable["Airmap Elevation"] = new AirmapElevationProvider(this);
 }
