@@ -31,6 +31,7 @@ QGCTextField {
         if (errorString === "") {
             fact.value = text
             _textField.updated()
+            console.log("valor alterado para: " + text)
         } else {
             _validateString = text
             mainWindow.showComponentDialog(validationErrorDialogComponent, qsTr("Invalid Value"), mainWindow.showDialogDefaultWidth, StandardButton.Save | StandardButton.Cancel)

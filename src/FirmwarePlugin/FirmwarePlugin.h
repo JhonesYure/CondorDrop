@@ -116,7 +116,7 @@ public:
     /// Returns the flight mode for Land
     virtual QString landFlightMode(void) const { return QString(); }
 
-    /// Returns the flight mode to use when the operator wants to take back control from autonomouse flight.
+    /// Returns the flight mode to use when the operator wants to take back control from autonomouse flight.(mode Loiter)
     virtual QString takeControlFlightMode(void) const { return QString(); }
 
     /// Returns whether the vehicle is in guided mode or not.

@@ -18,7 +18,7 @@ import QGroundControl.Palette               1.0
 
 //-------------------------------------------------------------------------
 //-- Telemetry RSSI
-Item {
+/* Item {
     id:             _root
     anchors.top:    parent.top
     anchors.bottom: parent.bottom
@@ -28,6 +28,8 @@ Item {
 
     property var  _activeVehicle:   QGroundControl.multiVehicleManager.activeVehicle
     property bool _hasTelemetry:    _activeVehicle ? _activeVehicle.telemetryLRSSI !== 0 : false
+    property bool   _rcRSSIAvailable:   activeVehicle ? activeVehicle.rcRSSI > 0 && activeVehicle.rcRSSI <= 100 : false
+    
 
     Component {
         id: telemRSSIInfo
@@ -69,19 +71,31 @@ Item {
                     QGCLabel { text: activeVehicle.telemetryLNoise }
                     QGCLabel { text: qsTr("Remote Noise:") }
                     QGCLabel { text: activeVehicle.telemetryRNoise }
+                    QGCLabel { text: qsTr("RSSI:") }
+                    QGCLabel { text: activeVehicle ? (activeVehicle.rcRSSI + "%") : 0 }
                 }
             }
         }
     }
-    QGCColoredImage {
+    Row {
+        id:             telerOW
+        anchors.top:    parent.top
+        anchors.bottom: parent.bottom
+        QGCColoredImage {
         id:                 telemIcon
         anchors.top:        parent.top
         anchors.bottom:     parent.bottom
         width:              height
         sourceSize.height:  height
-        source:             "/qmlimages/TelemRSSI.svg"
+        source:             "/qmlimages/ControlIcon.svg"
         fillMode:           Image.PreserveAspectFit
         color:              qgcPal.buttonText
+        }
+        QGCLabel {
+                text: activeVehicle ? (activeVehicle.rcRSSI + "%") : 0
+                font.pointSize:         ScreenTools.mediumFontPointSize
+                anchors.verticalCenter: parent.verticalCenter
+            }
     }
     MouseArea {
         anchors.fill: parent
@@ -89,4 +103,103 @@ Item {
             mainWindow.showPopUp(_root, telemRSSIInfo)
         }
     }
+} */
+Item {
+    id:             _root
+    width:          joystickRow.width * 1.1
+    anchors.top:    parent.top
+    anchors.bottom: parent.bottom
+    //visible:        activeVehicle ? activeVehicle.sub : false
+
+    property bool showIndicator: true
+    property bool   _rcRSSIAvailable:   activeVehicle ? activeVehicle.rcRSSI > 0 && activeVehicle.rcRSSI <= 100 : false
+
+    function getControlPercent()
+    {   
+        if(activeVehicle) {
+            if(joystickManager.activeJoystick) {
+                return "100%"
+            }
+            if(activeVehicle.joystickEnabled) {
+                return "0"
+            }
+        }
+        return "N/A"
+    }
+    Component {
+        id: joystickInfo
+
+        Rectangle {
+            width:  joystickCol.width   + ScreenTools.defaultFontPixelWidth  * 3
+            height: joystickCol.height  + ScreenTools.defaultFontPixelHeight * 2
+            radius: ScreenTools.defaultFontPixelHeight * 0.5
+            color:  qgcPal.window
+            border.color:   qgcPal.text
+
+            Column {
+                id:                 joystickCol
+                spacing:            ScreenTools.defaultFontPixelHeight * 0.5
+                width:              Math.max(joystickGrid.width, joystickLabel.width)
+                anchors.margins:    ScreenTools.defaultFontPixelHeight
+                anchors.centerIn:   parent
+
+                QGCLabel {
+                    id:             joystickLabel
+                    text:           qsTr("Joystick Status")
+                    font.family:    ScreenTools.demiboldFontFamily
+                    anchors.horizontalCenter: parent.horizontalCenter
+                }
+
+                GridLayout {
+                    id:                 joystickGrid
+                    anchors.margins:    ScreenTools.defaultFontPixelHeight
+                    columnSpacing:      ScreenTools.defaultFontPixelWidth
+                    columns:            2
+                    anchors.horizontalCenter: parent.horizontalCenter
+
+                    QGCLabel { text: qsTr("Connected:") }
+                    QGCLabel {
+                        text:  joystickManager.activeJoystick ? "Yes" : "No"
+                        color: joystickManager.activeJoystick ? qgcPal.buttonText : "red"
+                    }
+                    QGCLabel { text: qsTr("Enabled:") }
+                    QGCLabel {
+                        text:  activeVehicle && activeVehicle.joystickEnabled ? "Yes" : "No"
+                        color: activeVehicle && activeVehicle.joystickEnabled ? qgcPal.buttonText : "red"
+                    }
+                }
+            }
+        }
+    }
+
+    Row {
+        id:             joystickRow
+        anchors.top:    parent.top
+        anchors.bottom: parent.bottom
+        spacing:        ScreenTools.defaultFontPixelWidth
+
+        QGCColoredImage {
+            width:              height
+            anchors.top:        parent.top
+            anchors.bottom:     parent.bottom
+            sourceSize.height:  height
+            source:             "/qmlimages/ControlIcon.svg"
+            fillMode:           Image.PreserveAspectFit
+            //color:              activeVehicle && activeVehicle.joystickEnabled && joystickManager.activeJoystick ? qgcPal.buttonText : "red"
+        }
+        QGCLabel {
+                text:                   getControlPercent()
+                font.pointSize:         ScreenTools.mediumFontPointSize
+                anchors.verticalCenter: parent.verticalCenter
+                //color:                  activeVehicle && activeVehicle.joystickEnabled && joystickManager.activeJoystick ? qgcPal.buttonText : "red"
+            }
+    }
+
+    MouseArea {
+        anchors.fill:   parent
+        onClicked: {
+            mainWindow.showPopUp(_root, joystickInfo)
+        }
+    }
 }
+

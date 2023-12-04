@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="84" height="84" viewBox="0 0 84 84">
+  <g id="RADAR" transform="translate(-3 -287)">
+    <g id="Grupo_12" data-name="Grupo 12" transform="translate(-259 132.938)">
+      <g id="Elipse_3" data-name="Elipse 3" transform="translate(295 186.996)" fill="none" stroke="#fff" stroke-width="0.4">
+        <circle cx="9" cy="9" r="9" stroke="none"/>
+        <circle cx="9" cy="9" r="8.8" fill="none"/>
+      </g>
+      <g id="Elipse_4" data-name="Elipse 4" transform="translate(287 177.996)" fill="none" stroke="#fff" stroke-width="0.4">
+        <ellipse cx="17.5" cy="18" rx="17.5" ry="18" stroke="none"/>
+        <ellipse cx="17.5" cy="18" rx="17.3" ry="17.8" fill="none"/>
+      </g>
+      <g id="Elipse_5" data-name="Elipse 5" transform="translate(278 169.996)" fill="none" stroke="#fff" stroke-width="0.4">
+        <circle cx="26" cy="26" r="26" stroke="none"/>
+        <circle cx="26" cy="26" r="25.8" fill="none"/>
+      </g>
+      <g id="Caminho_27" data-name="Caminho 27" transform="translate(269 160.996)" fill="none">
+        <path d="M35,0A35.083,35.083,0,0,1,69.622,29.837,34.3,34.3,0,0,1,70,35,35,35,0,1,1,35,0Z" stroke="none"/>
+        <path d="M 35 0.8000030517578125 C 30.3826789855957 0.8000030517578125 25.90390014648438 1.704132080078125 21.68806076049805 3.487281799316406 C 17.61565017700195 5.209770202636719 13.95808029174805 7.675819396972656 10.81695175170898 10.81695175170898 C 7.675819396972656 13.95808029174805 5.209770202636719 17.61565017700195 3.487281799316406 21.68806076049805 C 1.704132080078125 25.90390014648438 0.8000030517578125 30.3826789855957 0.8000030517578125 35 C 0.8000030517578125 39.61731719970703 1.704132080078125 44.09609985351562 3.487281799316406 48.31193923950195 C 5.209770202636719 52.38434982299805 7.675819396972656 56.04191970825195 10.81695175170898 59.18305206298828 C 13.95808029174805 62.32418060302734 17.61565017700195 64.79022979736328 21.68806076049805 66.51271820068359 C 25.90390014648438 68.29586791992188 30.3826789855957 69.19999694824219 35 69.19999694824219 C 39.61731719970703 69.19999694824219 44.09609985351562 68.29586791992188 48.31193923950195 66.51271820068359 C 52.38434982299805 64.79022979736328 56.04191970825195 62.32418060302734 59.18305206298828 59.18305206298828 C 62.32418060302734 56.04191970825195 64.79022979736328 52.38434982299805 66.51271820068359 48.31193923950195 C 68.29586791992188 44.09609985351562 69.19999694824219 39.61731719970703 69.19999694824219 35 C 69.19999694824219 33.26063919067383 69.06916046142578 31.47127151489258 68.83148193359375 29.96078872680664 C 68.19136047363281 25.86877059936523 66.85073852539062 21.97232818603516 64.84687805175781 18.37968826293945 C 62.89093017578125 14.87295913696289 60.36529922485352 11.76287841796875 57.34016036987305 9.135848999023438 C 54.30117034912109 6.496791839599609 50.86348724365234 4.437370300292969 47.12261199951172 3.014778137207031 C 43.25807189941406 1.545158386230469 39.17942810058594 0.8000030517578125 35 0.8000030517578125 M 35 0 C 52.47428894042969 0 66.95761871337891 12.80580139160156 69.62187194824219 29.83715057373047 C 69.85558319091797 31.32238006591797 70 33.14432907104492 70 35 C 70 54.32995986938477 54.32995986938477 70 35 70 C 15.67004013061523 70 0 54.32995986938477 0 35 C 0 15.67004013061523 15.67004013061523 0 35 0 Z" stroke="none" fill="#fff"/>
+      </g>
+    </g>
+    <g id="Grupo_14" data-name="Grupo 14" transform="translate(-0.105)">
+      <g id="Grupo_13" data-name="Grupo 13">
+        <path id="Caminho_28" data-name="Caminho 28" d="M1521.558,295.407l.951-2.9" transform="matrix(0.998, -0.07, 0.07, 0.998, -1484.798, 106.888)" fill="none" stroke="#fff" stroke-width="0.5"/>
+        <path id="Caminho_29" data-name="Caminho 29" d="M1530.985,299.395l1.69-2.35" transform="matrix(0.995, 0.105, -0.105, 0.995, -1423.436, -154.486)" fill="none" stroke="#fff" stroke-width="0.5"/>
+        <path id="Caminho_30" data-name="Caminho 30" d="M1544.373,314.5l2.984-1.452" transform="matrix(0.995, 0.105, -0.105, 0.995, -1425.733, -157.868)" fill="none" stroke="#fff" stroke-width="0.5"/>
+        <path id="Caminho_31" data-name="Caminho 31" d="M1546.539,338.36c3.079,1.919,3.258,2.008,3.258,2.008" transform="translate(-1504.309 301.639) rotate(-11)" fill="none" stroke="#fff" stroke-width="0.5"/>
+        <path id="Caminho_32" data-name="Caminho 32" d="M1536.989,354.068l2.365,2.187" transform="translate(-1466 -2)" fill="none" stroke="#fff" stroke-width="0.5"/>
+        <path id="Caminho_33" data-name="Caminho 33" d="M1523.2,361.967l.491,2.209.223,1" transform="translate(-1499.952 188.385) rotate(-7)" fill="none" stroke="#fff" stroke-width="0.5"/>
+        <path id="Caminho_34" data-name="Caminho 34" d="M1499.56,360.5l-1.584,3.168" transform="translate(-1468)" fill="none" stroke="#fff" stroke-width="0.5"/>
+        <path id="Caminho_35" data-name="Caminho 35" d="M1488.172,353.162l-2.64,2.138" transform="translate(-1469 -1)" fill="none" stroke="#fff" stroke-width="0.5"/>
+        <path id="Caminho_36" data-name="Caminho 36" d="M1480.63,341.2l-3.545,1.056" transform="translate(-1468)" fill="none" stroke="#fff" stroke-width="0.5"/>
+        <path id="Caminho_37" data-name="Caminho 37" d="M1479.649,319.249l-3.318-1.508" transform="translate(-1495.798 182.496) rotate(-7)" fill="none" stroke="#fff" stroke-width="0.5"/>
+        <path id="Caminho_38" data-name="Caminho 38" d="M1489.529,303.477l-2.64-2.629" transform="translate(-1468)" fill="none" stroke="#fff" stroke-width="0.5"/>
+        <path id="Caminho_39" data-name="Caminho 39" d="M1502.652,295.87l-1.131-2.941" transform="translate(-1468)" fill="none" stroke="#fff" stroke-width="0.5"/>
+      </g>
+      <text id="N" transform="translate(43 293)" fill="#fff" font-size="7" font-family="Arial-BoldMT, Arial" font-weight="700"><tspan x="0" y="0">N</tspan></text>
+    </g>
+    <g id="Grupo_15" data-name="Grupo 15">
+      <text id="O" transform="translate(3 332)" fill="#fff" font-size="7" font-family="Arial-BoldMT, Arial" font-weight="700"><tspan x="0" y="0">O</tspan></text>
+      <text id="S" transform="translate(43 370)" fill="#fff" font-size="7" font-family="Arial-BoldMT, Arial" font-weight="700"><tspan x="0" y="0">S</tspan></text>
+      <text id="L" transform="translate(82 332)" fill="#fff" font-size="7" font-family="Arial-BoldMT, Arial" font-weight="700"><tspan x="0" y="0">L</tspan></text>
+    </g>
+  </g>
+</svg>

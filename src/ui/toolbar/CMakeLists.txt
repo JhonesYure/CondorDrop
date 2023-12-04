@@ -2,6 +2,7 @@ add_custom_target(UiToolbarQml
 SOURCES
     ArmedIndicator.qml
     BatteryIndicator.qml
+    BatteryTime.qml
     GPSIndicator.qml
     GPSRTKIndicator.qml
     JoystickIndicator.qml
@@ -15,4 +16,5 @@ SOURCES
     SignalStrength.qml
     TelemetryRSSIIndicator.qml
     VTOLModeIndicator.qml
+    NotificationIndicator.qml
 )

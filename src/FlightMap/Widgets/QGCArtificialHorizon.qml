@@ -35,14 +35,16 @@ Item {
             anchors.fill: parent
             smooth: true
             antialiasing: true
-            gradient: Gradient {
+            opacity:    0.1
+            /* gradient: Gradient {
                 GradientStop { position: 0.25; color: Qt.hsla(0.6, 1.0, 0.25) }
                 GradientStop { position: 0.5;  color: Qt.hsla(0.6, 0.5, 0.55) }
-            }
+            } */
         }
         Rectangle {
             id: ground
             height: sky.height / 2
+            opacity:    0.5
             anchors {
                 left:   sky.left;
                 right:  sky.right;
@@ -51,8 +53,8 @@ Item {
             smooth: true
             antialiasing: true
             gradient: Gradient {
-                GradientStop { position: 0.0;  color: Qt.hsla(0.25,  0.5, 0.45) }
-                GradientStop { position: 0.25; color: Qt.hsla(0.25, 0.75, 0.25) }
+                GradientStop { position: 0.0;  color: "#068AE2" }
+                GradientStop { position: 0.25; color: "#068AE2" }
             }
         }
         transform: [
@@ -66,3 +68,4 @@ Item {
             }]
     }
 }
+

@@ -19,21 +19,25 @@ import QGroundControl.Palette               1.0
 
 //-------------------------------------------------------------------------
 //-- Toolbar Indicators
-Row {
-    id:                 indicatorRow
-    anchors.top:        parent.top
-    anchors.bottom:     parent.bottom
-    spacing:            ScreenTools.defaultFontPixelWidth * 1.5
+
+
+    Row {
+    id: indicatorRow
+    anchors.top: parent.top
+    //anchors.right: parent.right 
+    spacing: ScreenTools.defaultFontPixelWidth * 1.8
 
     Repeater {
         model: activeVehicle ? activeVehicle.toolBarIndicators : []
         Loader {
-            id:                 indicatorLoader
-            anchors.top:        parent.top
-            anchors.bottom:     parent.bottom
-            anchors.margins:    ScreenTools.defaultFontPixelHeight * 0.66
-            source:             modelData
-            visible:            item.showIndicator
+            id: indicatorLoader
+            anchors.top: parent.top
+            anchors.bottom: parent.bottom
+            anchors.margins: ScreenTools.defaultFontPixelHeight * 0.75
+            source: modelData
+            visible: item.showIndicator
         }
     }
 }
+
+

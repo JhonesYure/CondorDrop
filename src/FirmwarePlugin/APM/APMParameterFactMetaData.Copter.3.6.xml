@@ -8897,7 +8897,7 @@
 <value code="3">ModeAcro</value>
 <value code="4">ModeAltHold</value>
 <value code="5">ModeAuto</value>
-<value code="6">ModeLoiter</value>
+<value code="6"></value>
 <value code="7">ModeRTL</value>
 <value code="8">ModeCircle</value>
 <value code="9">ModeLand</value>

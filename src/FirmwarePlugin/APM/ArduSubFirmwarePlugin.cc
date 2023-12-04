@@ -228,6 +228,7 @@ const QVariantList& ArduSubFirmwarePlugin::toolBarIndicators(const Vehicle* vehi
             QVariant::fromValue(QUrl::fromUserInput("qrc:/toolbar/JoystickIndicator.qml")),
             QVariant::fromValue(QUrl::fromUserInput("qrc:/toolbar/ModeIndicator.qml")),
             QVariant::fromValue(QUrl::fromUserInput("qrc:/toolbar/ArmedIndicator.qml")),
+            QVariant::fromValue(QUrl::fromUserInput("qrc:/toolbar/NotificationIndicator.qml")),
         });
     }
     return _toolBarIndicators;

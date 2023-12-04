@@ -44,6 +44,13 @@ Rectangle {
             Layout.fillWidth:   true
             Layout.fillHeight:  true
         }
+        //-- Battery time Control
+        Loader {
+            id:                     battTimeLoader
+            visible:                true
+            source:                 "/toolbar/BatteryTime.qml"
+
+        }
     }
 }
 

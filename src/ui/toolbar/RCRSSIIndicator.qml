@@ -72,14 +72,14 @@ Item {
         id:             rssiRow
         anchors.top:    parent.top
         anchors.bottom: parent.bottom
-        spacing:        ScreenTools.defaultFontPixelWidth
+        spacing:        ScreenTools.defaultFontPixelWidth * 0.25
 
         QGCColoredImage {
             width:              height
             anchors.top:        parent.top
             anchors.bottom:     parent.bottom
             sourceSize.height:  height
-            source:             "/qmlimages/RC.svg"
+            source:             "/qmlimages/RadioIcon.svg"
             fillMode:           Image.PreserveAspectFit
             opacity:            _rcRSSIAvailable ? 1 : 0.5
             color:              qgcPal.buttonText
@@ -87,7 +87,7 @@ Item {
 
         SignalStrength {
             anchors.verticalCenter: parent.verticalCenter
-            size:                   parent.height * 0.5
+            size:                   parent.height * 0.7
             percent:                _rcRSSIAvailable ? activeVehicle.rcRSSI : 0
         }
     }

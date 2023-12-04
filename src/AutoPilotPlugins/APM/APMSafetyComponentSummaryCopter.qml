@@ -89,6 +89,7 @@ Item {
         }
 
         VehicleSummaryRow {
+            id: rtlAltRow
             labelText: qsTr("RTL min alt:")
             valueText: _rtlAltFact.value == 0 ? qsTr("current") : _rtlAltFact.valueString + " " + _rtlAltFact.units
         }

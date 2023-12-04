@@ -55,7 +55,28 @@ Item {
         }
         return "N/A"
     }
+    //--------------Bateria em barras ----SkyDrones
+    function getBatteryPercentageImage() {
+        if (activeVehicle) {
+            if (activeVehicle.battery.percentRemaining.value > 90.9) {
+                return "/qmlimages/Battery100.svg";
+            } else if (activeVehicle.battery.percentRemaining.value > 69.9) {
+                return "/qmlimages/Battery75.svg";
+            } else if (activeVehicle.battery.percentRemaining.value > 39.9) {
+                return "/qmlimages/Battery50.svg";
+            } else if (activeVehicle.battery.percentRemaining.value > 10.9) {
+                return "/qmlimages/Battery25.svg";
+            } else {
+                return "/qmlimages/Battery0.svg";
+            }
+        }
+        return "N/A";
+    }
 
+
+
+
+    
     Component {
         id: batteryInfo
 
@@ -88,7 +109,10 @@ Item {
                     anchors.horizontalCenter: parent.horizontalCenter
 
                     QGCLabel { text: qsTr("Voltage:") }
-                    QGCLabel { text: (activeVehicle && activeVehicle.battery.voltage.value !== -1) ? (activeVehicle.battery.voltage.valueString + " " + activeVehicle.battery.voltage.units) : "N/A" }
+                    QGCLabel { 
+                        text: (activeVehicle && activeVehicle.battery.voltage.value !== -1) ? (activeVehicle.battery.voltage.valueString + " " + activeVehicle.battery.voltage.units) : "N/A" 
+                        color: activeVehicle && activeVehicle.battery.voltage.value > 40.9 ? qgcPal.buttonText : "red"
+                        }
                     QGCLabel { text: qsTr("Accumulated Consumption:") }
                     QGCLabel { text: (activeVehicle && activeVehicle.battery.mahConsumed.value !== -1) ? (activeVehicle.battery.mahConsumed.valueString + " " + activeVehicle.battery.mahConsumed.units) : "N/A" }
                 }
@@ -106,14 +130,26 @@ Item {
             anchors.bottom:     parent.bottom
             width:              height
             sourceSize.width:   width
-            source:             "/qmlimages/Battery.svg"
+            //source:             "/qmlimages/Battery100.svg"
+            source:             getBatteryPercentageImage()//"/qmlimages/Battery.svg"
             fillMode:           Image.PreserveAspectFit
             color:              qgcPal.text
         }
+       /*  QGCColoredImage {
+            source:             getBatteryIcon()
+            anchors.top:        parent.top
+            anchors.bottom:     parent.bottom
+            width:              height
+            sourceSize.width:   width
+            fillMode:           Image.PreserveAspectFit
+            //anchors.fill:       parent
+            //color:              qgcPal.buttonText
+           // sourceSize.height:  size
+        } */
         QGCLabel {
             text:                   getBatteryPercentageText()
-            font.pointSize:         ScreenTools.mediumFontPointSize
-            color:                  getBatteryColor()
+            font.pointSize:         ScreenTools.mediumFontPointSize * 1
+            //color:                  getBatteryColor()
             anchors.verticalCenter: parent.verticalCenter
         }
     }

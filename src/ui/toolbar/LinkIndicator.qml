@@ -25,7 +25,7 @@ Item {
     anchors.bottom: parent.bottom
     width:          priorityLinkSelector.width
 
-    property bool showIndicator: false
+    property bool showIndicator: true
 
     QGCLabel {
         id:                     priorityLinkSelector

@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="23.776" height="24.731" viewBox="0 0 23.776 24.731">
+  <defs>
+    <filter id="Retângulo_2" x="3.412" y="0" width="12.364" height="12.364" filterUnits="userSpaceOnUse">
+      <feOffset input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="1" result="blur"/>
+      <feFlood flood-opacity="0.729"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Retângulo_3" x="11.412" y="8.5" width="12.364" height="12.364" filterUnits="userSpaceOnUse">
+      <feOffset input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="1" result="blur-2"/>
+      <feFlood flood-opacity="0.729"/>
+      <feComposite operator="in" in2="blur-2"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Caminho_3" x="7.505" y="3.238" width="13.16" height="13.366" filterUnits="userSpaceOnUse">
+      <feOffset input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="1" result="blur-3"/>
+      <feFlood flood-opacity="0.729"/>
+      <feComposite operator="in" in2="blur-3"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Caminho_5" x="0" y="10.3" width="13.569" height="14.431" filterUnits="userSpaceOnUse">
+      <feOffset input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="1" result="blur-4"/>
+      <feFlood flood-opacity="0.729"/>
+      <feComposite operator="in" in2="blur-4"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#Retângulo_2)">
+    <g id="Retângulo_2-2" data-name="Retângulo 2" transform="translate(9.24 3) rotate(45)" fill="rgba(255,255,255,0.6)" stroke="#fff" stroke-width="0.5">
+      <rect width="5" height="4" rx="1" stroke="none"/>
+      <rect x="0.25" y="0.25" width="4.5" height="3.5" rx="0.75" fill="none"/>
+    </g>
+  </g>
+  <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#Retângulo_3)">
+    <g id="Retângulo_3-2" data-name="Retângulo 3" transform="translate(17.24 11.5) rotate(45)" fill="rgba(255,255,255,0.6)" stroke="#fff" stroke-width="0.5">
+      <rect width="5" height="4" rx="1" stroke="none"/>
+      <rect x="0.25" y="0.25" width="4.5" height="3.5" rx="0.75" fill="none"/>
+    </g>
+  </g>
+  <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#Caminho_3)">
+    <path id="Caminho_3-2" data-name="Caminho 3" d="M1889.068,9.78l-3.157,3.123v3.02h2.951l3.02-3.02Z" transform="translate(-1874.91 -2.82)" fill="#fff" stroke="#fff" stroke-width="1"/>
+  </g>
+  <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#Caminho_5)">
+    <path id="Caminho_5-2" data-name="Caminho 5" d="M1885.225,18.564l-1.853-2.2-5.216.858,6.066,7.073Z" transform="translate(-1874.91 -2.82)" fill="#fff" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.5"/>
+  </g>
+</svg>

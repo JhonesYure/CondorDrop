@@ -19,12 +19,13 @@ import QGroundControl.Palette       1.0
 
 Rectangle {
     id:             root
-    width:          getPreferredInstrumentWidth()
+   /*  width:          getPreferredInstrumentWidth()
     height:         _outerRadius * 2
-    radius:         _outerRadius
-    color:          qgcPal.window
-    border.width:   1
-    border.color:   _isSatellite ? qgcPal.mapWidgetBorderLight : qgcPal.mapWidgetBorderDark
+    radius:         _outerRadius */
+    //color:          qgcPal.window
+    //border.width:   1
+    //border.color:   _isSatellite ? qgcPal.mapWidgetBorderLight : qgcPal.mapWidgetBorderDark
+    
 
     property real   _innerRadius:       (width - (_topBottomMargin * 3)) / 4
     property real   _outerRadius:       _innerRadius + _topBottomMargin
@@ -35,34 +36,34 @@ Rectangle {
     property real   _labelFontSize:     ScreenTools.defaultFontPointSize * 0.75 * _sizeRatio
     property real   _spacing:           ScreenTools.defaultFontPixelHeight * 0.33
     property real   _topBottomMargin:   (width * 0.05) / 2
-    property real   _availableValueHeight: maxHeight - (root.height + _valuesItem.anchors.topMargin)
+    //property real   _availableValueHeight: maxHeight - (root.height + _valuesItem.anchors.topMargin)
 
     // Prevent all clicks from going through to lower layers
-    DeadMouseArea {
+    /* DeadMouseArea {
         anchors.fill: parent
     }
 
     QGCPalette { id: qgcPal }
+ */
+    /* QGCAttitudeWidget {
+                id:                 attitude
+                anchors.leftMargin: _topBottomMargin
+                anchors.left:       parent.left
+                size:               _innerRadius * 2
+                vehicle:            activeVehicle
+                anchors.verticalCenter: parent.verticalCenter
+            }
 
-    QGCAttitudeWidget {
-        id:                 attitude
-        anchors.leftMargin: _topBottomMargin
-        anchors.left:       parent.left
-        size:               _innerRadius * 2
-        vehicle:            activeVehicle
-        anchors.verticalCenter: parent.verticalCenter
-    }
+            QGCCompassWidget {
+                id:                 compass
+                anchors.leftMargin: _topBottomMargin
+                anchors.left:       parent.left
+                size:               _innerRadius * 2
+                vehicle:            activeVehicle
+                anchors.verticalCenter: parent.verticalCenter
+    } */
 
-    QGCCompassWidget {
-        id:                 compass
-        anchors.leftMargin: _spacing
-        anchors.left:       attitude.right
-        size:               _innerRadius * 2
-        vehicle:            activeVehicle
-        anchors.verticalCenter: parent.verticalCenter
-    }
-
-    Item {
+   /*  Item {
         id:                 _valuesItem
         anchors.topMargin:  ScreenTools.defaultFontPixelHeight / 4
         anchors.top:        parent.bottom
@@ -82,10 +83,22 @@ Rectangle {
 
         PageView {
             id:                 _valuesWidget
-            anchors.margins:    1
+            //anchors.margins:    1
             anchors.left:       parent.left
-            anchors.right:      parent.right
+            //anchors.right:      parent.right
             maxHeight:          _availableValueHeight
+            anchors.horizontalCenter: parent.horizontalCenter
         }
-    }
+        //Editando --------------------------------------------------------//
+        QGCCompassWidget {
+            id:                         compass
+            anchors.bottom :            parent.bottom
+            anchors.bottomMargin:       _topBottomMargin
+            anchors.topMargin:          _topBottomMargin
+            size:                       _innerRadius * 2
+            vehicle:                    activeVehicle
+            anchors.horizontalCenter:   parent.horizontalCenter
+        }
+    } */
+    
 }

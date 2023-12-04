@@ -36,8 +36,8 @@ Item {
     readonly property string emergencyStopTitle:            qsTr("EMERGENCY STOP")
     readonly property string armTitle:                      qsTr("Arm")
     readonly property string disarmTitle:                   qsTr("Disarm")
-    readonly property string rtlTitle:                      qsTr("Return")
-    readonly property string takeoffTitle:                  qsTr("Takeoff")
+    readonly property string rtlTitle:                      qsTr("")
+    readonly property string takeoffTitle:                  qsTr("")
     readonly property string landTitle:                     qsTr("Land")
     readonly property string startMissionTitle:             qsTr("Start Mission")
     readonly property string mvStartMissionTitle:           qsTr("Start Mission (MV)")
@@ -159,6 +159,14 @@ Item {
             _outputState()
         }
     }
+    /* Timer {
+        id: takeoffTimer
+        interval: 30000 // Defina o tempo de atraso em milissegundos (5 segundos neste exemplo)
+        onTriggered: {
+            // Esta função será chamada após o atraso
+            activeVehicle.flightMode = activeVehicle.takeControlFlightMode;
+        }
+    } */
 
     Component.onCompleted:              _outputState()
     on_VehicleArmedChanged:             _outputState()
@@ -374,14 +382,17 @@ Item {
         var rgVehicle;
         switch (actionCode) {
         case actionRTL:
-            activeVehicle.guidedModeRTL(optionChecked)
+            //activeVehicle.guidedModeRTL(optionChecked)
+            activeVehicle.flightMode = activeVehicle.rtlFlightMode
             break
         case actionLand:
             activeVehicle.guidedModeLand()
             break
         case actionTakeoff:
-            activeVehicle.guidedModeTakeoff(actionAltitudeChange)
-            break
+            activeVehicle.guidedModeTakeoff(actionAltitudeChange);
+            //takeoffTimer.start(); // Iniciar o temporizador
+            break;
+
         case actionResumeMission:
         case actionResumeMissionUploadFail:
             missionController.resumeMission(missionController.resumeMissionIndex)

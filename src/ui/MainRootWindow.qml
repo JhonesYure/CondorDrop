@@ -305,11 +305,14 @@ ApplicationWindow {
 
     //-------------------------------------------------------------------------
     /// Toolbar
-    header: ToolBar {
-        height:         ScreenTools.toolbarHeight
+    /* header: ToolBar {
+        height:         ScreenTools.toolbarHeight * 1.0
         visible:        !QGroundControl.videoManager.fullScreen
+        //color: "black"
+        opacity:    1
         background:     Rectangle {
-            color:      qgcPal.globalTheme === QGCPalette.Light ? QGroundControl.corePlugin.options.toolbarBackgroundLight : QGroundControl.corePlugin.options.toolbarBackgroundDark
+            color:      "black"//qgcPal.globalTheme === QGCPalette.Light ? QGroundControl.corePlugin.options.toolbarBackgroundLight : QGroundControl.corePlugin.options.toolbarBackgroundDark
+            opacity:    0.8
         }
         Loader {
             id:             toolbar
@@ -328,7 +331,43 @@ ApplicationWindow {
                 }
             }
         }
+    } */
+    header: ToolBar {
+        height:         ScreenTools.toolbarHeight  
+        visible:        !QGroundControl.videoManager.fullScreen
+        
+        background: Rectangle {
+            width: parent.width
+            height: parent.height
+            color: "black"
+            opacity: 0.8
+            Image {
+                source: activeVehicle ? "/qmlimages/ToolbarImage.svg" : "/qmlimages/ToolbarImageRed.svg"
+                //fillMode: Image.Stretch
+                width: parent.width
+                height: parent.height
+            }
+        }
+        Loader {
+            id:             toolbar
+            anchors.fill:   parent
+            source:         _mainToolbar
+            height: ScreenTools.toolbarHeight * 1
+            //-- Toggle Full Screen / Windowed
+            MouseArea {
+                anchors.fill:   parent
+                enabled:        !ScreenTools.isMobile
+                onDoubleClicked: {
+                    if(mainWindow.visibility === Window.Windowed) {
+                        mainWindow.showFullScreen()
+                    } else {
+                        mainWindow.showNormal()
+                    }
+                }
+            }
+        }
     }
+
 
     footer: LogReplayStatusBar {
         visible: QGroundControl.settingsManager.flyViewSettings.showLogReplayStatusBar.rawValue
@@ -391,6 +430,13 @@ ApplicationWindow {
     Loader {
         id: rootLoader
         anchors.centerIn: parent
+    }
+    //-- Battery time Control
+    Loader {
+        id:                     battTimeLoader
+        visible:                true
+        source:                 "/toolbar/BatteryTime.qml"
+
     }
 
     //-------------------------------------------------------------------------

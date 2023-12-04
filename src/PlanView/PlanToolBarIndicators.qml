@@ -112,6 +112,7 @@ Item {
         anchors.rightMargin:    _margins
         anchors.left:           parent.left
         anchors.right:          uploadButton.visible ? uploadButton.left : parent.right
+        anchors.verticalCenter: parent.verticalCenter
         columnSpacing:          0
         columns:                3
 

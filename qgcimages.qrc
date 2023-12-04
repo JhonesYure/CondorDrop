@@ -58,7 +58,6 @@
         <file alias="attitudeInstrument.svg">src/FlightMap/Images/attitudeInstrument.svg</file>
         <file alias="attitudePointer.svg">src/FlightMap/Images/attitudePointer.svg</file>
         <file alias="AwarenessAircraft.svg">src/FlightMap/Images/AwarenessAircraft.svg</file>
-        <file alias="Battery.svg">src/ui/toolbar/Images/Battery.svg</file>
         <file alias="camera.svg">resources/camera.svg</file>
         <file alias="camera_photo.svg">src/Camera/images/camera_photo.svg</file>
         <file alias="camera_video.svg">src/Camera/images/camera_video.svg</file>
@@ -189,5 +188,26 @@
         <file alias="Yield.svg">src/ui/toolbar/Images/Yield.svg</file>
         <file alias="ZoomMinus.svg">src/FlightMap/Images/ZoomMinus.svg</file>
         <file alias="ZoomPlus.svg">src/FlightMap/Images/ZoomPlus.svg</file>
+        <file alias="GpsNew.svg">src/ui/toolbar/Images/GpsNew.svg</file>
+        <file alias="RadioIcon.svg">src/ui/toolbar/Images/RadioIcon.svg</file>
+        <file alias="ControlIcon.svg">src/ui/toolbar/Images/ControlIcon.svg</file>
+        <file alias="FHD.svg">src/ui/toolbar/Images/FHD.svg</file>
+        <file alias="TakeOffIcon.svg">src/ui/toolbar/Images/TakeOffIcon.svg</file>
+        <file alias="AtHome.svg">src/ui/toolbar/Images/AtHome.svg</file>
+        <file alias="LogoDrop.svg">src/ui/toolbar/Images/LogoDrop.svg</file>
+        <file alias="Battery100.svg">src/ui/toolbar/Images/Battery.svg</file>
+        <file alias="Battery25.svg">src/ui/toolbar/Images/Battery25.svg</file>
+        <file alias="Battery50.svg">src/ui/toolbar/Images/Battery50.svg</file>
+        <file alias="Battery0.svg">src/ui/toolbar/Images/Battery0.svg</file>
+        <file alias="Battery75.svg">src/ui/toolbar/Images/Battery75.svg</file>
+        <file alias="gimbal_position.svg">src/ui/toolbar/Images/gimbal_position.svg</file>
+        <file alias="Radar.svg">src/ui/toolbar/Images/Radar.svg</file>
+        <file alias="barra_notificacao2.png">src/ui/toolbar/Images/barra_notificacao2.png</file>
+        <file alias="BarraRadar.svg">src/ui/toolbar/Images/BarraRadar.svg</file>
+        <file alias="StatusNotify.svg">src/ui/toolbar/Images/StatusNotify.svg</file>
+        <file alias="GreenStatus.svg">src/ui/toolbar/Images/GreenStatus.svg</file>
+        <file alias="RedStatus.svg">src/ui/toolbar/Images/RedStatus.svg</file>
+        <file alias="ToolbarImage.svg">src/ui/toolbar/Images/ToolbarImage.svg</file>
+        <file alias="ToolbarImageRed.svg">src/ui/toolbar/Images/ToolbarImageRed.svg</file>
     </qresource>
 </RCC>

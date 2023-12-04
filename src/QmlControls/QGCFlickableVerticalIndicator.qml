@@ -2,7 +2,7 @@ import QtQuick 2.3
 
 Rectangle {
     id:                    verticalIndicator
-    anchors.rightMargin:   2
+    anchors.rightMargin:   5
     anchors.right:         parent.right
     y:                     parent.height * (parent.contentY / parent.contentHeight)
     z:                     10

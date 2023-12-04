@@ -63,6 +63,7 @@ Rectangle {
         width:              parent.width
         height:             _valuesWidget.height
         visible:            widgetRoot.showValues
+        
 
         // Prevent all clicks from going through to lower layers
         DeadMouseArea {

@@ -24,12 +24,11 @@ import QGroundControl.Palette       1.0
 
 Item {
     id: root
-
-    property bool showPitch:    true
+       
+    property bool showPitch:    false
     property var  vehicle:      null
     property real size
     property bool showHeading:  false
-
     property real _rollAngle:   vehicle ? vehicle.roll.rawValue  : 0
     property real _pitchAngle:  vehicle ? vehicle.pitch.rawValue : 0
 
@@ -42,6 +41,7 @@ Item {
         id:             instrument
         anchors.fill:   parent
         visible:        false
+        anchors.left: parent.left
 
         //----------------------------------------------------
         //-- Artificial Horizon
@@ -54,7 +54,7 @@ Item {
         //-- Pointer
         Image {
             id:                 pointer
-            source:             "/qmlimages/attitudePointer.svg"
+            //source:             "/qmlimages/attitudePointer.svg"
             mipmap:             true
             fillMode:           Image.PreserveAspectFit
             anchors.fill:       parent
@@ -64,7 +64,7 @@ Item {
         //-- Instrument Dial
         Image {
             id:                 instrumentDial
-            source:             "/qmlimages/attitudeDial.svg"
+            source:             "/qmlimages/RC.svg"
             mipmap:             true
             fillMode:           Image.PreserveAspectFit
             anchors.fill:       parent
@@ -91,7 +91,7 @@ Item {
         Image {
             id:                 crossHair
             anchors.centerIn:   parent
-            source:             "/qmlimages/crossHair.svg"
+            //source:             "/qmlimages/crossHair.svg"
             mipmap:             true
             width:              size * 0.75
             sourceSize.width:   width
@@ -104,7 +104,8 @@ Item {
         anchors.fill:   instrument
         radius:         width / 2
         color:          "black"
-        visible:        false
+        visible:        true
+        //opacity:        0.5
     }
 
     OpacityMask {

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25" height="18" viewBox="0 0 25 18">
+  <defs>
+    <filter id="FHD" x="0" y="0" width="25" height="18" filterUnits="userSpaceOnUse">
+      <feOffset input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="1" result="blur"/>
+      <feFlood flood-opacity="0.729"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#FHD)">
+    <text id="FHD-2" data-name="FHD" transform="translate(3 13)" fill="#fff" font-size="11" font-family="ArialNarrow-Bold, Arial" font-weight="700"><tspan x="0" y="0">FHD</tspan></text>
+  </g>
+</svg>

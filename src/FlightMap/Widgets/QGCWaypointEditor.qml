@@ -21,6 +21,7 @@ import QGroundControl.Palette 1.0
 Rectangle {
     QGCPalette { id: palette; colorGroupEnabled: true }
     id: root
+    //
     color: palette.window
 
 }

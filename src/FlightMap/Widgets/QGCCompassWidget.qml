@@ -71,10 +71,11 @@ Item {
     Rectangle {
         id:             borderRect
         anchors.fill:   parent
-        radius:         width / 2
+        //radius:         width / 2
         color:          qgcPal.window
-        border.color:   qgcPal.text
-        border.width:   1
+        //border.color:   qgcPal.text
+        //border.width:   1
+        opacity:        0.1
     }
 
     Item {
@@ -85,7 +86,7 @@ Item {
 
         Image {
             id:                 cOGPointer
-            source:             isCOGAngleOK() ? "/qmlimages/cOGPointer.svg" : ""
+            //source:             isCOGAngleOK() ? "/qmlimages/cOGPointer.svg" : ""
             mipmap:             true
             fillMode:           Image.PreserveAspectFit
             anchors.fill:       parent
@@ -118,7 +119,7 @@ Item {
         Image {
             id:                     homePointer
             width:                  size * 0.1
-            source:                 isHeadingHomeOK()  ? "/qmlimages/Home.svg" : ""
+            //source:                 isHeadingHomeOK()  ? "/qmlimages/Home.svg" : ""
             mipmap:                 true
             fillMode:               Image.PreserveAspectFit
             anchors.centerIn:   	parent
@@ -130,40 +131,75 @@ Item {
                 y: - size/2.3 * Math.cos((_angle)*(3.14/180))
             }
         }
-
+         //-- Instrument Dial
         Image {
-            id:                 pointer
-            width:              size * 0.65
-            source:             vehicle ? vehicle.vehicleImageCompass : ""
+            id:                 instrumentDial
+            source:             "/qmlimages/Radar.svg"
+            fillMode:           Image.PreserveAspectFit
+            anchors.fill:       parent
+            sourceSize.height:  parent.height
+            transform: Rotation {
+                origin.x:       root.width  / 2
+                origin.y:       root.height / 2
+                angle:          isNoseUpLocked()?0:_heading || -_rollAngle
+                /* origin.x:       pointer.width 
+                origin.y:       pointer.height
+                angle:          isNoseUpLocked()?0:_heading */
+            }
+           
+        }
+
+        //-------- Position ------skydrones -------------------
+        Image {
+            id:                 gimbal
+            width:              size * 0.2
+            source:             "/qmlimages/gimbal_position.svg"//vehicle ? vehicle.vehicleImageCompass : ""
             mipmap:             true
             sourceSize.width:   width
             fillMode:           Image.PreserveAspectFit
             anchors.centerIn:   parent
+            /* transform: Rotation {
+                origin.x:       pointer.width  / 2
+                origin.y:       pointer.height / 2
+                angle:          isNoseUpLocked()?0:_heading
+            } */
+        }
+        //Ponteiro Vermelho
+        Image {
+            id:                 pointer
+            width:              size * 0.2
+            source:             "/qmlimages/compassInstrumentArrow.svg"//vehicle ? vehicle.vehicleImageCompass : ""
+            mipmap:             true
+            sourceSize.width:   width
+            fillMode:           Image.PreserveAspectFit
+            anchors.centerIn:   parent
+            /* transform: Rotation {
+                origin.x:       pointer.width  / 2
+                origin.y:       pointer.height / 2
+                angle:          isNoseUpLocked()?0:_heading
+            } */
+        }
+        
+
+
+        /* QGCColoredImage {
+            id:                 compassDial
+            source:             "/qmlimages/Radar.svg" //"/qmlimages/compassInstrumentDial.svg"
+            mipmap:             true
+            sourceSize.width:   width
+            fillMode:           Image.PreserveAspectFit
+            anchors.centerIn:   parent
+            color:              qgcPal.text
             transform: Rotation {
                 origin.x:       pointer.width  / 2
                 origin.y:       pointer.height / 2
                 angle:          isNoseUpLocked()?0:_heading
             }
-        }
+        } */
+        
 
 
-        QGCColoredImage {
-            id:                 compassDial
-            source:             "/qmlimages/compassInstrumentDial.svg"
-            mipmap:             true
-            fillMode:           Image.PreserveAspectFit
-            anchors.fill:       parent
-            sourceSize.height:  parent.height
-            color:              qgcPal.text
-            transform: Rotation {
-                origin.x:       compassDial.width  / 2
-                origin.y:       compassDial.height / 2
-                angle:          isNoseUpLocked()?-_heading:0
-            }
-        }
-
-
-        Rectangle {
+       /*  Rectangle {
             anchors.centerIn:   parent
             width:              size * 0.35
             height:             size * 0.2
@@ -182,7 +218,7 @@ Item {
                 property string _headingString2: _headingString.length === 1 ? "0" + _headingString : _headingString
                 property string _headingString3: _headingString2.length === 2 ? "0" + _headingString2 : _headingString2
             }
-        }
+        } */
     }
 
     Rectangle {
@@ -198,5 +234,4 @@ Item {
         source:         instrument
         maskSource:     mask
     }
-
 }

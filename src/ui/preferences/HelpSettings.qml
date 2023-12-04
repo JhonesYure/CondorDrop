@@ -34,6 +34,41 @@ Rectangle {
             id:         grid
             columns:    2
 
+            QGCLabel { text: qsTr("Site suporte Condor") }
+            QGCLabel {
+                linkColor:          qgcPal.text
+                text:               "<a href=\"https://www.condornaoletal.com.br\">https://www.condornaoletal.com.br/</a>"
+                onLinkActivated:    Qt.openUrlExternally(link)
+            }
+
+            QGCLabel { text: qsTr("Versão do Aplicativo") }
+            QGCLabel {
+                linkColor:          qgcPal.text
+                text:               "1.0.4- BETA"//<a href=\"http://discuss.px4.io/c/qgroundcontrol\">http://discuss.px4.io/c/qgroundcontrol</a>"
+                //onLinkActivated:    Qt.openUrlExternally(link)
+            }
+
+            QGCLabel { text: qsTr("Nº de série CondorDrop") }
+            QGCLabel {
+                linkColor:          qgcPal.text
+                text:               "nº :  "//<a href=\"http://discuss.px4.io/c/qgroundcontrol\">http://discuss.px4.io/c/qgroundcontrol</a>"
+                //onLinkActivated:    Qt.openUrlExternally(link)
+            }
+
+            QGCLabel { text: qsTr("Nº de série Drone") }
+            QGCLabel {
+                linkColor:          qgcPal.text
+                text:               "nº :   "//<a href=\"http://discuss.px4.io/c/qgroundcontrol\">http://discuss.px4.io/c/qgroundcontrol</a>"
+                //onLinkActivated:    Qt.openUrlExternally(link)
+            }
+
+            QGCLabel { text: qsTr("Nº de série Controle ") }
+            QGCLabel {
+                linkColor:          qgcPal.text
+                text:               "nº :   "//<a href=\"http://discuss.px4.io/c/qgroundcontrol\">http://discuss.px4.io/c/qgroundcontrol</a>"
+                //onLinkActivated:    Qt.openUrlExternally(link)
+            }
+
             QGCLabel { text: qsTr("QGroundControl User Guide") }
             QGCLabel {
                 linkColor:          qgcPal.text
