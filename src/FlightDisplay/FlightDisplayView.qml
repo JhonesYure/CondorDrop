@@ -868,7 +868,7 @@ Item {
             anchors.left: isInstrumentRight() ? _mapAndVideo.left : undefined
             anchors.rightMargin: isInstrumentRight() ? undefined : ScreenTools.defaultFontPixelWidth
             anchors.right: isInstrumentRight() ? undefined : _mapAndVideo.right
-            anchors.topMargin: 400
+            anchors.topMargin: 370
             anchors.top: parent.top
             z: _mapAndVideo.z + 4
             maxHeight: parent.height - toolStrip.y + (_flightVideo.visible ? (_flightVideo.y - parent.height) : 0)
@@ -928,7 +928,7 @@ Item {
             anchors.left: isInstrumentRight() ? _mapAndVideo.left : undefined
             anchors.rightMargin: isInstrumentRight() ? undefined : ScreenTools.defaultFontPixelWidth
             anchors.right: isInstrumentRight() ? undefined : _mapAndVideo.right
-            anchors.topMargin: 150
+            anchors.topMargin: 120
             anchors.top: parent.top
             z: _mapAndVideo.z + 4
             maxHeight: parent.height - toolStrip.y + (_flightVideo.visible ? (_flightVideo.y - parent.height) : 0)
@@ -1456,58 +1456,6 @@ Item {
 
     //----------- New TOOLBAR CONDORDROP
     Item{
-        /* Row {
-            anchors.leftMargin: 20//isInstrumentRight() ? _toolsMargin : undefined
-            anchors.left: isInstrumentRight() ? _mapAndVideo.left : undefined
-            anchors.rightMargin: isInstrumentRight() ? undefined : ScreenTools.defaultFontPixelWidth
-            anchors.right: isInstrumentRight() ? undefined : _mapAndVideo.right
-            anchors.topMargin: 200
-            anchors.top: parent.top
-
-            Rectangle{
-                color:      "black"
-                opacity:    0.8
-                width:      50
-                height:     50
-                radius:     80
-
-                Image {
-                    source:         "/qmlimages/AtHome.svg"
-                    action:         _guidedController.actionRTL        
-                    MouseArea {
-                        anchors.fill: parent
-                        onClicked: {
-                        guidedActionsController.closeAll()
-                        var action = model[index].action
-                        if (action !== -1) {
-                            _guidedController.confirmAction(action)
-                        }
-                    }
-                    }
-                }
-            }
-        } */
-        /* Image {
-            //visible:        activeVehicle ? activeVehicle.armed: false
-            source:         "/res/AreaIndicator"
-            anchors.leftMargin: 20//isInstrumentRight() ? _toolsMargin : undefined
-            anchors.left: isInstrumentRight() ? _mapAndVideo.left : undefined
-            anchors.rightMargin: isInstrumentRight() ? undefined : ScreenTools.defaultFontPixelWidth
-            anchors.right: isInstrumentRight() ? undefined : _mapAndVideo.right
-            anchors.topMargin: 150
-            anchors.top: parent.top
-            
-            MouseArea {
-                anchors.fill: parent
-                onClicked: {
-                    guidedActionsController.closeAll()
-                    var index = 0; // Defina o índice da ação que deseja executar
-                    if (index >= 0 && index < _actionModel.length && _actionModel[index].action !== -1) {
-                        _guidedController.confirmAction(_actionModel[index].action)
-                    }
-                }
-            }
-        } */ 
         Image {
             visible:        activeVehicle ? activeVehicle.armed: false
             source:         "/res/AreaIndicator"
@@ -1515,7 +1463,7 @@ Item {
             anchors.left: isInstrumentRight() ? _mapAndVideo.left : undefined
             anchors.rightMargin: isInstrumentRight() ? undefined : ScreenTools.defaultFontPixelWidth
             anchors.right: isInstrumentRight() ? undefined : _mapAndVideo.right
-            anchors.topMargin: 600
+            anchors.topMargin: 550
             anchors.top: parent.top
             
             MouseArea {

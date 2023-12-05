@@ -227,7 +227,7 @@ Item {
                             id:                 flyButton
                             Layout.fillWidth:           true
                             spacing:                    1
-                            icon.source:        "/res/QGCLogoFull"
+                            icon.source:        "/res/QGCLogoWhite"
                             text:               qsTr("Voltar")
                             onClicked: {
                                 if (mainWindow.preventViewSwitch()) {
@@ -517,7 +517,7 @@ Item {
      //EDIT SKYDRONES FLY TIME----------
     Item {
         width: 1200
-        height: 10
+        //height: 10
         anchors {
             left: parent.left
             leftMargin: 630
