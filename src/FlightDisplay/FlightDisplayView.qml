@@ -670,9 +670,45 @@ Item {
                 visible:        !QGroundControl.videoManager.isGStreamer
                 source:         visible ? (QGroundControl.videoManager.uvcEnabled ? "qrc:/qml/FlightDisplayViewUVC.qml" : "qrc:/qml/FlightDisplayViewDummy.qml") : ""
             }
-            
+            //---Indicador de Area 
+            Item {
+                id: indicatorArea
+                anchors.centerIn: parent
+                width: parent.width
+                height: parent.height
+                visible: false  //camera.isConnected
 
-        }
+                Rectangle {
+                    id: circleIndicator
+                    color: "#F36F21"
+                    opacity:    0.5
+                    border.color: "#FF4D00"
+                    border.width: 2
+                    radius: circleIndicator.width / 2
+                    anchors.centerIn: parent
+                    property real originalSize: 50 // Tamanho original da esfera
+
+                    width: calculateSize(_altitude)
+                    height: calculateSize(_altitude)
+                    visible: parseFloat(_altitude) !== 0 // Torna visível somente se a altura for diferente de zero
+
+                    function calculateSize(altitude) {
+                        var parsedAltitude = parseFloat(altitude)
+                        if (isNaN(parsedAltitude) || parsedAltitude === 0) {
+                            return 0 // Se a altitude for NaN ou zero, retorna zero para esconder a esfera
+                        } else {
+                            // Ajuste o tamanho da esfera com base na altitude
+                            return circleIndicator.originalSize + (parsedAltitude * 2) // Ajuste conforme necessário
+                        }
+                    }
+
+                    // Supondo que você tenha um método ou função que atualize a altitude (_altitude)
+                    // Por exemplo, uma função chamada updateAltitude(newAltitude)
+                    // Você pode chamar circleIndicator.width = calculateSize(newAltitude) dentro dessa função para atualizar o tamanho da esfera quando a altitude mudar
+                }
+            }
+    }
+
         //-- Map View
         Item {
             id: _flightMapContainer
@@ -836,7 +872,7 @@ Item {
             anchors.top: parent.top
             z: _mapAndVideo.z + 4
             maxHeight: parent.height - toolStrip.y + (_flightVideo.visible ? (_flightVideo.y - parent.height) : 0)
-            radius: 200
+            radius: 80
 
             property var _actionModel: [
                 {
@@ -896,7 +932,7 @@ Item {
             anchors.top: parent.top
             z: _mapAndVideo.z + 4
             maxHeight: parent.height - toolStrip.y + (_flightVideo.visible ? (_flightVideo.y - parent.height) : 0)
-            radius: 600
+            radius: 80
 
             property var _actionModel: [
                 {
@@ -942,6 +978,7 @@ Item {
                 }
             }
         }
+        //------------------
 
         GuidedActionsController {
             id:                 guidedActionsController
@@ -1063,7 +1100,7 @@ Item {
                         width:              180 //----Versão Mobile          
                         height:                 180 //----Versão Mobile
                         vehicle:            activeVehicle
-                        anchors.bottomMargin: 10
+                        anchors.bottomMargin: 20
                         anchors.verticalCenter: parent.verticalCenter
                     }
 
@@ -1075,7 +1112,7 @@ Item {
                         width:              180 //----Versão Mobile          
                         height:                 180 //----Versão Mobile
                         vehicle:            activeVehicle
-                        anchors.bottomMargin: 10
+                        anchors.bottomMargin: 20
                         anchors.verticalCenter: parent.verticalCenter
                     }
                 }
@@ -1339,97 +1376,161 @@ Item {
     }
 
     //Notificações SkyDrones
-        Item {
-            height: 400
-            width: 400
+    Item {
+        height: 400
+        width: 400
 
-            ListView {
-                id:         listView
-                anchors.fill: parent
-                orientation: ListView.Vertical
-                model: ListModel {
-                    id: notificationModel
+        ListView {
+            id:         listView
+            anchors.fill: parent
+            orientation: ListView.Vertical
+            model: ListModel {
+                id: notificationModel
+            }
+            anchors.topMargin: 30
+            anchors.leftMargin: 200
+            spacing: 5
+            delegate: Item {
+                property string notificationId: model.notificationId
+                property real initialX: 0
+                property real deltaX: 0
+                property bool swiped: false
+                width: 630
+                height: visible ? 70 : 0
+                visible: 
+                    (notificationId === "gpsNotification" && activeVehicle && activeVehicle.gps.count.value < 12) || 
+                    (notificationId === "altitudeRtlNotification" && activeVehicle && _rtlAltFact && _rtlAltFact.value == 0) ||
+                    (notificationId === "gpsNoSignalNotification" && activeVehicle && activeVehicle.gps.count.rawValue < 1 ) ||
+                    (notificationId === "inFlyNotification" && _armed == 1) ||
+                    (notificationId === "delocarNotification" && _initialDownloadComplete && _armed == 0)||
+                    (notificationId === "forFlyNotification" && _initialDownloadComplete && _armed == 0) ||
+                    (notificationId === "lowBatNotification" && activeVehicle && activeVehicle.battery.voltage.value < 22.9) ||
+                    (notificationId === "offRadio" && activeVehicle && activeVehicle.rcRSSI < 0)
+                MouseArea {
+                    id: swipeArea
+                    anchors.fill: parent
+                    drag.target: parent
+                    onReleased: {
+                        if (swiped) {
+                            notificationModel.remove(index);
+                        } 
+                    }
+                    onPositionChanged: {
+                        deltaX = mouse.x - initialX;
+                        if (Math.abs(deltaX) > 1) {
+                            parent.x += deltaX;
+                            initialX = mouse.x;
+                            swiped = true;
+                        }
+                    }
                 }
-                anchors.topMargin: 30
-                anchors.leftMargin: 200
-                spacing: 5
-                delegate: Item {
-                    property string notificationId: model.notificationId
-                    property real initialX: 0
-                    property real deltaX: 0
-                    property bool swiped: false
-                    width: 630
-                    height: visible ? 70 : 0
-                    visible: 
-                        (notificationId === "gpsNotification" && activeVehicle && activeVehicle.gps.count.value < 12) || 
-                        (notificationId === "altitudeRtlNotification" && activeVehicle && _rtlAltFact && _rtlAltFact.value == 0) ||
-                        (notificationId === "gpsNoSignalNotification" && activeVehicle && activeVehicle.gps.count.rawValue < 1 ) ||
-                        (notificationId === "inFlyNotification" && _armed == 1) ||
-                        (notificationId === "delocarNotification" && _initialDownloadComplete && _armed == 0)||
-                        (notificationId === "forFlyNotification" && _initialDownloadComplete && _armed == 0) ||
-                        (notificationId === "lowBatNotification" && activeVehicle && activeVehicle.battery.voltage.value < 22.9) ||
-                        (notificationId === "offRadio" && activeVehicle && activeVehicle.rcRSSI < 0)
+                Image {
+                    source: "/qmlimages/StatusNotify.svg"
+                    anchors.fill: parent
+                    fillMode: Image.Stretch
+                }
+                QGCLabel {
+                    text: model.text
+                    font.pixelSize: 25
+                    anchors.fill: parent
+                    anchors.topMargin: 15
+                    anchors.leftMargin: 10
+                }
+            }
+        }
+        function addNotification(notificationId, text) {
+            var timestamp = new Date().getTime(); 
+            notificationModel.append({ notificationId: notificationId, text: text, timestamp: timestamp });
+        }
+        Component.onCompleted: {
+            addNotification("gpsNoSignalNotification", "FALHA NO SINAL GPS");
+            addNotification("gpsNotification", "SINAL BAIXO DO GPS");
+            addNotification("altitudeRtlNotification", "ALTURA DE SEGURANÇA NÃO DEFINIDA");
+            addNotification("lowBatNotification", "BATERIA BAIXA");
+            addNotification("forFlyNotification", "PRONTO PARA VOO");
+            addNotification("delocarNotification", "AGUARDANDO DECOLAGEM");
+            addNotification("inFlyNotification", "EM VOO");
+            addNotification("offRadio", "SEM SINAL COM RÁDIO");
+        }            
+    }
+
+    //----------- New TOOLBAR CONDORDROP
+    Item{
+        /* Row {
+            anchors.leftMargin: 20//isInstrumentRight() ? _toolsMargin : undefined
+            anchors.left: isInstrumentRight() ? _mapAndVideo.left : undefined
+            anchors.rightMargin: isInstrumentRight() ? undefined : ScreenTools.defaultFontPixelWidth
+            anchors.right: isInstrumentRight() ? undefined : _mapAndVideo.right
+            anchors.topMargin: 200
+            anchors.top: parent.top
+
+            Rectangle{
+                color:      "black"
+                opacity:    0.8
+                width:      50
+                height:     50
+                radius:     80
+
+                Image {
+                    source:         "/qmlimages/AtHome.svg"
+                    action:         _guidedController.actionRTL        
                     MouseArea {
-                        id: swipeArea
                         anchors.fill: parent
-                        drag.target: parent
-                        onReleased: {
-                            if (swiped) {
-                                notificationModel.remove(index);
-                            } 
-                        }
-                        onPositionChanged: {
-                            deltaX = mouse.x - initialX;
-                            if (Math.abs(deltaX) > 1) {
-                                parent.x += deltaX;
-                                initialX = mouse.x;
-                                swiped = true;
-                            }
+                        onClicked: {
+                        guidedActionsController.closeAll()
+                        var action = model[index].action
+                        if (action !== -1) {
+                            _guidedController.confirmAction(action)
                         }
                     }
-                    Image {
-                        source: "/qmlimages/StatusNotify.svg"
-                        anchors.fill: parent
-                        fillMode: Image.Stretch
-                    }
-                    QGCLabel {
-                        text: model.text
-                        font.pixelSize: 25
-                        anchors.fill: parent
-                        anchors.topMargin: 15
-                        anchors.leftMargin: 10
                     }
                 }
             }
-            function addNotification(notificationId, text) {
-                var timestamp = new Date().getTime(); 
-                notificationModel.append({ notificationId: notificationId, text: text, timestamp: timestamp });
+        } */
+        /* Image {
+            //visible:        activeVehicle ? activeVehicle.armed: false
+            source:         "/res/AreaIndicator"
+            anchors.leftMargin: 20//isInstrumentRight() ? _toolsMargin : undefined
+            anchors.left: isInstrumentRight() ? _mapAndVideo.left : undefined
+            anchors.rightMargin: isInstrumentRight() ? undefined : ScreenTools.defaultFontPixelWidth
+            anchors.right: isInstrumentRight() ? undefined : _mapAndVideo.right
+            anchors.topMargin: 150
+            anchors.top: parent.top
+            
+            MouseArea {
+                anchors.fill: parent
+                onClicked: {
+                    guidedActionsController.closeAll()
+                    var index = 0; // Defina o índice da ação que deseja executar
+                    if (index >= 0 && index < _actionModel.length && _actionModel[index].action !== -1) {
+                        _guidedController.confirmAction(_actionModel[index].action)
+                    }
+                }
             }
-            Component.onCompleted: {
-                addNotification("gpsNoSignalNotification", "FALHA NO SINAL GPS");
-                addNotification("gpsNotification", "SINAL BAIXO DO GPS");
-                addNotification("altitudeRtlNotification", "ALTURA DE SEGURANÇA NÃO DEFINIDA");
-                addNotification("lowBatNotification", "BATERIA BAIXA");
-                addNotification("forFlyNotification", "PRONTO PARA VOO");
-                addNotification("delocarNotification", "AGUARDANDO DECOLAGEM");
-                addNotification("inFlyNotification", "EM VOO");
-                addNotification("offRadio", "SEM SINAL COM RÁDIO");
-            }            
-        }
+        } */ 
+        Image {
+            visible:        activeVehicle ? activeVehicle.armed: false
+            source:         "/res/AreaIndicator"
+            anchors.leftMargin: 20//isInstrumentRight() ? _toolsMargin : undefined
+            anchors.left: isInstrumentRight() ? _mapAndVideo.left : undefined
+            anchors.rightMargin: isInstrumentRight() ? undefined : ScreenTools.defaultFontPixelWidth
+            anchors.right: isInstrumentRight() ? undefined : _mapAndVideo.right
+            anchors.topMargin: 600
+            anchors.top: parent.top
+            
+            MouseArea {
+                anchors.fill: parent
+                onClicked: {
+                    indicatorArea.visible = !indicatorArea.visible; // Torna o indicatorArea visível ao clicar na imagem
+                }
+            }
+        } //------- INDICATOR AREA
+    }
 
 
-    //---Indicador de Area 
-    /* Item {
-        anchors.centerIn: parent
-        visible:        activeVehicle = true
 
-        Rectangle {
-            width: parent.width
-            height: parent.height
-            radius: width / 2 // Define um raio para tornar a máscara circular
-            color: "orange" // Cor de fundo da máscara
-        }
-    } */
+
+
 //---------------------------------------------------------------------------------------------------------------------
     
 

@@ -317,7 +317,7 @@ const QVariantList &FirmwarePlugin::toolBarIndicators(const Vehicle*)
         _toolBarIndicatorList = QVariantList({
             /* QVariant::fromValue(QUrl::fromUserInput("qrc:/toolbar/ArmedIndicator.qml")), */
             //QVariant::fromValue(QUrl::fromUserInput("qrc:/toolbar/GPSRTKIndicator.qml")),
-            //QVariant::fromValue(QUrl::fromUserInput("qrc:/toolbar/NotificationIndicator.qml")),
+            QVariant::fromValue(QUrl::fromUserInput("qrc:/toolbar/NotificationIndicator.qml")),
             QVariant::fromValue(QUrl::fromUserInput("qrc:/toolbar/ModeIndicator.qml")),
             QVariant::fromValue(QUrl::fromUserInput("qrc:/toolbar/GPSIndicator.qml")),
             QVariant::fromValue(QUrl::fromUserInput("qrc:/toolbar/RCRSSIIndicator.qml")),

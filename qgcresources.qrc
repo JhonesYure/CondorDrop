@@ -51,6 +51,8 @@
         <file>resources/icons/qgroundcontrol.ico</file>
 
         <file alias="StatusBattery">resources/StatusBattery.svg</file>
+        <file alias="AreaIndicator">resources/AreaIndicator.svg</file>
+
     </qresource>
     <qresource prefix="/res/firmware">
         <file alias="3drradio.png">resources/firmware/3drradio.png</file>

@@ -560,7 +560,7 @@ Item {
         Image {
             source: "/res/StatusBattery"
             //width: 1200
-            height: 20
+            //height: 30
             fillMode: Image.PreserveAspectCrop
         }
         Rectangle {
