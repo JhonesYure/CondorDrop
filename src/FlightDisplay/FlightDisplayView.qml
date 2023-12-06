@@ -1534,8 +1534,8 @@ Item {
 
     Item {
         id: multiDisparos
-        width: 100 
-        height: 100 
+        width: 150 
+        height: 150 
         x: parent.width - width -   30
         y: parent.height - height - 330
         //anchors.verticalCenter: parent.verticalCenter
@@ -1549,8 +1549,8 @@ Item {
             visible:    false
             Image {
                 source:                     "/res/BollLarge"
-                width:                      150
-                height:                     150
+                width:                      200
+                height:                     200
                 anchors.rightMargin:        70
                 
 
@@ -1574,14 +1574,14 @@ Item {
                     }
                 }
             }
-            x: smallButton.x - width - 150 
+            x: smallButton.x - width - 210 
             //y: smallButton.y 
         }
         // Botão redondo (esfera menor)
         Rectangle {
             id: smallButton
-            width: 100
-            height: 100
+            width: 150
+            height: 150
             radius: width / 2
             color: "black" 
             opacity: 0.5
