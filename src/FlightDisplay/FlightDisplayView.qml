@@ -1152,8 +1152,8 @@ Item {
                         anchors.leftMargin: _topBottomMargin
                         anchors.left:       parent.left
                         size:               _innerRadius 
-                        width:              180 //----Versão Mobile          
-                        height:                 180 //----Versão Mobile
+                        width:              220 //----Versão Mobile          
+                        height:                 220 //----Versão Mobile
                         vehicle:            activeVehicle
                         anchors.bottomMargin: 20
                         anchors.verticalCenter: parent.verticalCenter
@@ -1164,8 +1164,8 @@ Item {
                         anchors.leftMargin: _topBottomMargin
                         anchors.left:       parent.left
                         size:               _innerRadius 
-                        width:              180 //----Versão Mobile          
-                        height:                 180 //----Versão Mobile
+                        width:              220 //----Versão Mobile          
+                        height:                 220 //----Versão Mobile
                         vehicle:            activeVehicle
                         anchors.bottomMargin: 20
                         anchors.verticalCenter: parent.verticalCenter
@@ -1537,7 +1537,7 @@ Item {
         width: 50 
         height: 50 
         x: parent.width - width 
-        y: parent.height - height - 250
+        y: parent.height - height - 300
         //anchors.verticalCenter: parent.verticalCenter
         //visible:    activeVehicle ? activeVehicle.armed: false
 
@@ -1546,8 +1546,8 @@ Item {
         // Botão maior (esfera maior)
         Rectangle {
             id: buttonValue
-            width: 80
-            height: 80
+            width: 110
+            height: 110
             radius: width / 2
             color: "black" 
             opacity: 0.5
@@ -1582,8 +1582,8 @@ Item {
         // Botão redondo (esfera menor)
         Rectangle {
             id: smallButton
-            width: 50
-            height: 50
+            width: 80
+            height: 80
             radius: width / 2
             color: "black" 
             opacity: 0.5
