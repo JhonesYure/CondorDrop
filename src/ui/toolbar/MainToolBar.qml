@@ -517,26 +517,26 @@ Item {
      //EDIT SKYDRONES FLY TIME----------
     Item {
         width: 1200
-        //height: 10
+        height: 10
         anchors {
             left: parent.left
             leftMargin: 630
             top: parent.top
             topMargin: 88
         }
-        /* Rectangle {
+        Rectangle {
             width: parent.width * 0.75 // 30% em amarelo
             height: 10//parent.height
             color: "#FFDA24"
             anchors.centerIn: parent
-            Rectangle {
+            /* Rectangle {
                 width: 20
                 height: 20
                 radius: 10
                 color: "#CF0000" // Cor inicial da bolinha
                 anchors.verticalCenter: parent.verticalCenter
                 //anchors.left: parent.left
-            }
+            } */
         }
         Rectangle {
             width: parent.width * 0.15 // 20% em vermelho
@@ -556,13 +556,13 @@ Item {
                 color: "#FFDA24" // Cor inicial da bolinha
                 anchors.verticalCenter: parent.verticalCenter
             }
-        } */
-        Image {
+        }
+        /* Image {
             source: "/res/StatusBattery"
             //width: 1200
             //height: 30
             fillMode: Image.PreserveAspectCrop
-        }
+        } */
         Rectangle {
             id:                     testIndicator
             //color:                  qgcPal.globalTheme === QGCPalette.Light ? Qt.rgba(1,1,1,0.95) : Qt.rgba(0,0,0,0.2)//0.3

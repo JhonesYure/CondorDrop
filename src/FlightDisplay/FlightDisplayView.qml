@@ -868,10 +868,10 @@ Item {
             anchors.left: isInstrumentRight() ? _mapAndVideo.left : undefined
             anchors.rightMargin: isInstrumentRight() ? undefined : ScreenTools.defaultFontPixelWidth
             anchors.right: isInstrumentRight() ? undefined : _mapAndVideo.right
-            anchors.topMargin: 370
+            anchors.topMargin: 320
             anchors.top: parent.top
             z: _mapAndVideo.z + 4
-            maxHeight: parent.height - toolStrip.y + (_flightVideo.visible ? (_flightVideo.y - parent.height) : 0)
+            maxHeight: parent.height //- toolStrip.y + (_flightVideo.visible ? (_flightVideo.y - parent.height) : 0)
             radius: 80
 
             property var _actionModel: [
@@ -931,7 +931,7 @@ Item {
             anchors.topMargin: 120
             anchors.top: parent.top
             z: _mapAndVideo.z + 4
-            maxHeight: parent.height - toolStrip.y + (_flightVideo.visible ? (_flightVideo.y - parent.height) : 0)
+            maxHeight: parent.height //- toolStrip.y + (_flightVideo.visible ? (_flightVideo.y - parent.height) : 0)
             radius: 80
 
             property var _actionModel: [
@@ -976,6 +976,61 @@ Item {
                 if (action !== -1) {
                     _guidedController.confirmAction(action)
                 }
+            }
+        }
+        //-------------------INDICATOR AREA
+        ToolStrip {
+            //visible: (activeVehicle ? activeVehicle.guidedModeSupported : true) && !QGroundControl.videoManager.fullScreen
+            id: indicatorAreaa
+            visible:        activeVehicle ? activeVehicle.armed: false
+            anchors.leftMargin: isInstrumentRight() ? _toolsMargin : undefined
+            anchors.left: isInstrumentRight() ? _mapAndVideo.left : undefined
+            anchors.rightMargin: isInstrumentRight() ? undefined : ScreenTools.defaultFontPixelWidth
+            anchors.right: isInstrumentRight() ? undefined : _mapAndVideo.right
+            anchors.topMargin: 520
+            anchors.top: parent.top
+            z: _mapAndVideo.z + 4
+            maxHeight: parent.height //- toolStrip.y + (_flightVideo.visible ? (_flightVideo.y - parent.height) : 0)
+            radius: 80
+
+            property var _actionModel: [
+                {
+                    title: _guidedController.startMissionTitle,
+                    text: _guidedController.startMissionMessage,
+                    action: _guidedController.actionStartMission,
+                    visible: _guidedController.showStartMission
+                },
+                {
+                    title: _guidedController.continueMissionTitle,
+                    text: _guidedController.continueMissionMessage,
+                    action: _guidedController.actionContinueMission,
+                    visible: _guidedController.showContinueMission
+                },
+                {
+                    title: _guidedController.changeAltTitle,
+                    text: _guidedController.changeAltMessage,
+                    action: _guidedController.actionChangeAlt,
+                    visible: _guidedController.showChangeAlt
+                },
+                {
+                    title: _guidedController.landAbortTitle,
+                    text: _guidedController.landAbortMessage,
+                    action: _guidedController.actionLandAbort,
+                    visible: _guidedController.showLandAbort
+                }
+            ]
+
+            model: [
+                {
+                    //name: _guidedController.takeoffTitle,
+                    iconSource: "/res/AreaIndicator",
+                    //action: _guidedController.actionTakeoff,
+                    visible:    true
+                },
+            ]
+
+            onClicked: {
+                indicatorArea.visible = !indicatorArea.visible; // Torna o indicatorArea visível ao clicar na imagem
             }
         }
         //------------------
@@ -1455,16 +1510,18 @@ Item {
     }
 
     //----------- New TOOLBAR CONDORDROP
-    Item{
+    /* Item{
         Image {
             visible:        activeVehicle ? activeVehicle.armed: false
             source:         "/res/AreaIndicator"
-            anchors.leftMargin: 20//isInstrumentRight() ? _toolsMargin : undefined
+            anchors.leftMargin: isInstrumentRight() ? _toolsMargin : undefined
             anchors.left: isInstrumentRight() ? _mapAndVideo.left : undefined
             anchors.rightMargin: isInstrumentRight() ? undefined : ScreenTools.defaultFontPixelWidth
             anchors.right: isInstrumentRight() ? undefined : _mapAndVideo.right
             anchors.topMargin: 550
             anchors.top: parent.top
+            width:  50
+            height: 50
             
             MouseArea {
                 anchors.fill: parent
@@ -1473,7 +1530,46 @@ Item {
                 }
             }
         } //------- INDICATOR AREA
-    }
+    } */
+
+    /* Item {
+        id: multiDisparos
+        anchors.centerIn: parent // Centraliza o Item no centro do pai
+
+        property int clickCount: 0 // Definindo clickCount no escopo do Item
+
+        // Botão redondo
+        Rectangle {
+            width: 50
+            height: 50
+            radius: width / 2
+            color: "blue" // Cor do botão
+            border.color: "black"
+            border.width: 2
+
+            Text {
+                anchors.centerIn: parent
+                text: clickCount === 0 ? "0" : "x" + clickCount // Texto exibido no botão
+                font.bold: true
+                color: "white" // Cor do texto
+            }
+
+            MouseArea {
+                anchors.fill: parent
+                onClicked: {
+                    if (multiDisparos.clickCount < 6) {
+                        multiDisparos.clickCount++
+                    } else {
+                        multiDisparos.clickCount = 0 // Reinicia o contador após 6 cliques
+                    }
+                }
+            }
+        }
+    } */
+
+
+
+
 
 
 
