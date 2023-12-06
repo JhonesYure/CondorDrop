@@ -707,7 +707,7 @@ Item {
                     // Você pode chamar circleIndicator.width = calculateSize(newAltitude) dentro dessa função para atualizar o tamanho da esfera quando a altitude mudar
                 }
             }
-    }
+        }
 
         //-- Map View
         Item {
@@ -1534,10 +1534,10 @@ Item {
 
     Item {
         id: multiDisparos
-        width: 80 
-        height: 80 
+        width: 100 
+        height: 100 
         x: parent.width - width 
-        y: parent.height - height - 400
+        y: parent.height - height - 350
         //anchors.verticalCenter: parent.verticalCenter
         //visible:    activeVehicle ? activeVehicle.armed: false
 
@@ -1546,8 +1546,8 @@ Item {
         // Botão maior (esfera maior)
         Rectangle {
             id: buttonValue
-            width: 100
-            height: 100
+            width: 150
+            height: 150
             radius: width / 2
             color: "black" 
             opacity: 0.5
@@ -1582,8 +1582,8 @@ Item {
         // Botão redondo (esfera menor)
         Rectangle {
             id: smallButton
-            width: 80
-            height: 80
+            width: 100
+            height: 100
             radius: width / 2
             color: "black" 
             opacity: 0.5
