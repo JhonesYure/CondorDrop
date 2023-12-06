@@ -1127,7 +1127,7 @@ Item {
                 Layout.fillHeight:      true
                 Layout.fillWidth:       true
                 anchors.bottom: parent.bottom
-                anchors.bottomMargin: 120
+                anchors.bottomMargin: 140
                 anchors.left: parent.left 
                 anchors.leftMargin: 1
 
@@ -1152,8 +1152,8 @@ Item {
                         anchors.leftMargin: _topBottomMargin
                         anchors.left:       parent.left
                         size:               _innerRadius 
-                        width:              220 //----Versão Mobile          
-                        height:                 220 //----Versão Mobile
+                        width:              270 //----Versão Mobile          
+                        height:                 270 //----Versão Mobile
                         vehicle:            activeVehicle
                         anchors.bottomMargin: 20
                         anchors.verticalCenter: parent.verticalCenter
@@ -1164,8 +1164,8 @@ Item {
                         anchors.leftMargin: _topBottomMargin
                         anchors.left:       parent.left
                         size:               _innerRadius 
-                        width:              220 //----Versão Mobile          
-                        height:                 220 //----Versão Mobile
+                        width:              270 //----Versão Mobile          
+                        height:                 270 //----Versão Mobile
                         vehicle:            activeVehicle
                         anchors.bottomMargin: 20
                         anchors.verticalCenter: parent.verticalCenter
@@ -1536,8 +1536,8 @@ Item {
         id: multiDisparos
         width: 100 
         height: 100 
-        x: parent.width - width 
-        y: parent.height - height - 350
+        x: parent.width - width -   30
+        y: parent.height - height - 330
         //anchors.verticalCenter: parent.verticalCenter
         //visible:    activeVehicle ? activeVehicle.armed: false
 
@@ -1545,12 +1545,14 @@ Item {
 
         // Botão maior (esfera maior)
         Rectangle   {
-            id:     buttonValue
+            id:         buttonValue
+            visible:    false
             Image {
                 source:                     "/res/BollLarge"
                 width:                      150
                 height:                     150
                 anchors.rightMargin:        70
+                
 
                 Text {
                     id: buttonText
