@@ -982,7 +982,7 @@ Item {
         ToolStrip {
             //visible: (activeVehicle ? activeVehicle.guidedModeSupported : true) && !QGroundControl.videoManager.fullScreen
             id: indicatorAreaa
-            visible:        activeVehicle ? activeVehicle.armed: false
+            //visible:        activeVehicle ? activeVehicle.armed: false
             anchors.leftMargin: isInstrumentRight() ? _toolsMargin : undefined
             anchors.left: isInstrumentRight() ? _mapAndVideo.left : undefined
             anchors.rightMargin: isInstrumentRight() ? undefined : ScreenTools.defaultFontPixelWidth
@@ -1532,26 +1532,35 @@ Item {
         } //------- INDICATOR AREA
     } */
 
-    /* Item {
+    Item {
         id: multiDisparos
-        anchors.centerIn: parent // Centraliza o Item no centro do pai
+        width: 50 
+        height: 50 
+        x: parent.width - width 
+        y: parent.height - height - 250
+        //anchors.verticalCenter: parent.verticalCenter
+        //visible:    activeVehicle ? activeVehicle.armed: false
 
-        property int clickCount: 0 // Definindo clickCount no escopo do Item
+        property int clickCount: 0 
 
-        // Botão redondo
+        // Botão maior (esfera maior)
         Rectangle {
-            width: 50
-            height: 50
+            id: buttonValue
+            width: 80
+            height: 80
             radius: width / 2
-            color: "blue" // Cor do botão
-            border.color: "black"
+            color: "black" 
+            opacity: 0.5
+            border.color: "white"
             border.width: 2
+            visible: false
 
             Text {
+                id: buttonText
                 anchors.centerIn: parent
-                text: clickCount === 0 ? "0" : "x" + clickCount // Texto exibido no botão
+                text: multiDisparos.clickCount === 0 ? "0" : "x" + multiDisparos.clickCount 
                 font.bold: true
-                color: "white" // Cor do texto
+                color: "white" 
             }
 
             MouseArea {
@@ -1559,13 +1568,45 @@ Item {
                 onClicked: {
                     if (multiDisparos.clickCount < 6) {
                         multiDisparos.clickCount++
+                        buttonText.text = "x" + multiDisparos.clickCount 
                     } else {
-                        multiDisparos.clickCount = 0 // Reinicia o contador após 6 cliques
+                        multiDisparos.clickCount = 0 
+                        buttonText.text = "0"
                     }
                 }
             }
+
+            x: smallButton.x - width - 10 
+            y: smallButton.y 
         }
-    } */
+        // Botão redondo (esfera menor)
+        Rectangle {
+            id: smallButton
+            width: 50
+            height: 50
+            radius: width / 2
+            color: "black" 
+            opacity: 0.5
+            border.color: "white"
+            border.width: 2
+
+            Text {
+                anchors.centerIn: parent
+                text: buttonValue.visible ? buttonText.text : (multiDisparos.clickCount === 0 ? "0" : "x" + multiDisparos.clickCount)
+                font.bold: true
+                color: "white" 
+            }
+
+            MouseArea {
+                anchors.fill: parent
+                onClicked: {
+                    buttonValue.visible = !buttonValue.visible;
+                }
+            }
+        }
+    }
+
+
 
 
 
