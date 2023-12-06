@@ -1544,40 +1544,36 @@ Item {
         property int clickCount: 0 
 
         // Botão maior (esfera maior)
-        Rectangle {
-            id: buttonValue
-            width: 150
-            height: 150
-            radius: width / 2
-            color: "black" 
-            opacity: 0.5
-            border.color: "white"
-            border.width: 2
-            visible: false
+        Rectangle   {
+            id:     buttonValue
+            Image {
+                source:                     "/res/BollLarge"
+                width:                      150
+                height:                     150
+                anchors.rightMargin:        70
 
-            Text {
-                id: buttonText
-                anchors.centerIn: parent
-                text: multiDisparos.clickCount === 0 ? "0" : "x" + multiDisparos.clickCount 
-                font.bold: true
-                color: "white" 
-            }
-
-            MouseArea {
-                anchors.fill: parent
-                onClicked: {
-                    if (multiDisparos.clickCount < 6) {
-                        multiDisparos.clickCount++
-                        buttonText.text = "x" + multiDisparos.clickCount 
-                    } else {
-                        multiDisparos.clickCount = 0 
-                        buttonText.text = "0"
+                Text {
+                    id: buttonText
+                    anchors.centerIn: parent
+                    text: multiDisparos.clickCount === 0 ? "0" : "x" + multiDisparos.clickCount 
+                    font.bold: true
+                    color: "black" 
+                }
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: {
+                        if (multiDisparos.clickCount < 6) {
+                            multiDisparos.clickCount++
+                            buttonText.text = "x" + multiDisparos.clickCount 
+                        } else {
+                            multiDisparos.clickCount = 0 
+                            buttonText.text = "0"
+                        }
                     }
                 }
             }
-
-            x: smallButton.x - width - 10 
-            y: smallButton.y 
+            x: smallButton.x - width - 150 
+            //y: smallButton.y 
         }
         // Botão redondo (esfera menor)
         Rectangle {
@@ -1589,6 +1585,7 @@ Item {
             opacity: 0.5
             border.color: "white"
             border.width: 2
+            anchors.bottomMargin: 50
 
             Text {
                 anchors.centerIn: parent
