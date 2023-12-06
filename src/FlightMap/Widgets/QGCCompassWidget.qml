@@ -152,7 +152,7 @@ Item {
         //-------- Position ------skydrones -------------------
         Image {
             id:                 gimbal
-            width:              size * 0.2
+            width:              size * 0.4
             source:             "/qmlimages/gimbal_position.svg"//vehicle ? vehicle.vehicleImageCompass : ""
             mipmap:             true
             sourceSize.width:   width
@@ -167,7 +167,7 @@ Item {
         //Ponteiro Vermelho
         Image {
             id:                 pointer
-            width:              size * 0.2
+            width:              size * 0.4
             source:             "/qmlimages/compassInstrumentArrow.svg"//vehicle ? vehicle.vehicleImageCompass : ""
             mipmap:             true
             sourceSize.width:   width
