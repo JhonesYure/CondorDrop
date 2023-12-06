@@ -1127,7 +1127,7 @@ Item {
                 Layout.fillHeight:      true
                 Layout.fillWidth:       true
                 anchors.bottom: parent.bottom
-                anchors.bottomMargin: 90
+                anchors.bottomMargin: 120
                 anchors.left: parent.left 
                 anchors.leftMargin: 1
 
@@ -1534,10 +1534,10 @@ Item {
 
     Item {
         id: multiDisparos
-        width: 50 
-        height: 50 
+        width: 80 
+        height: 80 
         x: parent.width - width 
-        y: parent.height - height - 300
+        y: parent.height - height - 400
         //anchors.verticalCenter: parent.verticalCenter
         //visible:    activeVehicle ? activeVehicle.armed: false
 
@@ -1546,8 +1546,8 @@ Item {
         // Botão maior (esfera maior)
         Rectangle {
             id: buttonValue
-            width: 110
-            height: 110
+            width: 100
+            height: 100
             radius: width / 2
             color: "black" 
             opacity: 0.5
