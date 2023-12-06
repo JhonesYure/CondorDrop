@@ -982,7 +982,7 @@ Item {
         ToolStrip {
             //visible: (activeVehicle ? activeVehicle.guidedModeSupported : true) && !QGroundControl.videoManager.fullScreen
             id: indicatorAreaa
-            //visible:        activeVehicle ? activeVehicle.armed: false
+            visible:        activeVehicle ? activeVehicle.armed: false
             anchors.leftMargin: isInstrumentRight() ? _toolsMargin : undefined
             anchors.left: isInstrumentRight() ? _mapAndVideo.left : undefined
             anchors.rightMargin: isInstrumentRight() ? undefined : ScreenTools.defaultFontPixelWidth
@@ -1025,12 +1025,12 @@ Item {
                     //name: _guidedController.takeoffTitle,
                     iconSource: "/res/AreaIndicator",
                     //action: _guidedController.actionTakeoff,
-                    visible:    true
+                    //visible:    true
                 },
             ]
 
             onClicked: {
-                indicatorArea.visible = !indicatorArea.visible; // Torna o indicatorArea visível ao clicar na imagem
+                indicatorArea.visible = !indicatorArea.visible; 
             }
         }
         //------------------
