@@ -903,7 +903,7 @@ Item {
 
             model: [
                 {
-                    //name: _guidedController.rtlTitle,
+                    //name:   "RTL"//_guidedController.rtlTitle,
                     iconSource: "/qmlimages/AtHome.svg",
                     //buttonVisible: _guidedController.showTakeoff,
                     //buttonEnabled: _guidedController.showTakeoff,
@@ -963,7 +963,7 @@ Item {
 
             model: [
                 {
-                    //name: _guidedController.takeoffTitle,
+                    //name: "Decolar"//_guidedController.takeoffTitle,
                     iconSource: "/qmlimages/TakeOffIcon.svg",
                     action: _guidedController.actionTakeoff,
                     visible:    true
@@ -1022,7 +1022,7 @@ Item {
 
             model: [
                 {
-                    //name: _guidedController.takeoffTitle,
+                    //name: "Area"//_guidedController.takeoffTitle,
                     iconSource: "/res/AreaIndicator",
                     //action: _guidedController.actionTakeoff,
                     //visible:    true
@@ -1509,29 +1509,7 @@ Item {
         }            
     }
 
-    //----------- New TOOLBAR CONDORDROP
-    /* Item{
-        Image {
-            visible:        activeVehicle ? activeVehicle.armed: false
-            source:         "/res/AreaIndicator"
-            anchors.leftMargin: isInstrumentRight() ? _toolsMargin : undefined
-            anchors.left: isInstrumentRight() ? _mapAndVideo.left : undefined
-            anchors.rightMargin: isInstrumentRight() ? undefined : ScreenTools.defaultFontPixelWidth
-            anchors.right: isInstrumentRight() ? undefined : _mapAndVideo.right
-            anchors.topMargin: 550
-            anchors.top: parent.top
-            width:  50
-            height: 50
-            
-            MouseArea {
-                anchors.fill: parent
-                onClicked: {
-                    indicatorArea.visible = !indicatorArea.visible; // Torna o indicatorArea visível ao clicar na imagem
-                }
-            }
-        } //------- INDICATOR AREA
-    } */
-
+    //----------- Numero de Disparo
     Item {
         id: multiDisparos
         width: 150 
@@ -1539,7 +1517,7 @@ Item {
         x: parent.width - width -   30
         y: parent.height - height - 330
         //anchors.verticalCenter: parent.verticalCenter
-        //visible:    activeVehicle ? activeVehicle.armed: false
+        visible:    activeVehicle ? activeVehicle.armed: false
 
         property int clickCount: 0 
 
@@ -1557,7 +1535,7 @@ Item {
                 Text {
                     id: buttonText
                     anchors.centerIn: parent
-                    text: multiDisparos.clickCount === 0 ? "0" : "x" + multiDisparos.clickCount 
+                    text: multiDisparos.clickCount === 0 ? "" : "x" + multiDisparos.clickCount 
                     font.bold: true
                     color: "black" 
                 }
@@ -1569,7 +1547,7 @@ Item {
                             buttonText.text = "x" + multiDisparos.clickCount 
                         } else {
                             multiDisparos.clickCount = 0 
-                            buttonText.text = "0"
+                            buttonText.text = ""
                         }
                     }
                 }
@@ -1604,6 +1582,96 @@ Item {
             }
         }
     }
+
+    //-------- Bandeja 
+    Item{
+        id:                         bandejaStyle
+        anchors.horizontalCenter:   parent.horizontalCenter
+        anchors.verticalCenter:     parent.verticalCenter
+        anchors.top:                parent.top
+        anchors.topMargin:          150   
+        Rectangle {
+            Image {
+                anchors.horizontalCenter:   parent.horizontalCenter
+                anchors.verticalCenter:     parent.verticalCenter
+                source:                 "/res/BandejaFrontal"
+            }
+            Column {
+                anchors.centerIn: parent
+                spacing: 10 
+                Text{
+                    anchors.centerIn: parent
+                    anchors.top: parent.top
+                    text:   "Bandeja Frontal"
+                    font.bold: true
+                    color: "white" 
+                }
+
+                Row {
+                    anchors.top: parent.top
+                    anchors.topMargin: 10
+                    anchors.verticalCenter: parent.verticalCenter
+                    anchors.horizontalCenter: parent.horizontalCenter
+
+                    Slider {
+                        id: slider
+                        width: 300
+                        from: 0
+                        to: 12
+                        stepSize: 1
+                        live: true
+                    }
+
+                    Item {
+                        width: slider.handle.width 
+                        height: slider.handle.height 
+                        clip: true 
+
+                        Text {
+                            id: valueText
+                            text: slider.value.toFixed(0)
+                            font.bold: true
+                            color: "white"
+                            anchors.centerIn: parent
+                        }
+
+                        onXChanged: valueText.x = x - valueText.width / 2 + width / 2
+                        onYChanged: valueText.y = y - valueText.height / 2 + height / 2
+
+                        Component.onCompleted: {
+                            valueText.x = slider.handle.x - valueText.width / 2 + slider.handle.width / 2
+                            valueText.y = slider.handle.y - valueText.height / 2 + slider.handle.height / 2
+                        }
+
+                        Connections {
+                            target: slider
+                            onValueChanged: {
+                                valueText.text = slider.value.toFixed(0)
+                                valueText.x = slider.handle.x - valueText.width / 2 + slider.handle.width / 2
+                                valueText.y = slider.handle.y - valueText.height / 2 + slider.handle.height / 2
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+
+   /*  Item {
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.verticalCenter: parent.verticalCenter
+
+        Rectangle {
+            Image {
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.verticalCenter: parent.verticalCenter
+                source: "/res/BandejaTraseira"
+            }
+
+        }
+    } */
+
 
 
 

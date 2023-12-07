@@ -52,8 +52,10 @@
 
         <file alias="StatusBattery">resources/StatusBattery.svg</file>
         <file alias="AreaIndicator">resources/AreaIndicator.svg</file>
-         <file alias="BollSmall">resources/BollSmall.svg</file>
-          <file alias="BollLarge">resources/BollLarge.svg</file>
+        <file alias="BollSmall">resources/BollSmall.svg</file>
+        <file alias="BollLarge">resources/BollLarge.svg</file>
+        <file alias="BandejaFrontal">resources/BandejaFrontal.svg</file>
+        <file alias="BandejaTraseira">resources/BandejaTraseira.svg</file>
 
     </qresource>
     <qresource prefix="/res/firmware">

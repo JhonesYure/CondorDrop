@@ -186,7 +186,7 @@ Item {
                         anchors.right:  parent.right
                         spacing:        ScreenTools.defaultFontPixelWidth
 
-                        QGCLabel { text: qsTr("New file name:") }
+                        QGCLabel { text: qsTr("Novo Nome:") }
 
                         QGCTextField {
                             id:                 filenameTextField
@@ -199,7 +199,7 @@ Item {
                         anchors.left:   parent.left
                         anchors.right:  parent.right
                         wrapMode:       Text.WordWrap
-                        text:           qsTr("File names must end with .%1 file extension. If missing it will be added.").arg(fileExtension)
+                        text:           qsTr("Os nomes dos arquivos devem terminar com a extensão de arquivo .%1. Se estiver faltando, será adicionado.").arg(fileExtension)
                     }
 
                     QGCLabel {
@@ -207,7 +207,7 @@ Item {
                         anchors.left:   parent.left
                         anchors.right:  parent.right
                         wrapMode:       Text.WordWrap
-                        text:           qsTr("The file %1 exists. Click Save again to replace it.").arg(filenameTextField.text)
+                        text:           qsTr("O arquivo %1 existe. Clique em Salvar novamente para substituí-lo.").arg(filenameTextField.text)
                         visible:        false
                         color:          qgcPal.warningText
                     }
@@ -215,7 +215,7 @@ Item {
                     SectionHeader {
                         anchors.left:   parent.left
                         anchors.right:  parent.right
-                        text:           qsTr("Save to existing file:")
+                        text:           qsTr("Salvar em arquivo existente:")
                     }
 
                     Repeater {
@@ -247,7 +247,7 @@ Item {
                                 onAboutToHide: fileButton.highlight = false
 
                                 QGCMenuItem {
-                                    text:           qsTr("Delete")
+                                    text:           qsTr("Deletar")
                                     onTriggered: {
                                         controller.deleteFile(hamburgerMenu.fileToDelete)
                                         fileRepeater.model = controller.getFiles(folder, [ fileExtension ])

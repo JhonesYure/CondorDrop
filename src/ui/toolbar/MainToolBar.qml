@@ -193,7 +193,7 @@ Item {
                     id:                 notification
                     Layout.fillHeight:  true
                     source:             "/toolbar/NotificationIndicator.qml"
-                    visible:            activeVehicle
+                    visible:            true
                 }
                 Drawer {
                     id:                                 drawer

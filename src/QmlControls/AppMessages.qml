@@ -37,7 +37,7 @@ Item {
                     spacing:    ScreenTools.defaultFontPixelHeight / 2
 
                     QGCButton {
-                        text: qsTr("Clear All")
+                        text: qsTr("Limpar Tudo")
                         onClicked: {
                             var logCats = QGroundControl.loggingCategories()
                             for (var i=0; i<logCats.length; i++) {
@@ -124,10 +124,10 @@ Item {
             QGCFileDialog {
                 id:             writeDialog
                 folder:         QGroundControl.settingsManager.appSettings.logSavePath
-                nameFilters:    [qsTr("Log files (*.txt)"), qsTr("All Files (*)")]
+                nameFilters:    [qsTr("Arquivos de Log (*.txt)"), qsTr("Todos Arquivos (*)")]
                 fileExtension:  qsTr("txt")
                 selectExisting: false
-                title:          qsTr("Select log save file")
+                title:          qsTr("Selecione Arquivo")
                 onAcceptedForSave: {
                     debugMessageModel.writeMessages(file);
                     visible = false;
@@ -145,7 +145,7 @@ Item {
                 anchors.bottom:  parent.bottom
                 anchors.left:    parent.left
                 onClicked:       writeDialog.openForSave()
-                text:            qsTr("Save App Log")
+                text:            qsTr("Salvar Log App")
             }
 
             QGCLabel {
@@ -153,7 +153,7 @@ Item {
                 anchors.left:       writeButton.right
                 anchors.leftMargin: ScreenTools.defaultFontPixelWidth
                 anchors.baseline:   gstCombo.baseline
-                text:               qsTr("GStreamer Debug")
+                text:               qsTr("Depuração de streamer")
                 visible:            QGroundControl.settingsManager.appSettings.gstDebugLevel.visible
             }
 
@@ -163,7 +163,7 @@ Item {
                 anchors.leftMargin: ScreenTools.defaultFontPixelWidth / 2
                 anchors.bottom:     parent.bottom
                 width:              ScreenTools.defaultFontPixelWidth * 10
-                model:              ["Disabled", "1", "2", "3", "4", "5", "6", "7", "8"]
+                model:              ["Desabilitado", "1", "2", "3", "4", "5", "6", "7", "8"]
                 fact:               QGroundControl.settingsManager.appSettings.gstDebugLevel
                 visible:            QGroundControl.settingsManager.appSettings.gstDebugLevel.visible
             }
@@ -173,7 +173,7 @@ Item {
                 anchors.right:          filterButton.left
                 anchors.rightMargin:    ScreenTools.defaultFontPixelWidth
                 anchors.bottom:         parent.bottom
-                text:                   qsTr("Show Latest")
+                text:                   qsTr("Mostrar Último")
                 checkable:              true
                 checked:                true
 
@@ -188,8 +188,8 @@ Item {
                 id:             filterButton
                 anchors.bottom: parent.bottom
                 anchors.right:  parent.right
-                text:           qsTr("Set Logging")
-                onClicked:      mainWindow.showComponentDialog(filtersDialogComponent, qsTr("Turn on logging categories"), mainWindow.showDialogDefaultWidth, StandardButton.Close)
+                text:           qsTr("Defenir Registro")
+                onClicked:      mainWindow.showComponentDialog(filtersDialogComponent, qsTr("Ative categorias de registro"), mainWindow.showDialogDefaultWidth, StandardButton.Close)
             }
         }
     }
