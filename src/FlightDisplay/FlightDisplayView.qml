@@ -903,7 +903,7 @@ Item {
 
             model: [
                 {
-                    //name:   "RTL"//_guidedController.rtlTitle,
+                    name:       "RTL",//_guidedController.rtlTitle,
                     iconSource: "/qmlimages/AtHome.svg",
                     //buttonVisible: _guidedController.showTakeoff,
                     //buttonEnabled: _guidedController.showTakeoff,
@@ -963,7 +963,7 @@ Item {
 
             model: [
                 {
-                    //name: "Decolar"//_guidedController.takeoffTitle,
+                    name:       "Decolar",//_guidedController.takeoffTitle,
                     iconSource: "/qmlimages/TakeOffIcon.svg",
                     action: _guidedController.actionTakeoff,
                     visible:    true
@@ -1022,7 +1022,7 @@ Item {
 
             model: [
                 {
-                    //name: "Area"//_guidedController.takeoffTitle,
+                    name:       "Disparar",//_guidedController.takeoffTitle,
                     iconSource: "/res/AreaIndicator",
                     //action: _guidedController.actionTakeoff,
                     //visible:    true
@@ -1584,79 +1584,70 @@ Item {
     }
 
     //-------- Bandeja 
-    Item{
-        id:                         bandejaStyle
-        anchors.horizontalCenter:   parent.horizontalCenter
-        anchors.verticalCenter:     parent.verticalCenter
-        anchors.top:                parent.top
-        anchors.topMargin:          150   
+    Item {
+        anchors.horizontalCenter:       parent.horizontalCenter
+        anchors.verticalCenter:         parent.verticalCenter
+        anchors.top:                    parent.top
+        anchors.topMargin:              150
+
         Rectangle {
             Image {
-                anchors.horizontalCenter:   parent.horizontalCenter
-                anchors.verticalCenter:     parent.verticalCenter
-                source:                 "/res/BandejaFrontal"
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.verticalCenter: parent.verticalCenter
+                source: "/res/BandejaFrontal"
             }
+
             Column {
                 anchors.centerIn: parent
-                spacing: 10 
-                Text{
-                    anchors.centerIn: parent
-                    anchors.top: parent.top
-                    text:   "Bandeja Frontal"
+                spacing: 15 
+
+                Text {
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    text: "Bandeja Frontal"
                     font.bold: true
-                    color: "white" 
+                    color: "white"
+                    font.pixelSize: 35 
                 }
 
-                Row {
-                    anchors.top: parent.top
-                    anchors.topMargin: 10
-                    anchors.verticalCenter: parent.verticalCenter
-                    anchors.horizontalCenter: parent.horizontalCenter
+                Item {
+                    width: sliderr.handle.width 
+                    height: sliderr.handle.height 
+                    clip: true 
 
-                    Slider {
-                        id: slider
-                        width: 300
-                        from: 0
-                        to: 12
-                        stepSize: 1
-                        live: true
-                    }
-
-                    Item {
-                        width: slider.handle.width 
-                        height: slider.handle.height 
-                        clip: true 
-
-                        Text {
-                            id: valueText
-                            text: slider.value.toFixed(0)
-                            font.bold: true
-                            color: "white"
-                            anchors.centerIn: parent
-                        }
-
-                        onXChanged: valueText.x = x - valueText.width / 2 + width / 2
-                        onYChanged: valueText.y = y - valueText.height / 2 + height / 2
-
-                        Component.onCompleted: {
-                            valueText.x = slider.handle.x - valueText.width / 2 + slider.handle.width / 2
-                            valueText.y = slider.handle.y - valueText.height / 2 + slider.handle.height / 2
-                        }
+                    Text {
+                        id: valortexto
+                        text: sliderr.value.toFixed(0)
+                        font.bold: true
+                        color: "white"
+                        font.pixelSize: 25 // Ajuste o tamanho da fonte conforme necessário
+                        anchors.right: parent.right
+                        horizontalAlignment: Text.AlignHCenter // Centraliza horizontalmente
+                        verticalAlignment: Text.AlignVCenter // Centraliza verticalmente
 
                         Connections {
-                            target: slider
+                            target: sliderr
                             onValueChanged: {
-                                valueText.text = slider.value.toFixed(0)
-                                valueText.x = slider.handle.x - valueText.width / 2 + slider.handle.width / 2
-                                valueText.y = slider.handle.y - valueText.height / 2 + slider.handle.height / 2
+                                valortexto.text = sliderr.value.toFixed(0)
                             }
                         }
                     }
                 }
 
+                Slider {
+                    id: sliderr
+                    width: 400
+                    height: 50
+                    from: 0
+                    to: 12
+                    stepSize: 1
+                    live: true
+                }
             }
+
         }
     }
+
+
 
    /*  Item {
         anchors.horizontalCenter: parent.horizontalCenter
