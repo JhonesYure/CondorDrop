@@ -1631,7 +1631,7 @@ Item {
                         anchors.verticalCenter: parent.verticalCenter // Mantém o círculo no centro vertical da barra
                         x: calcularPosicaoEsfera() // Função para calcular a posição inicial da esfera
                         Text{
-                            text:       buttonValue.visible ? buttonText.text : (multiDisparos.clickCount === 0 ? "0" : "x" + multiDisparos.clickCount)
+                            text:       "0"//buttonValue.visible ? buttonText.text : (multiDisparos.clickCount === 0 ? "0" : "x" + multiDisparos.clickCount)
                             anchors.centerIn: parent
                             anchors.horizontalCenter: parent.horizontalCenter
                             anchors.verticalCenter: parent.verticalCenter
@@ -1688,7 +1688,7 @@ Item {
                         anchors.verticalCenter: parent.verticalCenter // Mantém o círculo no centro vertical da barra
                         x: calcularPosicaoEsfera() // Função para calcular a posição inicial da esfera
                         Text{
-                            text:       buttonValue.visible ? buttonText.text : (multiDisparos.clickCount === 0 ? "0" : "x" + multiDisparos.clickCount)
+                            text:       "0"//buttonValue.visible ? buttonText.text : (multiDisparos.clickCount === 0 ? "0" : "x" + multiDisparos.clickCount)
                             anchors.centerIn: parent
                             anchors.horizontalCenter: parent.horizontalCenter
                             anchors.verticalCenter: parent.verticalCenter
