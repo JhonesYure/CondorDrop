@@ -1519,14 +1519,14 @@ Item {
         x: parent.width - width -   30
         y: parent.height - height - 330
         //anchors.verticalCenter: parent.verticalCenter
-        visible:    activeVehicle ? activeVehicle.armed: false
+        //visible:    activeVehicle ? activeVehicle.armed: false
 
         property int clickCount: 0 
 
         // Botão maior (esfera maior)
         Rectangle   {
             id:         buttonValue
-            visible:    false
+            //visible:    false
             Image {
                 source:                     "/res/BollLarge"
                 width:                      200
