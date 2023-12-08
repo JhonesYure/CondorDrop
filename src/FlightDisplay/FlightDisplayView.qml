@@ -1585,13 +1585,13 @@ Item {
         }
     }
 
-    //-------- Bandeja 
+    //-------- Bandeja Frontal
     Item {
         anchors.horizontalCenter:       parent.horizontalCenter
         anchors.verticalCenter:         parent.verticalCenter
         anchors.top:                    parent.top
         anchors.topMargin:              150
-
+        //visible:                       activeVehicle ? activeVehicle.armed: false
         Rectangle {
             Image {
                 anchors.horizontalCenter: parent.horizontalCenter
@@ -1616,17 +1616,105 @@ Item {
                     width:          400
                     height:         50
                     color:          "black"
-                    opacity:        0.5
+                    //opacity:        0.5
                     border.color:   "white"
                     border.width:   10
                     radius:         100
                     
+                    // Círculo representando a esfera (será movido na barra)
+                    Rectangle {
+                        id: esfera
+                        width: 60
+                        height: 60
+                        color: "white" // Cor da esfera (você pode ajustar)
+                        radius: width / 2
+                        anchors.verticalCenter: parent.verticalCenter // Mantém o círculo no centro vertical da barra
+                        x: calcularPosicaoEsfera() // Função para calcular a posição inicial da esfera
+                        Text{
+                            text:       buttonValue.visible ? buttonText.text : (multiDisparos.clickCount === 0 ? "0" : "x" + multiDisparos.clickCount)
+                            anchors.centerIn: parent
+                            anchors.horizontalCenter: parent.horizontalCenter
+                            anchors.verticalCenter: parent.verticalCenter
+                            
+                        }
+                    }
+
+                    function calcularPosicaoEsfera() {
+                        // Calcula a posição da esfera com base em um valor (0 a 100)
+                        // Suponha que 'valorMunicao' seja a variável que contém o valor da munição
+                        // Ajuste a lógica conforme necessário para o seu caso específico
+                        return (barraMunicao.width - esfera.width) * (1 - (valorMunicao / 20));
+                    }
                 }
             }
 
         }
     }
+    //---------Bandeja Traseira
+    Item {
+        anchors.horizontalCenter:       parent.horizontalCenter
+        anchors.verticalCenter:         parent.verticalCenter
+        //anchors.top:                    parent.top
+        //anchors.topMargin:              150
+        //visible:                       activeVehicle ? activeVehicle.armed: false
+        Rectangle {
+            Image {
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.verticalCenter: parent.verticalCenter
+                source: "/res/BandejaFrontal"
+            }
 
+            Column {
+                anchors.centerIn: parent
+                spacing: 15 
+
+                Rectangle {
+                    id:             barraMunicaoback
+                    width:          400
+                    height:         50
+                    color:          "black"
+                    //opacity:        0.5
+                    border.color:   "white"
+                    border.width:   10
+                    radius:         100
+                    
+                    // Círculo representando a esfera (será movido na barra)
+                    Rectangle {
+                        id: esferaii
+                        width: 60
+                        height: 60
+                        color: "white" // Cor da esferaii (você pode ajustar)
+                        radius: width / 2
+                        anchors.verticalCenter: parent.verticalCenter // Mantém o círculo no centro vertical da barra
+                        x: calcularPosicaoEsfera() // Função para calcular a posição inicial da esfera
+                        Text{
+                            text:       buttonValue.visible ? buttonText.text : (multiDisparos.clickCount === 0 ? "0" : "x" + multiDisparos.clickCount)
+                            anchors.centerIn: parent
+                            anchors.horizontalCenter: parent.horizontalCenter
+                            anchors.verticalCenter: parent.verticalCenter
+                            
+                        }
+                    }
+
+                    function calcularPosicaoEsfera() {
+                        // Calcula a posição da esfera com base em um valor (0 a 100)
+                        // Suponha que 'valorMunicao' seja a variável que contém o valor da munição
+                        // Ajuste a lógica conforme necessário para o seu caso específico
+                        return (barraMunicaoback.width - esferaii.width) * (1 - (valorMunicao / 20));
+                    }
+                }
+
+                Text {
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    text: "Bandeja Traseira"
+                    font.bold: true
+                    color: "white"
+                    font.pixelSize: 35 
+                }
+            }
+
+        }
+    }
 
 
 
