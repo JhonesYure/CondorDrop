@@ -963,7 +963,7 @@ Item {
 
             model: [
                 {
-                    name:       "Decolar",//_guidedController.takeoffTitle,
+                    name:       "DECOLAR",//_guidedController.takeoffTitle,
                     iconSource: "/qmlimages/TakeOffIcon.svg",
                     action: _guidedController.actionTakeoff,
                     visible:    true
@@ -1022,7 +1022,7 @@ Item {
 
             model: [
                 {
-                    name:       "Disparar",//_guidedController.takeoffTitle,
+                    name:       "DISPARAR",//_guidedController.takeoffTitle,
                     iconSource: "/res/AreaIndicator",
                     //action: _guidedController.actionTakeoff,
                     //visible:    true
@@ -1410,6 +1410,8 @@ Item {
                                     console.log("_rtlAltFact não está definido ou é null.");
                                 }
                             }
+
+
                         }
                     }
 
@@ -1609,38 +1611,16 @@ Item {
                     font.pixelSize: 35 
                 }
 
-                Item {
-                    width: sliderr.handle.width 
-                    height: sliderr.handle.height 
-                    clip: true 
-
-                    Text {
-                        id: valortexto
-                        text: sliderr.value.toFixed(0)
-                        font.bold: true
-                        color: "white"
-                        font.pixelSize: 25 // Ajuste o tamanho da fonte conforme necessário
-                        anchors.right: parent.right
-                        horizontalAlignment: Text.AlignHCenter // Centraliza horizontalmente
-                        verticalAlignment: Text.AlignVCenter // Centraliza verticalmente
-
-                        Connections {
-                            target: sliderr
-                            onValueChanged: {
-                                valortexto.text = sliderr.value.toFixed(0)
-                            }
-                        }
-                    }
-                }
-
-                Slider {
-                    id: sliderr
-                    width: 400
-                    height: 50
-                    from: 0
-                    to: 12
-                    stepSize: 1
-                    live: true
+                Rectangle {
+                    id:             barraMunicao
+                    width:          400
+                    height:         50
+                    color:          "black"
+                    opacity:        0.5
+                    border.color:   "white"
+                    border.width:   10
+                    radius:         100
+                    
                 }
             }
 
@@ -1648,20 +1628,6 @@ Item {
     }
 
 
-
-   /*  Item {
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.verticalCenter: parent.verticalCenter
-
-        Rectangle {
-            Image {
-                anchors.horizontalCenter: parent.horizontalCenter
-                anchors.verticalCenter: parent.verticalCenter
-                source: "/res/BandejaTraseira"
-            }
-
-        }
-    } */
 
 
 
