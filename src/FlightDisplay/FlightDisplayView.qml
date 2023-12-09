@@ -963,7 +963,7 @@ Item {
 
             model: [
                 {
-                    name:       "DECOLAR",//_guidedController.takeoffTitle,
+                    name:       "Decolar",//_guidedController.takeoffTitle,
                     iconSource: "/qmlimages/TakeOffIcon.svg",
                     action: _guidedController.actionTakeoff,
                     visible:    true
@@ -1022,7 +1022,7 @@ Item {
 
             model: [
                 {
-                    name:       "DISPARAR",//_guidedController.takeoffTitle,
+                    name:       "Disparar",//_guidedController.takeoffTitle,
                     iconSource: "/res/AreaIndicator",
                     //action: _guidedController.actionTakeoff,
                     //visible:    true
