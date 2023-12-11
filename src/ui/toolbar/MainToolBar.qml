@@ -189,43 +189,9 @@ Item {
                         }
                     }
                 }
-                /* Loader {
-                    id:                 notification
-                    Layout.fillHeight:  true
-                    source:             "/toolbar/NotificationIndicator.qml"
-                    visible:            true
-                } */
-                Item {
-                    id:                     notificationIndicator
-                    y:                      10
-                    visible:                true
-                    anchors.centerIn:       parent
-                    anchors.verticalCenter: parent.verticalCenter
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    width:                  1
-                    Layout.fillHeight:      true
+                
+                
 
-                    Text {
-                        id: textIndicator
-                        anchors.top: parent.top
-                        anchors.bottom: parent.bottom
-                        font.pointSize: 15
-                        font.bold: true
-                        color: "white"
-
-                        // Vincule o texto à propriedade 'activeVehicle' para exibir "CONECTADO" ou "DESCONECTADO"
-                        text: activeVehicle ? "CONECTADO" : "DESCONECTADO"
-                    }
-
-                    // Substitua isso pelo objeto que contém a propriedade 'activeVehicle'
-                    property bool activeVehicle: false
-
-                    Component.onCompleted: {
-                        yourObject.activeVehicleChanged.connect(function() {
-                            textIndicator.text = yourObject.activeVehicle ? "DESCONECTADO" : "DISPARO EFETUADO COM SUCESSO";
-                        });
-                    }
-                }
                 Drawer {
                     id:                                 drawer
                     y:                                  header.height
@@ -402,13 +368,34 @@ Item {
                     visible:            activeVehicle
                 }
 
-                /* Rectangle {
-                    Layout.margins:     ScreenTools.defaultFontPixelHeight / 2
-                    Layout.fillHeight:  true
-                    width:              1
-                    color:              qgcPal.text
-                    visible:            activeVehicle
-                } */ //--------------------------------------Faixa branca pós logo
+                Item {
+                    id:         notificationIndicator
+                    y:          10
+                    visible:    true
+                    anchors.left: parent.left
+                    anchors.leftMargin: 200
+
+                    Text {
+                        id: textIndicator
+                        anchors.top: parent.top
+                        anchors.bottom: parent.bottom
+                        
+                        font.pointSize: 15
+                        font.bold: true
+                        color: "white"
+                        text: activeVehicle ? "CONECTADO" : "DESCONECTADO"
+                    }
+
+                    
+                    property bool activeVehicle: false
+
+                    Component.onCompleted: {
+                        yourObject.activeVehicleChanged.connect(function() {
+                            textIndicator.text = yourObject.activeVehicle ? "DESCONECTADO" : "DISPARO EFETUADO COM SUCESSO";
+                        });
+                    }
+                }
+
 
                 Item {
                     Layout.fillHeight:  true
