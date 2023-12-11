@@ -223,12 +223,12 @@ const QVariantList& ArduSubFirmwarePlugin::toolBarIndicators(const Vehicle* vehi
     //-- Sub specific list of indicators (Enter your modified list here)
     if(_toolBarIndicators.size() == 0) {
         _toolBarIndicators = QVariantList({
+            QVariant::fromValue(QUrl::fromUserInput("qrc:/toolbar/NotificationIndicator.qml")),
             QVariant::fromValue(QUrl::fromUserInput("qrc:/toolbar/MessageIndicator.qml")),
             QVariant::fromValue(QUrl::fromUserInput("qrc:/toolbar/BatteryIndicator.qml")),
             QVariant::fromValue(QUrl::fromUserInput("qrc:/toolbar/JoystickIndicator.qml")),
             QVariant::fromValue(QUrl::fromUserInput("qrc:/toolbar/ModeIndicator.qml")),
             QVariant::fromValue(QUrl::fromUserInput("qrc:/toolbar/ArmedIndicator.qml")),
-            QVariant::fromValue(QUrl::fromUserInput("qrc:/toolbar/NotificationIndicator.qml")),
         });
     }
     return _toolBarIndicators;

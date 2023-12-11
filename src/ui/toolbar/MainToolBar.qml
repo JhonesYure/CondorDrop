@@ -189,12 +189,12 @@ Item {
                         }
                     }
                 }
-                Loader {
+                /* Loader {
                     id:                 notification
                     Layout.fillHeight:  true
                     source:             "/toolbar/NotificationIndicator.qml"
                     visible:            true
-                }
+                } */
                 Drawer {
                     id:                                 drawer
                     y:                                  header.height
@@ -378,6 +378,35 @@ Item {
                     color:              qgcPal.text
                     visible:            activeVehicle
                 } */ //--------------------------------------Faixa branca pós logo
+                Item {
+                    id:                     notificationIndicator
+                    y:                      10
+                    visible:                true
+                    anchors.rightMargin:    100
+                    width:                  1
+                    Layout.fillHeight:      true
+
+                    Text {
+                        id: textIndicator
+                        anchors.top: parent.top
+                        anchors.bottom: parent.bottom
+                        font.pointSize: 15
+                        font.bold: true
+                        color: "white"
+
+                        // Vincule o texto à propriedade 'activeVehicle' para exibir "CONECTADO" ou "DESCONECTADO"
+                        text: activeVehicle ? "CONECTADO" : "DESCONECTADO"
+                    }
+
+                    // Substitua isso pelo objeto que contém a propriedade 'activeVehicle'
+                    property bool activeVehicle: false
+
+                    Component.onCompleted: {
+                        yourObject.activeVehicleChanged.connect(function() {
+                            textIndicator.text = yourObject.activeVehicle ? "DESCONECTADO" : "DISPARO EFETUADO COM SUCESSO";
+                        });
+                    }
+                }
 
                 Item {
                     Layout.fillHeight:  true

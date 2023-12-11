@@ -982,7 +982,7 @@ Item {
         ToolStrip {
             //visible: (activeVehicle ? activeVehicle.guidedModeSupported : true) && !QGroundControl.videoManager.fullScreen
             id: indicatorAreaa
-            //visible:        activeVehicle ? activeVehicle.armed: false
+            visible:        activeVehicle ? activeVehicle.armed: false
             anchors.leftMargin: isInstrumentRight() ? _toolsMargin : undefined
             anchors.left: isInstrumentRight() ? _mapAndVideo.left : undefined
             anchors.rightMargin: isInstrumentRight() ? undefined : ScreenTools.defaultFontPixelWidth
@@ -1511,7 +1511,7 @@ Item {
         }            
     }
 
-    //----------- Numero de Disparo
+    //----------- Numero de Disparo Frontal
     Item {
         id: multiDisparos
         width: 150 
@@ -1519,14 +1519,14 @@ Item {
         x: parent.width - width -   30
         y: parent.height - height - 330
         //anchors.verticalCenter: parent.verticalCenter
-        //visible:    activeVehicle ? activeVehicle.armed: false
+        visible:    false  
 
         property int clickCount: 0 
 
         // Botão maior (esfera maior)
         Rectangle   {
             id:         buttonValue
-            //visible:    false
+            visible:    false
             Image {
                 source:                     "/res/BollLarge"
                 width:                      200
@@ -1591,12 +1591,19 @@ Item {
         anchors.verticalCenter:         parent.verticalCenter
         anchors.top:                    parent.top
         anchors.topMargin:              150
-        //visible:                       activeVehicle ? activeVehicle.armed: false
+        visible:                       activeVehicle ? activeVehicle.armed: false
         Rectangle {
             Image {
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.verticalCenter: parent.verticalCenter
                 source: "/res/BandejaFrontal"
+
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: {
+                        multiDisparos.visible   =   !multiDisparos.visible;
+                    }
+                }
             }
 
             Column {
@@ -1656,12 +1663,19 @@ Item {
         anchors.verticalCenter:         parent.verticalCenter
         //anchors.top:                    parent.top
         //anchors.topMargin:              150
-        //visible:                       activeVehicle ? activeVehicle.armed: false
+        visible:                       activeVehicle ? activeVehicle.armed: false
         Rectangle {
             Image {
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.verticalCenter: parent.verticalCenter
                 source: "/res/BandejaFrontal"
+
+                MouseArea{
+                    anchors.fill: parent
+                    onClicked:{
+                        multiDisparos.visible   =   !multiDisparos.visible;
+                    }
+                }
             }
 
             Column {

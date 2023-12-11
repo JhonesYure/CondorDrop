@@ -18,7 +18,9 @@ import QGroundControl.Controllers           1.0
 //------------------- 
 //--- Notification Indicator 
 Item {
-    y: 10
+    id:         notificationIndicator
+    y:          10
+    visible:    true
 
     Text {
         id: textIndicator
@@ -36,8 +38,6 @@ Item {
     property bool activeVehicle: false
 
     Component.onCompleted: {
-        // Exemplo: Monitorar a propriedade 'activeVehicle' e atualizar o texto
-        // Isso é apenas um exemplo. Conecte a propriedade ao seu objeto apropriado.
         yourObject.activeVehicleChanged.connect(function() {
             textIndicator.text = yourObject.activeVehicle ? "DESCONECTADO" : "DISPARO EFETUADO COM SUCESSO";
         });
