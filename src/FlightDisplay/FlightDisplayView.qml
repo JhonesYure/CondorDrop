@@ -1030,8 +1030,17 @@ Item {
             ]
 
             onClicked: {
-                indicatorArea.visible = !indicatorArea.visible; 
+                if (indicatorArea.visible) {
+                    indicatorArea.visible = false;
+                    bandejaFront.visible = true;
+                    bandejaBack.visible = true;
+                } else {
+                    indicatorArea.visible = true;
+                    bandejaFront.visible = false;
+                    bandejaBack.visible = false;
+                }
             }
+
         }
         //------------------
 
@@ -1587,11 +1596,12 @@ Item {
 
     //-------- Bandeja Frontal
     Item {
+        id:                             bandejaFront
         anchors.horizontalCenter:       parent.horizontalCenter
         anchors.verticalCenter:         parent.verticalCenter
         anchors.top:                    parent.top
         anchors.topMargin:              150
-        visible:                       activeVehicle ? activeVehicle.armed: false
+        visible:                       false    //activeVehicle ? activeVehicle.armed: false
         Rectangle {
             Image {
                 anchors.horizontalCenter: parent.horizontalCenter
@@ -1659,11 +1669,12 @@ Item {
     }
     //---------Bandeja Traseira
     Item {
+        id:                             bandejaBack
         anchors.horizontalCenter:       parent.horizontalCenter
         anchors.verticalCenter:         parent.verticalCenter
         //anchors.top:                    parent.top
         //anchors.topMargin:              150
-        visible:                       activeVehicle ? activeVehicle.armed: false
+        visible:                       false    //activeVehicle ? activeVehicle.armed: false
         Rectangle {
             Image {
                 anchors.horizontalCenter: parent.horizontalCenter
@@ -1729,6 +1740,7 @@ Item {
 
         }
     }
+
 
 
 

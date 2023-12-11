@@ -373,7 +373,7 @@ Item {
                     y:          10
                     visible:    true
                     anchors.left: parent.left
-                    anchors.leftMargin: 200
+                    anchors.leftMargin: 220
 
                     Text {
                         id: textIndicator
