@@ -199,7 +199,9 @@ Item {
                     id:                     notificationIndicator
                     y:                      10
                     visible:                true
-                    //anchors.rightMargin:    100
+                    anchors.centerIn:       parent
+                    anchors.verticalCenter: parent.verticalCenter
+                    anchors.horizontalCenter: parent.horizontalCenter
                     width:                  1
                     Layout.fillHeight:      true
 
