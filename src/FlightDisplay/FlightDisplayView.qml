@@ -983,11 +983,11 @@ Item {
             //visible: (activeVehicle ? activeVehicle.guidedModeSupported : true) && !QGroundControl.videoManager.fullScreen
             id: indicatorAreaa
             visible:        activeVehicle ? activeVehicle.armed: false
-            anchors.leftMargin: isInstrumentRight() ? _toolsMargin : undefined
-            anchors.left: isInstrumentRight() ? _mapAndVideo.left : undefined
-            anchors.rightMargin: isInstrumentRight() ? undefined : ScreenTools.defaultFontPixelWidth
-            anchors.right: isInstrumentRight() ? undefined : _mapAndVideo.right
-            anchors.topMargin: 520
+            anchors.rightMargin: isInstrumentRight() ? _toolsMargin : undefined
+            anchors.right: isInstrumentRight() ? _mapAndVideo.right : undefined
+            //anchors.rightMargin: isInstrumentRight() ? undefined : ScreenTools.defaultFontPixelWidth
+            //anchors.right: isInstrumentRight() ? undefined : _mapAndVideo.right
+            anchors.topMargin: 320
             anchors.top: parent.top
             z: _mapAndVideo.z + 4
             maxHeight: parent.height //- toolStrip.y + (_flightVideo.visible ? (_flightVideo.y - parent.height) : 0)
@@ -1029,7 +1029,80 @@ Item {
 
             onClicked: {
                 indicatorArea.visible = !indicatorArea.visible ;
+                /* if (bandejaBack.visible || bandejaFront.visible) {
+                    bandejaBack.visible = false;
+                    bandejaFront.visible = false;
+                    indicatorArea.visible = true;
+                } else if (indicatorArea.visible) {
+                    bandejaBack.visible = true;
+                    bandejaFront.visible = true;
+                    indicatorArea.visible = false;
+                } else {
+                    // Se nenhum estiver visível, exibe ambos
+                    bandejaBack.visible = true;
+                    bandejaFront.visible = true;
+                    indicatorArea.visible = false;
+                } */
             }
+
+
+
+        }
+        //------------------BANDEJA
+        ToolStrip {
+            //visible: (activeVehicle ? activeVehicle.guidedModeSupported : true) && !QGroundControl.videoManager.fullScreen
+            id: bandejaArea
+            visible:        activeVehicle ? activeVehicle.armed: false
+            anchors.rightMargin: isInstrumentRight() ? _toolsMargin : undefined
+            anchors.right: isInstrumentRight() ? _mapAndVideo.right : undefined
+            //anchors.rightMargin: isInstrumentRight() ? undefined : ScreenTools.defaultFontPixelWidth
+            //anchors.right: isInstrumentRight() ? undefined : _mapAndVideo.right
+            anchors.topMargin: 120
+            anchors.top: parent.top
+            z: _mapAndVideo.z + 4
+            maxHeight: parent.height //- toolStrip.y + (_flightVideo.visible ? (_flightVideo.y - parent.height) : 0)
+            radius: 80
+
+            property var _actionModel: [
+                {
+                    title: _guidedController.startMissionTitle,
+                    text: _guidedController.startMissionMessage,
+                    action: _guidedController.actionStartMission,
+                    visible: _guidedController.showStartMission
+                },
+                {
+                    title: _guidedController.continueMissionTitle,
+                    text: _guidedController.continueMissionMessage,
+                    action: _guidedController.actionContinueMission,
+                    visible: _guidedController.showContinueMission
+                },
+                {
+                    title: _guidedController.changeAltTitle,
+                    text: _guidedController.changeAltMessage,
+                    action: _guidedController.actionChangeAlt,
+                    visible: _guidedController.showChangeAlt
+                },
+                {
+                    title: _guidedController.landAbortTitle,
+                    text: _guidedController.landAbortMessage,
+                    action: _guidedController.actionLandAbort,
+                    visible: _guidedController.showLandAbort
+                }
+            ]
+
+            model: [
+                {
+                    name:       "Bandeja",//_guidedController.takeoffTitle,
+                    iconSource: "/res/BandejaTraseira",
+                },
+            ]
+
+            onClicked: {
+                bandejaBack.visible     =   !bandejaBack.visible ;
+                bandejaFront.visible    =   !bandejaFront.visible ;
+            }
+
+
 
         }
         //------------------
@@ -1583,6 +1656,30 @@ Item {
             }
         }
     }
+
+    /* Item {
+        id: bandejaFrontt
+        anchors.bottom: parent.bottom
+        anchors.right: parent.right
+        //anchors.centerIn: parent
+        
+        Button {
+            anchors {
+                //horizontalCenter: parent.horizontalCenter
+                //top: barraMunicao.bottom 
+                //topMargin: 20 
+            }
+            text: "Enviar Comunicação"
+            //visible: activeVehicle  ?   activeVehicle.armed:    true
+
+            onClicked: {
+                bandejaBack.visible     =   !bandejaBack.visible;
+                bandejaFront.visible    =   !bandejaFront.visible;
+            }
+        }
+        // ... (seu código existente continua aqui)
+    } */
+
 
     //-------- Bandeja Frontal
     Item {
