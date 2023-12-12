@@ -1657,30 +1657,6 @@ Item {
         }
     }
 
-    /* Item {
-        id: bandejaFrontt
-        anchors.bottom: parent.bottom
-        anchors.right: parent.right
-        //anchors.centerIn: parent
-        
-        Button {
-            anchors {
-                //horizontalCenter: parent.horizontalCenter
-                //top: barraMunicao.bottom 
-                //topMargin: 20 
-            }
-            text: "Enviar Comunicação"
-            //visible: activeVehicle  ?   activeVehicle.armed:    true
-
-            onClicked: {
-                bandejaBack.visible     =   !bandejaBack.visible;
-                bandejaFront.visible    =   !bandejaFront.visible;
-            }
-        }
-        // ... (seu código existente continua aqui)
-    } */
-
-
     //-------- Bandeja Frontal
     Item {
         id:                             bandejaFront
@@ -1754,6 +1730,7 @@ Item {
 
         }
     }
+
     //---------Bandeja Traseira
     Item {
         id:                             bandejaBack
