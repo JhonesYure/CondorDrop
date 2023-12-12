@@ -919,7 +919,7 @@ Item {
                 }
             }
         }
-        //---------------- code original
+        //---------------- TakeOff
         ToolStrip {
             visible: (activeVehicle ? activeVehicle.guidedModeSupported : true) && !QGroundControl.videoManager.fullScreen
             id: toolStrip
@@ -1022,23 +1022,13 @@ Item {
 
             model: [
                 {
-                    name:       "Disparar",//_guidedController.takeoffTitle,
+                    name:       "Area",//_guidedController.takeoffTitle,
                     iconSource: "/res/AreaIndicator",
-                    //action: _guidedController.actionTakeoff,
-                    //visible:    true
                 },
             ]
 
             onClicked: {
-                if (indicatorArea.visible) {
-                    indicatorArea.visible = false;
-                    bandejaFront.visible = true;
-                    bandejaBack.visible = true;
-                } else {
-                    indicatorArea.visible = true;
-                    bandejaFront.visible = false;
-                    bandejaBack.visible = false;
-                }
+                indicatorArea.visible = !indicatorArea.visible ;
             }
 
         }
@@ -1740,31 +1730,5 @@ Item {
 
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //---------------------------------------------------------------------------------------------------------------------
-    
-
-
-
-
-
-
-
-
-
-
-
 } //FLY DISPLAY VIEW --------------------
