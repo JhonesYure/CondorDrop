@@ -923,7 +923,6 @@ Item {
         ToolStrip {
             visible: (activeVehicle ? activeVehicle.guidedModeSupported : true) && !QGroundControl.videoManager.fullScreen
             id: toolStrip
-
             anchors.leftMargin: isInstrumentRight() ? _toolsMargin : undefined
             anchors.left: isInstrumentRight() ? _mapAndVideo.left : undefined
             anchors.rightMargin: isInstrumentRight() ? undefined : ScreenTools.defaultFontPixelWidth
@@ -982,12 +981,12 @@ Item {
         ToolStrip {
             //visible: (activeVehicle ? activeVehicle.guidedModeSupported : true) && !QGroundControl.videoManager.fullScreen
             id: indicatorAreaa
-            visible:      true //  activeVehicle ? activeVehicle.armed: false
-            anchors.rightMargin: isInstrumentRight() ? _toolsMargin : undefined
-            anchors.right: isInstrumentRight() ? _mapAndVideo.right : undefined
+            visible:      activeVehicle ? activeVehicle.armed: false
+            anchors.leftMargin: isInstrumentRight() ? _toolsMargin : undefined
+            anchors.left: isInstrumentRight() ? _mapAndVideo.left : undefined
             //anchors.rightMargin: isInstrumentRight() ? undefined : ScreenTools.defaultFontPixelWidth
             //anchors.right: isInstrumentRight() ? undefined : _mapAndVideo.right
-            anchors.topMargin: 320
+            anchors.topMargin: 520
             anchors.top: parent.top
             z: _mapAndVideo.z + 4
             maxHeight: parent.height //- toolStrip.y + (_flightVideo.visible ? (_flightVideo.y - parent.height) : 0)
@@ -1043,63 +1042,6 @@ Item {
                     bandejaFront.visible = true;
                     indicatorArea.visible = false;
                 } */
-            }
-
-
-
-        }
-        //------------------BANDEJA
-        ToolStrip {
-            //visible: (activeVehicle ? activeVehicle.guidedModeSupported : true) && !QGroundControl.videoManager.fullScreen
-            id: bandejaArea
-            visible:        true //activeVehicle ? activeVehicle.armed: false
-            anchors.rightMargin: isInstrumentRight() ? _toolsMargin : undefined
-            anchors.right: isInstrumentRight() ? _mapAndVideo.right : undefined
-            //anchors.rightMargin: isInstrumentRight() ? undefined : ScreenTools.defaultFontPixelWidth
-            //anchors.right: isInstrumentRight() ? undefined : _mapAndVideo.right
-            anchors.topMargin: 120
-            anchors.top: parent.top
-            z: _mapAndVideo.z + 4
-            maxHeight: parent.height //- toolStrip.y + (_flightVideo.visible ? (_flightVideo.y - parent.height) : 0)
-            radius: 80
-
-            property var _actionModel: [
-                {
-                    title: _guidedController.startMissionTitle,
-                    text: _guidedController.startMissionMessage,
-                    action: _guidedController.actionStartMission,
-                    visible: _guidedController.showStartMission
-                },
-                {
-                    title: _guidedController.continueMissionTitle,
-                    text: _guidedController.continueMissionMessage,
-                    action: _guidedController.actionContinueMission,
-                    visible: _guidedController.showContinueMission
-                },
-                {
-                    title: _guidedController.changeAltTitle,
-                    text: _guidedController.changeAltMessage,
-                    action: _guidedController.actionChangeAlt,
-                    visible: _guidedController.showChangeAlt
-                },
-                {
-                    title: _guidedController.landAbortTitle,
-                    text: _guidedController.landAbortMessage,
-                    action: _guidedController.actionLandAbort,
-                    visible: _guidedController.showLandAbort
-                }
-            ]
-
-            model: [
-                {
-                    name:       "Bandeja",//_guidedController.takeoffTitle,
-                    iconSource: "/res/BandejaTraseira",
-                },
-            ]
-
-            onClicked: {
-                bandejaBack.visible     =   !bandejaBack.visible ;
-                bandejaFront.visible    =   !bandejaFront.visible ;
             }
 
 
@@ -1664,7 +1606,8 @@ Item {
         anchors.verticalCenter:         parent.verticalCenter
         anchors.top:                    parent.top
         anchors.topMargin:              150
-        visible:                       false    //activeVehicle ? activeVehicle.armed: false
+        visible:                       activeVehicle ? activeVehicle.armed: false
+
         Rectangle {
             Image {
                 anchors.horizontalCenter: parent.horizontalCenter
@@ -1738,7 +1681,7 @@ Item {
         anchors.verticalCenter:         parent.verticalCenter
         //anchors.top:                    parent.top
         //anchors.topMargin:              150
-        visible:                       false    //activeVehicle ? activeVehicle.armed: false
+        visible:                      activeVehicle ? activeVehicle.armed: false
         Rectangle {
             Image {
                 anchors.horizontalCenter: parent.horizontalCenter
