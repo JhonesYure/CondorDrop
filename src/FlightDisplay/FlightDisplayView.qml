@@ -982,7 +982,7 @@ Item {
         ToolStrip {
             //visible: (activeVehicle ? activeVehicle.guidedModeSupported : true) && !QGroundControl.videoManager.fullScreen
             id: indicatorAreaa
-            visible:        activeVehicle ? activeVehicle.armed: false
+            visible:      true //  activeVehicle ? activeVehicle.armed: false
             anchors.rightMargin: isInstrumentRight() ? _toolsMargin : undefined
             anchors.right: isInstrumentRight() ? _mapAndVideo.right : undefined
             //anchors.rightMargin: isInstrumentRight() ? undefined : ScreenTools.defaultFontPixelWidth
@@ -1052,7 +1052,7 @@ Item {
         ToolStrip {
             //visible: (activeVehicle ? activeVehicle.guidedModeSupported : true) && !QGroundControl.videoManager.fullScreen
             id: bandejaArea
-            visible:        activeVehicle ? activeVehicle.armed: false
+            visible:        true //activeVehicle ? activeVehicle.armed: false
             anchors.rightMargin: isInstrumentRight() ? _toolsMargin : undefined
             anchors.right: isInstrumentRight() ? _mapAndVideo.right : undefined
             //anchors.rightMargin: isInstrumentRight() ? undefined : ScreenTools.defaultFontPixelWidth
