@@ -20,6 +20,7 @@ add_custom_target(uiQml
 		AppSettings.qml
 		ExitWithErrorWindow.qml
 		MainRootWindow.qml
+		MainStatusIndicator.qml
 )
 
 target_link_libraries(ui

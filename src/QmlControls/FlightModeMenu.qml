@@ -18,6 +18,8 @@ import QGroundControl.ScreenTools   1.0
 QGCLabel {
     id:     _root
     text:   currentVehicle ? currentVehicle.flightMode : qsTr("N/A", "No data to display")
+    anchors.bottom: parent.bottom
+    anchors.top: parent.top
 
     property var    currentVehicle:         QGroundControl.multiVehicleManager.activeVehicle
     property real   mouseAreaLeftMargin:    0
@@ -47,7 +49,7 @@ QGCLabel {
             flightModesMenuItems.length = 0
             // Add new items
             for (i = 0; i < currentVehicle.flightModes.length; i++) {
-                var menuItem = flightModeMenuItemComponent.createObject(null, { "text": currentVehicle.flightModes[i] })
+                var menuItem = flightModeMenuItemComponent.createObject(null, { "": currentVehicle.flightModes[i] })
                 flightModesMenuItems.push(menuItem)
                 flightModesMenu.insertItem(i, menuItem)
             }

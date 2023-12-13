@@ -152,11 +152,11 @@ Item {
                 }
                 QGCButton {
                     text:       qsTr("Pause and Upload")
-                    onClicked: {
+                    /* onClicked: {
                         activeVehicle.flightMode = activeVehicle.pauseFlightMode
                         _planMasterController.sendToVehicle()
                         hideDialog()
-                    }
+                    } */
                 }
             }
         }

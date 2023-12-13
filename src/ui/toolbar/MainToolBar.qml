@@ -145,7 +145,7 @@ Item {
             RowLayout {
                 id:                 buttonRow
                 Layout.fillHeight:  true
-                spacing:            250
+                spacing:            380
                 height:             80
                 //anchors.rightMargin: 80
                 function clearAllChecks() {
@@ -409,6 +409,11 @@ Item {
                     source: "/qmlimages/RedStatus.svg"
                 }
             } */
+            /* MainStatusIndicator {
+                Layout.preferredHeight: viewButtonRow.height
+                visible:                true //currentToolbar === flyViewToolbar
+            } */
+
             RowLayout{
                 spacing: 180
                 
