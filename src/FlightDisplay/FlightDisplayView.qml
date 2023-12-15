@@ -1681,17 +1681,14 @@ Item {
         //anchors.verticalCenter:         parent.verticalCenter
         //anchors.top:                    parent.top
         //anchors.topMargin:              150
-        anchors {
-            horizontalCenter: undefined // Removendo o centralização horizontal
-            verticalCenter: parent.verticalCenter
-            top: parent.top
-            topMargin: 150
-            right: parent.right // Posicionando à direita do pai
-            rightMargin: 20 // Margem direita para o posicionamento
-        }
+        width: 150 
+        height: 150 
+        x: parent.width - width -   100
+        y: parent.height - height - 700
         visible:                  true //      activeVehicle ? activeVehicle.armed: false + (_flightVideo.visible ? (_flightVideo.y - parent.height) : 0)
         
         Rectangle {
+            
             Image {
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.verticalCenter: parent.verticalCenter
@@ -1764,14 +1761,10 @@ Item {
         //anchors.verticalCenter:         parent.verticalCenter
         //anchors.top:                    parent.top
         //anchors.topMargin:              150
-        anchors {
-            horizontalCenter: undefined // Removendo o centralização horizontal
-            verticalCenter: parent.verticalCenter
-            top: parent.top
-            topMargin: 300
-            right: parent.right // Posicionando à direita do pai
-            rightMargin: 20 // Margem direita para o posicionamento
-        }
+        width: 150 
+        height: 150 
+        x: parent.width - width -   100
+        y: parent.height - height - 540
         visible:             true //         activeVehicle ? activeVehicle.armed: false
         Rectangle {
             Image {
