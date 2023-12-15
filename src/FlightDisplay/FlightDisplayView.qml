@@ -1685,7 +1685,7 @@ Item {
         height: 150 
         x: parent.width - width -   100
         y: parent.height - height - 700
-        visible:                  true //      activeVehicle ? activeVehicle.armed: false + (_flightVideo.visible ? (_flightVideo.y - parent.height) : 0)
+        visible:                  activeVehicle 
         
         Rectangle {
             
@@ -1697,7 +1697,10 @@ Item {
                 MouseArea {
                     anchors.fill: parent
                     onClicked: {
-                        multiDisparos.visible = !multiDisparos.visible;
+                        multiDisparosBack.visible = !multiDisparosBack.visible;
+                        if (multiDisparosBack.visible) {
+                            multiDisparos.visible = false; 
+                        }
                     }
                 }
             }
@@ -1743,10 +1746,8 @@ Item {
                     }
 
                     function calcularPosicaoEsfera() {
-                        // Calcula a posição da esfera com base em um valor (0 a 100)
-                        // Suponha que 'valorMunicao' seja a variável que contém o valor da munição
-                        // Ajuste a lógica conforme necessário para o seu caso específico
-                        return (barraMunicao.width - esfera.width) * (1 - (valorMunicao / 20));
+
+                        return (barraMunicao.width - esfera.width) * (1 - (valorMunicao / 12));
                     }
                 }
             }
@@ -1765,17 +1766,20 @@ Item {
         height: 150 
         x: parent.width - width -   100
         y: parent.height - height - 540
-        visible:             true //         activeVehicle ? activeVehicle.armed: false
+        visible:                activeVehicle 
         Rectangle {
             Image {
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.verticalCenter: parent.verticalCenter
                 source: "/res/BandejaFrontal"
 
-                MouseArea{
+                MouseArea {
                     anchors.fill: parent
-                    onClicked:{
-                        multiDisparosBack.visible   =   !multiDisparosBack.visible;
+                    onClicked: {
+                        multiDisparos.visible = !multiDisparos.visible;
+                        if (multiDisparos.visible) {
+                            multiDisparosBack.visible = false; 
+                        }
                     }
                 }
             }
