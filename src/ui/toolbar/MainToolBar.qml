@@ -145,7 +145,7 @@ Item {
             RowLayout {
                 id:                 buttonRow
                 Layout.fillHeight:  true
-                spacing:            420
+                spacing:            620
                 height:             80
                 //anchors.rightMargin: 80
                 function clearAllChecks() {
@@ -400,7 +400,7 @@ Item {
                     id:         modeIndicatorFlight
                     y:          10
                     anchors.left: parent.left
-                    anchors.leftMargin: 620
+                    anchors.leftMargin: 720
 
                     QGCComboBox {
                         anchors.verticalCenter: parent.verticalCenter
@@ -408,7 +408,7 @@ Item {
                         anchors.top: parent.top
                         alternateText:          _activeVehicle ? _activeVehicle.flightMode : ""
                         //model:                  _flightModes
-                        font.pointSize:             15//ScreenTools.mediumFontPointSize
+                        font.pointSize:             20//ScreenTools.mediumFontPointSize
                         //currentIndex:           -1
                         //sizeToContents:         true
 
