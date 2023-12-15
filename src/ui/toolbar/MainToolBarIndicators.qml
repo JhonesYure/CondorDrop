@@ -25,7 +25,7 @@ import QGroundControl.Palette               1.0
     id: indicatorRow
     anchors.top: parent.top
     //anchors.right: parent.right 
-    spacing: ScreenTools.defaultFontPixelWidth * 1.8
+    spacing: ScreenTools.defaultFontPixelWidth * 1.3
 
     Repeater {
         model: activeVehicle ? activeVehicle.toolBarIndicators : []

@@ -145,7 +145,7 @@ Item {
             RowLayout {
                 id:                 buttonRow
                 Layout.fillHeight:  true
-                spacing:            580
+                spacing:            570
                 height:             80
                 //anchors.rightMargin: 80
                 function clearAllChecks() {
@@ -400,7 +400,7 @@ Item {
                     id:         modeIndicatorFlight
                     y:          20
                     anchors.left: parent.left
-                    anchors.leftMargin: 700
+                    anchors.leftMargin: 800
                     anchors.topMargin: 10
 
                     QGCComboBox {
@@ -662,8 +662,10 @@ Item {
                             return secondsToMMSS(activeVehicle.getFact("flightTime").value)
                         return "00:00"
                     }
-                    color: _indicatorsColor
+                    color: "black"
                     font.pointSize: 7
+                    
+                    //font.bold:  true
                     Layout.fillWidth: true
                     Layout.minimumWidth: indicatorValueWidth
                     horizontalAlignment: firstLabel.horizontalAlignment
