@@ -1689,7 +1689,7 @@ Item {
             right: parent.right // Posicionando à direita do pai
             rightMargin: 20 // Margem direita para o posicionamento
         }
-        visible:                        activeVehicle ? activeVehicle.armed: false + (_flightVideo.visible ? (_flightVideo.y - parent.height) : 0)
+        visible:                  true //      activeVehicle ? activeVehicle.armed: false + (_flightVideo.visible ? (_flightVideo.y - parent.height) : 0)
         
         Rectangle {
             Image {
@@ -1772,7 +1772,7 @@ Item {
             right: parent.right // Posicionando à direita do pai
             rightMargin: 20 // Margem direita para o posicionamento
         }
-        visible:                      activeVehicle ? activeVehicle.armed: false
+        visible:             true //         activeVehicle ? activeVehicle.armed: false
         Rectangle {
             Image {
                 anchors.horizontalCenter: parent.horizontalCenter
