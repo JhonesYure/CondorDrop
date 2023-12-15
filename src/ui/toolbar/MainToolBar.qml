@@ -145,7 +145,7 @@ Item {
             RowLayout {
                 id:                 buttonRow
                 Layout.fillHeight:  true
-                spacing:            620
+                spacing:            580
                 height:             80
                 //anchors.rightMargin: 80
                 function clearAllChecks() {
