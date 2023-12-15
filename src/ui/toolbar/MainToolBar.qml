@@ -145,7 +145,7 @@ Item {
             RowLayout {
                 id:                 buttonRow
                 Layout.fillHeight:  true
-                spacing:            380
+                spacing:            420
                 height:             80
                 //anchors.rightMargin: 80
                 function clearAllChecks() {
@@ -396,6 +396,37 @@ Item {
                     }
                 }
 
+                Item {
+                    id:         modeIndicatorFlight
+                    y:          10
+                    anchors.left: parent.left
+                    anchors.leftMargin: 620
+
+                    QGCComboBox {
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.bottom: parent.bottom
+                        anchors.top: parent.top
+                        alternateText:          _activeVehicle ? _activeVehicle.flightMode : ""
+                        //model:                  _flightModes
+                        font.pointSize:             15//ScreenTools.mediumFontPointSize
+                        //currentIndex:           -1
+                        //sizeToContents:         true
+
+                        //property bool showIndicator: true
+
+                        property var _activeVehicle:    QGroundControl.multiVehicleManager.activeVehicle
+                        property var _flightModes:      _activeVehicle ? _activeVehicle.flightModes : [ ]
+
+                        onActivated: {
+                            _activeVehicle.flightMode = _flightModes[index]
+                            currentIndex = -1
+                        }
+                    }
+
+                    property var _activeVehicle:    QGroundControl.multiVehicleManager.activeVehicle
+                    property var _flightModes:      _activeVehicle ? _activeVehicle.flightModes : [ ]
+                    property bool activeVehicle: false
+                }
 
                 Item {
                     Layout.fillHeight:  true

@@ -318,7 +318,8 @@ const QVariantList &FirmwarePlugin::toolBarIndicators(const Vehicle*)
             /* QVariant::fromValue(QUrl::fromUserInput("qrc:/toolbar/ArmedIndicator.qml")), */
             //QVariant::fromValue(QUrl::fromUserInput("qrc:/toolbar/GPSRTKIndicator.qml")),
             QVariant::fromValue(QUrl::fromUserInput("qrc:/toolbar/NotificationIndicator.qml")),
-            QVariant::fromValue(QUrl::fromUserInput("qrc:/toolbar/ModeIndicator.qml")),
+            //QVariant::fromValue(QUrl::fromUserInput("qrc:/toolbar/ModeIndicator.qml")),
+            //QVariant::fromValue(QUrl::fromUserInput("qrc:/toolbar/ROIIndicator.qml")),
             QVariant::fromValue(QUrl::fromUserInput("qrc:/toolbar/GPSIndicator.qml")),
             QVariant::fromValue(QUrl::fromUserInput("qrc:/toolbar/RCRSSIIndicator.qml")),
 /* CAMERA *///QVariant::fromValue(QUrl::fromUserInput("qrc:/toolbar/MessageIndicator.qml")),  
@@ -327,7 +328,6 @@ const QVariantList &FirmwarePlugin::toolBarIndicators(const Vehicle*)
             //QVariant::fromValue(QUrl::fromUserInput("qrc:/toolbar/JoystickIndicator.qml")),
             //QVariant::fromValue(QUrl::fromUserInput("qrc:/toolbar/CameraIndicator.qml")),
             //QVariant::fromValue(QUrl::fromUserInput("qrc:/toolbar/BatteryTime.qml")),
-            //QVariant::fromValue(QUrl::fromUserInput("qrc:/toolbar/ROIIndicator.qml")),
             //QVariant::fromValue(QUrl::fromUserInput("qrc:/toolbar/VTOLModeIndicator.qml")),
             //QVariant::fromValue(QUrl::fromUserInput("qrc:/toolbar/MultiVehicleSelector.qml")),
             //QVariant::fromValue(QUrl::fromUserInput("qrc:/toolbar/LinkIndicator.qml")),

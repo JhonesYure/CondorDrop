@@ -749,6 +749,8 @@ Item {
                     _fMap.adjustMapSize()
                 }
             }
+
+            
         }
 
         
@@ -1598,16 +1600,97 @@ Item {
             }
         }
     }
+    //----------- Numero de Disparo Traseira
+    Item {
+        id: multiDisparosBack
+        width: 150 
+        height: 150 
+        x: parent.width - width -   30
+        y: parent.height - height - 330
+        //anchors.verticalCenter: parent.verticalCenter
+        visible:    false  
+
+        property int clickCount: 0 
+
+        // Botão maior (esfera maior)
+        Rectangle   {
+            id:         buttonValueBack
+            visible:    false
+            Image {
+                source:                     "/res/BollLarge"
+                width:                      200
+                height:                     200
+                anchors.rightMargin:        70
+                
+
+                Text {
+                    id: buttonTextBack
+                    anchors.centerIn: parent
+                    text: multiDisparosBack.clickCount === 0 ? "" : "x" + multiDisparosBack.clickCount 
+                    font.bold: true
+                    color: "black" 
+                }
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: {
+                        if (multiDisparosBack.clickCount < 6) {
+                            multiDisparosBack.clickCount++
+                            buttonTextBack.text = "x" + multiDisparosBack.clickCount 
+                        } else {
+                            multiDisparosBack.clickCount = 0 
+                            buttonTextBack.text = ""
+                        }
+                    }
+                }
+            }
+            x: smallButtonBack.x - width - 210 
+            //y: smallButtonBack.y 
+        }
+        // Botão redondo (esfera menor)
+        Rectangle {
+            id: smallButtonBack
+            width: 150
+            height: 150
+            radius: width / 2
+            color: "black" 
+            opacity: 0.5
+            border.color: "white"
+            border.width: 2
+            anchors.bottomMargin: 50
+
+            Text {
+                anchors.centerIn: parent
+                text: buttonValueBack.visible ? buttonTextBack.text : (multiDisparosBack.clickCount === 0 ? "0" : "x" + multiDisparosBack.clickCount)
+                font.bold: true
+                color: "white" 
+            }
+
+            MouseArea {
+                anchors.fill: parent
+                onClicked: {
+                    buttonValueBack.visible = !buttonValueBack.visible;
+                }
+            }
+        }
+    }
 
     //-------- Bandeja Frontal
     Item {
         id:                             bandejaFront
-        anchors.horizontalCenter:       parent.horizontalCenter
-        anchors.verticalCenter:         parent.verticalCenter
-        anchors.top:                    parent.top
-        anchors.topMargin:              150
-        visible:                       activeVehicle ? activeVehicle.armed: false
-
+        //anchors.horizontalCenter:       parent.horizontalCenter
+        //anchors.verticalCenter:         parent.verticalCenter
+        //anchors.top:                    parent.top
+        //anchors.topMargin:              150
+        anchors {
+            horizontalCenter: undefined // Removendo o centralização horizontal
+            verticalCenter: parent.verticalCenter
+            top: parent.top
+            topMargin: 150
+            right: parent.right // Posicionando à direita do pai
+            rightMargin: 20 // Margem direita para o posicionamento
+        }
+        visible:                        activeVehicle ? activeVehicle.armed: false + (_flightVideo.visible ? (_flightVideo.y - parent.height) : 0)
+        
         Rectangle {
             Image {
                 anchors.horizontalCenter: parent.horizontalCenter
@@ -1617,7 +1700,7 @@ Item {
                 MouseArea {
                     anchors.fill: parent
                     onClicked: {
-                        multiDisparos.visible   =   !multiDisparos.visible;
+                        multiDisparos.visible = !multiDisparos.visible;
                     }
                 }
             }
@@ -1677,10 +1760,18 @@ Item {
     //---------Bandeja Traseira
     Item {
         id:                             bandejaBack
-        anchors.horizontalCenter:       parent.horizontalCenter
-        anchors.verticalCenter:         parent.verticalCenter
+        ////anchors.horizontalCenter:       parent.horizontalCenter
+        //anchors.verticalCenter:         parent.verticalCenter
         //anchors.top:                    parent.top
         //anchors.topMargin:              150
+        anchors {
+            horizontalCenter: undefined // Removendo o centralização horizontal
+            verticalCenter: parent.verticalCenter
+            top: parent.top
+            topMargin: 300
+            right: parent.right // Posicionando à direita do pai
+            rightMargin: 20 // Margem direita para o posicionamento
+        }
         visible:                      activeVehicle ? activeVehicle.armed: false
         Rectangle {
             Image {
@@ -1691,7 +1782,7 @@ Item {
                 MouseArea{
                     anchors.fill: parent
                     onClicked:{
-                        multiDisparos.visible   =   !multiDisparos.visible;
+                        multiDisparosBack.visible   =   !multiDisparosBack.visible;
                     }
                 }
             }

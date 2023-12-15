@@ -28,7 +28,19 @@ Item {
     anchors.top:            parent.top
     anchors.bottom:         parent.bottom
 
-    property bool showIndicator: activeVehicle && activeVehicle.roiModeSupported
+    property bool showIndicator:    true    // activeVehicle && activeVehicle.roiModeSupported
+    property var _activeVehicle:    QGroundControl.multiVehicleManager.activeVehicle
+    property var _flightModes:      _activeVehicle ? _activeVehicle.flightModes : [ ]
+
+    onActivated: {
+        _activeVehicle.flightMode = _flightModes[index]
+        currentIndex = -1
+    }
+
+    /* Text {
+        text:          _activeVehicle ? _activeVehicle.flightMode : "" 
+        font.pointSize:             16
+    } */
 
     Component {
         id: roiInfo
