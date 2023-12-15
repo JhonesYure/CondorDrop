@@ -370,7 +370,7 @@ Item {
 
                 Item {
                     id:         notificationIndicator
-                    y:          10
+                    y:          20
                     visible:    true
                     anchors.left: parent.left
                     anchors.leftMargin: 220
@@ -400,7 +400,7 @@ Item {
                     id:         modeIndicatorFlight
                     y:          20
                     anchors.left: parent.left
-                    anchors.leftMargin: 650
+                    anchors.leftMargin: 700
                     anchors.topMargin: 10
 
                     QGCComboBox {

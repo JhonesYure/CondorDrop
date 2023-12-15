@@ -333,7 +333,7 @@ ApplicationWindow {
         }
     } */
     header: ToolBar {
-        height:         75//ScreenTools.toolbarHeight  
+        height:         ScreenTools.toolbarHeight  
         visible:        !QGroundControl.videoManager.fullScreen
         
         background: Rectangle {
