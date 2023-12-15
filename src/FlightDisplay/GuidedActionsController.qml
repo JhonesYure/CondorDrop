@@ -399,7 +399,7 @@ Item {
             break
         case actionStartMission:
         case actionContinueMission:
-            activeVehicle.startMission()
+            //activeVehicle.startMission()
             break
         case actionMVStartMission:
             rgVehicle = QGroundControl.multiVehicleManager.vehicles
