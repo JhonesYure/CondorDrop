@@ -106,7 +106,7 @@ import QGroundControl.Palette               1.0
 } */
 Item {
     id:             _root
-    width:          joystickRow.width * 1.1
+    width:          joystickRow.width 
     anchors.top:    parent.top
     anchors.bottom: parent.bottom
     //visible:        activeVehicle ? activeVehicle.sub : false
@@ -183,6 +183,7 @@ Item {
             anchors.top:        parent.top
             anchors.bottom:     parent.bottom
             sourceSize.height:  height
+            sourceSize.width:   width
             source:             "/qmlimages/ControlIcon.svg"
             fillMode:           Image.PreserveAspectFit
             //color:              activeVehicle && activeVehicle.joystickEnabled && joystickManager.activeJoystick ? qgcPal.buttonText : "red"

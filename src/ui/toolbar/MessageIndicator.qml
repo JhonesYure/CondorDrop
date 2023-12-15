@@ -91,7 +91,7 @@ import QGroundControl.Palette               1.0
 //-------------- CAMERA SKYDRONES  - (SÓ FUNCIONOU AQUI!)
 Item {
     id: _root
-    width:          cameraRow.width * 1.1
+    width:          cameraRow.width 
     anchors.top:    parent.top
     anchors.bottom: parent.bottom
 
@@ -151,13 +151,13 @@ Item {
         id:             cameraRow
         anchors.top:    parent.top
         anchors.bottom: parent.bottom
-        spacing:        ScreenTools.defaultFontPixelWidth * 1
+        //spacing:        ScreenTools.defaultFontPixelWidth * 1
 
         QGCColoredImage {
             anchors.top:        parent.top
             anchors.bottom:     parent.bottom
-            width:              height
-            sourceSize.width:   width
+            //width:              height
+            //sourceSize.width:   width
             source:             "/qmlimages/FHD.svg"
             fillMode:           Image.PreserveAspectFit
             color:              qgcPal.text

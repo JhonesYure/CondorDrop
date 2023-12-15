@@ -398,14 +398,15 @@ Item {
 
                 Item {
                     id:         modeIndicatorFlight
-                    y:          10
+                    y:          20
                     anchors.left: parent.left
-                    anchors.leftMargin: 720
+                    anchors.leftMargin: 650
+                    anchors.topMargin: 10
 
                     QGCComboBox {
                         anchors.verticalCenter: parent.verticalCenter
                         anchors.bottom: parent.bottom
-                        anchors.top: parent.top
+                        //anchors.top: parent.top
                         alternateText:          _activeVehicle ? _activeVehicle.flightMode : ""
                         //model:                  _flightModes
                         font.pointSize:             20//ScreenTools.mediumFontPointSize
@@ -447,7 +448,7 @@ Item {
 
             RowLayout{
                 spacing: 180
-                
+                y:       10
                 Loader {
                     id:                 toolbarIndicators
                     Layout.fillHeight:  true

@@ -19,7 +19,7 @@ import QGroundControl.Palette               1.0
 // Joystick Indicator
 Item {
     id:             _root
-    width:          joystickRow.width * 1.1
+    width:          joystickRow.width 
     anchors.top:    parent.top
     anchors.bottom: parent.bottom
     visible:        activeVehicle ? activeVehicle.sub : true
