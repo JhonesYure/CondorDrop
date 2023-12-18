@@ -1050,74 +1050,7 @@ Item {
 
         }
         //------------------
-
-        GuidedActionsController {
-            id:                 guidedActionsController
-            missionController:  _missionController
-            confirmDialog:      guidedActionConfirm
-            actionList:         guidedActionList
-            altitudeSlider:     _altitudeSlider
-            z:                  _flightVideoPipControl.z + 1
-
-            onShowStartMissionChanged: {
-                if (showStartMission) {
-                    confirmAction(actionStartMission)
-                }
-            }
-
-            onShowContinueMissionChanged: {
-                if (showContinueMission) {
-                    confirmAction(actionContinueMission)
-                }
-            }
-
-            onShowLandAbortChanged: {
-                if (showLandAbort) {
-                    confirmAction(actionLandAbort)
-                }
-            }
-
-            /// Close all dialogs
-            function closeAll() {
-                guidedActionConfirm.visible = false
-                guidedActionList.visible    = false
-                altitudeSlider.visible      = false
-            }
-        }
-
-        GuidedActionConfirm {
-            id:                         guidedActionConfirm
-            anchors.margins:            _margins
-            anchors.bottom:             parent.bottom
-            anchors.bottomMargin:       20
-            anchors.horizontalCenter:   parent.horizontalCenter
-            guidedController:           _guidedController
-            altitudeSlider:             _altitudeSlider
-        }
-
-        GuidedActionList {
-            id:                         guidedActionList
-            anchors.margins:            _margins
-            anchors.bottom:             parent.bottom
-            anchors.horizontalCenter:   parent.horizontalCenter
-            guidedController:           _guidedController
-        }
-
-        //-- Altitude slider
-        GuidedAltitudeSlider {
-            id:                 altitudeSlider
-            anchors.margins:    _margins
-            anchors.right:      parent.right
-            anchors.topMargin:  ScreenTools.toolbarHeight + _margins
-            anchors.top:        parent.top
-            anchors.bottom:     parent.bottom
-            anchors.bottomMargin:       20
-            z:                  _guidedController.z
-            radius:             ScreenTools.defaultFontPixelWidth / 2
-            width:              ScreenTools.defaultFontPixelWidth * 10
-            color:              qgcPal.window
-            visible:            false
-        }
+        
     }
      //EDIT SKYDRONES ----------
     Item {
@@ -1685,21 +1618,34 @@ Item {
         height: 150 
         x: parent.width - width -   100
         y: parent.height - height - 700
-        visible:                  activeVehicle 
-        
+        visible:    activeVehicle 
+            
         Rectangle {
             
             Image {
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.verticalCenter: parent.verticalCenter
                 source: "/res/BandejaFrontal"
+                fillMode: Image.PreserveAspectCrop
 
                 MouseArea {
                     anchors.fill: parent
                     onClicked: {
-                        multiDisparosBack.visible = !multiDisparosBack.visible;
-                        if (multiDisparosBack.visible) {
-                            multiDisparos.visible = false; 
+                        if (activeVehicle.armed){
+                            multiDisparosBack.visible = !multiDisparosBack.visible;
+                            if (multiDisparosBack.visible) {
+                                multiDisparos.visible = false; 
+                            }
+                        }
+                    }
+                }
+                Timer {
+                    interval: 5000 // Tempo em milissegundos para verificar periodicamente
+                    running: true
+                    repeat: true
+                    onTriggered: {
+                        if (!activeVehicle.armed) {
+                            multiDisparosBack.visible = false; // Oculta a bandeja se o veículo não estiver mais "armed"
                         }
                     }
                 }
@@ -1776,9 +1722,11 @@ Item {
                 MouseArea {
                     anchors.fill: parent
                     onClicked: {
-                        multiDisparos.visible = !multiDisparos.visible;
-                        if (multiDisparos.visible) {
-                            multiDisparosBack.visible = false; 
+                        if(activeVehicle.armed){
+                            multiDisparos.visible = !multiDisparos.visible;
+                            if (multiDisparos.visible) {
+                                multiDisparosBack.visible = false; 
+                            }
                         }
                     }
                 }
@@ -1834,6 +1782,74 @@ Item {
             }
 
         }
+    }
+
+    //-- Altitude slider
+    GuidedAltitudeSlider {
+        id:                 altitudeSlider
+        anchors.margins:    _margins
+        height:             200
+        anchors.right:      parent.right
+        anchors.topMargin:  ScreenTools.toolbarHeight + _margins
+        anchors.top:        parent.top
+        anchors.bottom:     parent.bottom
+        anchors.bottomMargin:       30
+        z:                  _guidedController.z
+        radius:             ScreenTools.defaultFontPixelWidth / 2
+        width:              ScreenTools.defaultFontPixelWidth * 10
+        color:              qgcPal.window
+        visible:            false
+    }
+    GuidedActionsController {
+        id:                 guidedActionsController
+        missionController:  _missionController
+        confirmDialog:      guidedActionConfirm
+        actionList:         guidedActionList
+        altitudeSlider:     _altitudeSlider
+        z:                  _flightVideoPipControl.z + 1
+
+        onShowStartMissionChanged: {
+            if (showStartMission) {
+                confirmAction(actionStartMission)
+            }
+        }
+
+        onShowContinueMissionChanged: {
+            if (showContinueMission) {
+                confirmAction(actionContinueMission)
+            }
+        }
+
+        onShowLandAbortChanged: {
+            if (showLandAbort) {
+                confirmAction(actionLandAbort)
+            }
+        }
+        /// Close all dialogs
+        function closeAll() {
+            guidedActionConfirm.visible = false
+            guidedActionList.visible    = false
+            altitudeSlider.visible      = false
+        }
+        
+    }
+
+    GuidedActionConfirm {
+        id:                         guidedActionConfirm
+        anchors.margins:            _margins
+        anchors.bottom:             parent.bottom
+        anchors.bottomMargin:       20
+        anchors.horizontalCenter:   parent.horizontalCenter
+        guidedController:           _guidedController
+        altitudeSlider:             _altitudeSlider
+    }
+
+    GuidedActionList {
+        id:                         guidedActionList
+        anchors.margins:            _margins
+        anchors.bottom:             parent.bottom
+        anchors.horizontalCenter:   parent.horizontalCenter
+        guidedController:           _guidedController
     }
 //---------------------------------------------------------------------------------------------------------------------
 } //FLY DISPLAY VIEW --------------------

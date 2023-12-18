@@ -116,7 +116,11 @@ Rectangle {
 
         QGCMouseArea {
             fillItem:   parent
-            onClicked:  _root.visible = false
+            
+            onClicked:  {
+                _root.visible = false
+                
+            }
         }
     }
 }
