@@ -1068,7 +1068,7 @@ Item {
             //anchors.bottomMargin: 7
             opacity: 0.8
             
-            //----------Customizado o RADAR -----SKYDRONES -----------------
+        //----------Customizado o RADAR -----SKYDRONES -----------------
             Item {
                 Layout.rowSpan:         6
                 Layout.column:          8
@@ -1134,7 +1134,7 @@ Item {
                 anchors.left: parent.left 
                 anchors.leftMargin: 280
 
-                //-- DISTANCE -------------------------------------SkyDrones
+            //-- DISTANCE -------------------------------------SkyDrones
                 Row{
                     spacing:                8
                     
@@ -1173,7 +1173,7 @@ Item {
                 //-------------------------SkyDrones
 
 
-                //-- 3 ALTITUDE -------------------------SkyDrones
+            //-- 3 ALTITUDE -------------------------SkyDrones
                 Row {
                     spacing: 8
 
@@ -1210,8 +1210,7 @@ Item {
                     
                 //-------------------------SkyDrones
 
-
-                //-- GROUND SPEED
+            //-- GROUND SPEED
                 Row {
                     spacing: 8
 
@@ -1246,7 +1245,7 @@ Item {
                 //-------------------------SkyDrones
 
 
-                //-- VERTICAL SPEED //-------------------------SkyDrones
+            //-- VERTICAL SPEED //-------------------------SkyDrones
                 Row {
                     spacing: 8
 
@@ -1281,7 +1280,7 @@ Item {
                 }
                 //-------------------------SkyDrones
 
-                //AZIMUTE SKYDRONES ------------------- SKYDRONES 
+            //AZIMUTE SKYDRONES ------------------- SKYDRONES 
                 Row {
                     spacing: 8
 
@@ -1316,7 +1315,7 @@ Item {
                 }
                 //-----------------------------------SKYDRONES
 
-                //REGISTRO DE AS ----------------------SKYDRONES
+            //REGISTRO DE AS ----------------------SKYDRONES
                 Row {
                     spacing: 8
 
@@ -1359,10 +1358,9 @@ Item {
                                     console.log("_rtlAltFact não está definido ou é null.");
                                 }
                             }
-
-
                         }
                     }
+                    
 
                     QGCLabel {
                         id: txtAS
@@ -1375,7 +1373,7 @@ Item {
                         anchors.bottom: parent.bottom
                         enabled: returnAltRadio.checked
                     }
-
+                    
                 }
             }
         }
@@ -1640,7 +1638,7 @@ Item {
                     }
                 }
                 Timer {
-                    interval: 5000 // Tempo em milissegundos para verificar periodicamente
+                    interval: 3000 // Tempo em milissegundos para verificar periodicamente
                     running: true
                     repeat: true
                     onTriggered: {
@@ -1681,7 +1679,7 @@ Item {
                         color: "white" // Cor da esfera (você pode ajustar)
                         radius: width / 2
                         anchors.verticalCenter: parent.verticalCenter // Mantém o círculo no centro vertical da barra
-                        x: calcularPosicaoEsfera() // Função para calcular a posição inicial da esfera
+                        x: calcularPosicaoEsfera() 
                         Text{
                             text:       "0"//buttonValue.visible ? buttonText.text : (multiDisparos.clickCount === 0 ? "0" : "x" + multiDisparos.clickCount)
                             anchors.centerIn: parent
@@ -1692,7 +1690,6 @@ Item {
                     }
 
                     function calcularPosicaoEsfera() {
-
                         return (barraMunicao.width - esfera.width) * (1 - (valorMunicao / 12));
                     }
                 }
@@ -1727,6 +1724,16 @@ Item {
                             if (multiDisparos.visible) {
                                 multiDisparosBack.visible = false; 
                             }
+                        }
+                    }
+                }
+                Timer {
+                    interval: 3000 
+                    running: true
+                    repeat: true
+                    onTriggered: {
+                        if (!activeVehicle.armed) {
+                            multiDisparos.visible = false;
                         }
                     }
                 }
@@ -1800,6 +1807,7 @@ Item {
         color:              qgcPal.window
         visible:            false
     }
+
     GuidedActionsController {
         id:                 guidedActionsController
         missionController:  _missionController
