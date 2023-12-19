@@ -1669,50 +1669,6 @@ Item {
                     radius:         100
                     
                     // Círculo representando a esfera (será movido na barra)
-                    /* Rectangle {
-                        id: esfera
-                        width: 60
-                        height: 60
-                        color: "white" // Cor da esfera (você pode ajustar)
-                        radius: width / 2
-                        anchors.verticalCenter: parent.verticalCenter // Mantém o círculo no centro vertical da barra
-                        x: calcularPosicaoEsfera() 
-                        Text{
-                            text:   "0"//buttonValue.visible ? buttonText.text : (multiDisparos.clickCount === 0 ? "0" : "x" + multiDisparos.clickCount)
-                            anchors.centerIn: parent
-                            anchors.horizontalCenter: parent.horizontalCenter
-                            anchors.verticalCenter: parent.verticalCenter
-                            color:  "black"
-                        }
-                        MouseArea {
-                            id: dragArea
-                            anchors.fill: parent
-                            drag.target: esfera
-
-                            onPositionChanged: {
-                                // Limita o movimento da esfera dentro da barra
-                                if (esfera.x < 0) {
-                                    esfera.x = 0;
-                                } else if (esfera.x > barraMunicao.width - esfera.width) {
-                                    esfera.x = barraMunicao.width - esfera.width;
-                                }
-
-                                // Calcula o valor com base na posição da esfera
-                                var percentagem = esfera.x / (barraMunicao.width - esfera.width);
-                                var valor = Math.round(percentagem * 12);
-                                valorTexto.text = valor.toString();
-
-                                // Atualiza o valor do texto de acordo com a direção do movimento
-                                if (dragArea.delta.x > 0) {
-                                    // Movimento para a direita, aumenta o valor
-                                    valorTexto.text = (parseInt(valorTexto.text) + 1).toString();
-                                } else if (dragArea.delta.x < 0) {
-                                    // Movimento para a esquerda, diminui o valor
-                                    valorTexto.text = (parseInt(valorTexto.text) - 1).toString();
-                                }
-                            }
-                        }
-                    } */
                     Rectangle {
                         id: esfera
                         width: 60
@@ -1721,6 +1677,7 @@ Item {
                         radius: width / 2
                         anchors.verticalCenter: parent.verticalCenter
                         x: calcularPosicaoEsfera()
+                        
                         Text {
                             id: valorTexto
                             text: ""
@@ -1731,7 +1688,7 @@ Item {
                             id: dragArea
                             anchors.fill: parent
                             drag.target: esfera
-
+                            enabled: activeVehicle ? !activeVehicle.armed : true
                             onPositionChanged: {
                                 // Limita o movimento da esfera dentro da barra
                                 if (esfera.x < 0) {
@@ -1754,6 +1711,13 @@ Item {
 
                     function calcularPosicaoEsfera() {
                         return (barraMunicao.width - esfera.width) * (1 - (valorMunicao / 12));
+                    }
+                    function atualizarValorEsfera(valor) {
+                        if (valorEsfera >= valor) {
+                            valorEsfera -= valor;
+                        } else {
+                            valorEsfera = 0;
+                        }
                     }
                 }
             }
@@ -1837,7 +1801,7 @@ Item {
                             id: dragAreaII
                             anchors.fill: parent
                             drag.target: esferaii
-
+                            enabled: activeVehicle ? !activeVehicle.armed : true
                             onPositionChanged: {
                                 // Limita o movimento da esfera dentro da barra
                                 if (esferaii.x < 0) {
