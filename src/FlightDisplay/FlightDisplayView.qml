@@ -1828,6 +1828,7 @@ Item {
                                 }
                             }
                         }
+                        
 
                     function calcularPosicaoEsfera() {
                         //return (barraMunicaoback.width - esferaii.width) * (1 - (valorMunicao / 20));
