@@ -53,6 +53,7 @@ Rectangle {
                 linkColor:          qgcPal.text
                 text:               "nº :  "//<a href=\"http://discuss.px4.io/c/qgroundcontrol\">http://discuss.px4.io/c/qgroundcontrol</a>"
                 //onLinkActivated:    Qt.openUrlExternally(link)
+                visible:            activeVehicle
             }
 
             

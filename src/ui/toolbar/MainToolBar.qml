@@ -716,13 +716,13 @@ Item {
         spacing:                ScreenTools.defaultFontPixelWidth
         visible:                activeVehicle && communicationLost
 
-        QGCButton {
+        /* QGCButton {
             id:                     disconnectButton
             anchors.verticalCenter: parent.verticalCenter
             text:                   qsTr("Desconectado")
             primary:                true
             onClicked:              activeVehicle.disconnectInactiveVehicle()
-        }
+        } */
 
         QGCLabel {
             id:                     connectionLost
@@ -731,6 +731,13 @@ Item {
             font.pointSize:         ScreenTools.largeFontPointSize
             font.family:            ScreenTools.demiboldFontFamily
             color:                  qgcPal.colorRed
+            //onClicked:              activeVehicle.disconnectInactiveVehicle()
+            MouseArea{
+                anchors.fill: parent
+                onClicked: {
+                    activeVehicle.disconnectInactiveVehicle()
+                }
+            }
         }
     }
 

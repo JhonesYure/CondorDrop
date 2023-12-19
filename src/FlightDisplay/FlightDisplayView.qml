@@ -1606,6 +1606,7 @@ Item {
     }
 
     //-------- Bandeja Frontal
+    
     Item {
         id:                             bandejaFront
         //anchors.horizontalCenter:       parent.horizontalCenter
@@ -1681,17 +1682,46 @@ Item {
                         anchors.verticalCenter: parent.verticalCenter // Mantém o círculo no centro vertical da barra
                         x: calcularPosicaoEsfera() 
                         Text{
-                            text:       "0"//buttonValue.visible ? buttonText.text : (multiDisparos.clickCount === 0 ? "0" : "x" + multiDisparos.clickCount)
+                            text:   "0"//buttonValue.visible ? buttonText.text : (multiDisparos.clickCount === 0 ? "0" : "x" + multiDisparos.clickCount)
                             anchors.centerIn: parent
                             anchors.horizontalCenter: parent.horizontalCenter
                             anchors.verticalCenter: parent.verticalCenter
-                            
+                            color:  "black"
+                        }
+                        MouseArea {
+                            id: dragArea
+                            anchors.fill: parent
+                            drag.target: esfera
+
+                            onPositionChanged: {
+                                // Limita o movimento da esfera dentro da barra
+                                if (esfera.x < 0) {
+                                    esfera.x = 0;
+                                } else if (esfera.x > barraMunicao.width - esfera.width) {
+                                    esfera.x = barraMunicao.width - esfera.width;
+                                }
+
+                                // Calcula o valor com base na posição da esfera
+                                var percentagem = esfera.x / (barraMunicao.width - esfera.width);
+                                var valor = Math.round(percentagem * 12);
+                                valorTexto.text = valor.toString();
+
+                                // Atualiza o valor do texto de acordo com a direção do movimento
+                                if (dragArea.delta.x > 0) {
+                                    // Movimento para a direita, aumenta o valor
+                                    valorTexto.text = (parseInt(valorTexto.text) + 1).toString();
+                                } else if (dragArea.delta.x < 0) {
+                                    // Movimento para a esquerda, diminui o valor
+                                    valorTexto.text = (parseInt(valorTexto.text) - 1).toString();
+                                }
+                            }
                         }
                     }
 
                     function calcularPosicaoEsfera() {
                         return (barraMunicao.width - esfera.width) * (1 - (valorMunicao / 12));
                     }
+                    
                 }
             }
 
@@ -1770,12 +1800,49 @@ Item {
                             
                         }
                     }
+                    MouseArea {
+                            id: dragAreaII
+                            anchors.fill: parent
+                            drag.target: esferaii
+
+                            onPositionChanged: {
+                                // Limita o movimento da esfera dentro da barra
+                                if (esferaii.x < 0) {
+                                    esferaii.x = 0;
+                                } else if (esferaii.x > barraMunicao.width - esferaii.width) {
+                                    esferaii.x = barraMunicao.width - esferaii.width;
+                                }
+
+                                // Calcula o valor com base na posição da esferaii
+                                var percentagem = esferaii.x / (barraMunicao.width - esferaii.width);
+                                var valor = Math.round(percentagem * 12);
+                                valorTexto.text = valor.toString();
+
+                                // Atualiza o valor do texto de acordo com a direção do movimento
+                                if (dragAreaII.delta.x > 0) {
+                                    // Movimento para a direita, aumenta o valor
+                                    valorTexto.text = (parseInt(valorTexto.text) + 1).toString();
+                                } else if (dragAreaII.delta.x < 0) {
+                                    // Movimento para a esquerda, diminui o valor
+                                    valorTexto.text = (parseInt(valorTexto.text) - 1).toString();
+                                }
+                            }
+                        }
 
                     function calcularPosicaoEsfera() {
-                        // Calcula a posição da esfera com base em um valor (0 a 100)
-                        // Suponha que 'valorMunicao' seja a variável que contém o valor da munição
-                        // Ajuste a lógica conforme necessário para o seu caso específico
-                        return (barraMunicaoback.width - esferaii.width) * (1 - (valorMunicao / 20));
+                        if (activeVehicle){
+                            var municaoInfo = activeVehicle // logica da leiura de dados
+                            var valorMunicaoMax = 12;
+                            var valorMunicaoMin = 0;
+
+                            var position = (municaoInfo -   valorMunicaoMin )   /   (municaoInfo    -   valorMunicaoMax);
+
+                            position    =   Math.max(0, Math.min(1, position));
+
+                            return  position;
+                        }
+                        //return (barraMunicaoback.width - esferaii.width) * (1 - (valorMunicao / 20));
+                        return  0;
                     }
                 }
 
