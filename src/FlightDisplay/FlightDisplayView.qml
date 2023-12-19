@@ -1830,17 +1830,6 @@ Item {
                         }
 
                     function calcularPosicaoEsfera() {
-                        if (activeVehicle){
-                            var municaoInfo = activeVehicle // logica da leiura de dados
-                            var valorMunicaoMax = 12;
-                            var valorMunicaoMin = 0;
-
-                            var position = (municaoInfo -   valorMunicaoMin )   /   (municaoInfo    -   valorMunicaoMax);
-
-                            position    =   Math.max(0, Math.min(1, position));
-
-                            return  position;
-                        }
                         //return (barraMunicaoback.width - esferaii.width) * (1 - (valorMunicao / 20));
                         return  0;
                     }
