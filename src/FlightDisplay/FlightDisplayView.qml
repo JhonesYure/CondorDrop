@@ -1609,14 +1609,10 @@ Item {
     
     Item {
         id:                             bandejaFront
-        //anchors.horizontalCenter:       parent.horizontalCenter
-        //anchors.verticalCenter:         parent.verticalCenter
-        //anchors.top:                    parent.top
-        //anchors.topMargin:              150
         width: 150 
         height: 150 
         x: parent.width - width -   100
-        y: parent.height - height - 700
+        y: parent.height - height - 730
         visible:    activeVehicle 
             
         Rectangle {
@@ -1673,7 +1669,7 @@ Item {
                     radius:         100
                     
                     // Círculo representando a esfera (será movido na barra)
-                    Rectangle {
+                    /* Rectangle {
                         id: esfera
                         width: 60
                         height: 60
@@ -1716,15 +1712,51 @@ Item {
                                 }
                             }
                         }
+                    } */
+                    Rectangle {
+                        id: esfera
+                        width: 60
+                        height: 60
+                        color: "white"
+                        radius: width / 2
+                        anchors.verticalCenter: parent.verticalCenter
+                        x: calcularPosicaoEsfera()
+                        Text {
+                            id: valorTexto
+                            text: ""
+                            anchors.centerIn: parent
+                            color: "black"
+                        }
+                        MouseArea {
+                            id: dragArea
+                            anchors.fill: parent
+                            drag.target: esfera
+
+                            onPositionChanged: {
+                                // Limita o movimento da esfera dentro da barra
+                                if (esfera.x < 0) {
+                                    esfera.x = 0;
+                                } else if (esfera.x > barraMunicao.width - esfera.width) {
+                                    esfera.x = barraMunicao.width - esfera.width;
+                                }
+
+                                // Calcula o valor com base na posição da esfera
+                                var percentagem = esfera.x / (barraMunicao.width - esfera.width);
+                                var valor = Math.round(percentagem * 12);
+
+                                // Atualiza o valor do texto apenas se estiver dentro do intervalo 0-12
+                                if (valor >= 0 && valor <= 12) {
+                                    valorTexto.text = valor.toString();
+                                }
+                            }
+                        }
                     }
 
                     function calcularPosicaoEsfera() {
                         return (barraMunicao.width - esfera.width) * (1 - (valorMunicao / 12));
                     }
-                    
                 }
             }
-
         }
     }
 
@@ -1738,7 +1770,7 @@ Item {
         width: 150 
         height: 150 
         x: parent.width - width -   100
-        y: parent.height - height - 540
+        y: parent.height - height - 580
         visible:                activeVehicle 
         Rectangle {
             Image {
@@ -1793,7 +1825,8 @@ Item {
                         anchors.verticalCenter: parent.verticalCenter // Mantém o círculo no centro vertical da barra
                         x: calcularPosicaoEsfera() // Função para calcular a posição inicial da esfera
                         Text{
-                            text:       "0"//buttonValue.visible ? buttonText.text : (multiDisparos.clickCount === 0 ? "0" : "x" + multiDisparos.clickCount)
+                            id:     valorTextoII
+                            text:       ""//buttonValue.visible ? buttonText.text : (multiDisparos.clickCount === 0 ? "0" : "x" + multiDisparos.clickCount)
                             anchors.centerIn: parent
                             anchors.horizontalCenter: parent.horizontalCenter
                             anchors.verticalCenter: parent.verticalCenter
@@ -1816,15 +1849,15 @@ Item {
                                 // Calcula o valor com base na posição da esferaii
                                 var percentagem = esferaii.x / (barraMunicao.width - esferaii.width);
                                 var valor = Math.round(percentagem * 12);
-                                valorTexto.text = valor.toString();
+                                valorTextoII.text = valor.toString();
 
                                 // Atualiza o valor do texto de acordo com a direção do movimento
                                 if (dragAreaII.delta.x > 0) {
                                     // Movimento para a direita, aumenta o valor
-                                    valorTexto.text = (parseInt(valorTexto.text) + 1).toString();
+                                    valorTextoII.text = (parseInt(valorTextoII.text) + 1).toString();
                                 } else if (dragAreaII.delta.x < 0) {
                                     // Movimento para a esquerda, diminui o valor
-                                    valorTexto.text = (parseInt(valorTexto.text) - 1).toString();
+                                    valorTextoII.text = (parseInt(valorTextoII.text) - 1).toString();
                                 }
                             }
                         }
