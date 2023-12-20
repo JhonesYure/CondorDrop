@@ -1381,8 +1381,8 @@ Item {
 
     //Notificações SkyDrones
     Item {
-        height: 400
-        width: 400
+        height: 600
+        width: 600
 
         ListView {
             id:         listView
@@ -1435,7 +1435,7 @@ Item {
                 }
                 QGCLabel {
                     text: model.text
-                    font.pixelSize: 25
+                    font.pixelSize: 40
                     anchors.fill: parent
                     anchors.topMargin: 15
                     anchors.leftMargin: 10
