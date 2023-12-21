@@ -498,14 +498,14 @@ Item {
     } */
 
     // Small parameter download progress bar
-    Rectangle {
+    /* Rectangle {
         anchors.bottom: parent.bottom
         height:         toolBar.height * 0.05
         width:          activeVehicle ? activeVehicle.parameterManager.loadProgress * parent.width : 0
         color:          qgcPal.colorGreen
         visible:        !largeProgressBar.visible
 
-    }
+    } */
 
     // Large parameter download progress bar
     Rectangle {

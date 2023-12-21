@@ -1920,6 +1920,7 @@ Item {
         anchors.verticalCenter: parent.verticalCenter
         anchors.horizontalCenter: parent.horizontalCenter
 
+
         Rectangle {
             anchors.fill: parent
             color: "black"
@@ -2028,6 +2029,14 @@ Item {
                     }
                 }
                 
+            }
+
+            Text{
+                text:                           "Carregando parâmetros, por favor aguarde"
+                anchors.horizontalCenter:       parent.horizontalCenter
+                color:                          "white"
+                font.pointSize:                 50
+                anchors.top:                    parent.top
             }
         }
     }
