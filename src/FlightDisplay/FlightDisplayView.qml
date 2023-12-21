@@ -2035,7 +2035,7 @@ Item {
                 text:                           "Carregando parâmetros, por favor aguarde"
                 anchors.horizontalCenter:       parent.horizontalCenter
                 color:                          "white"
-                font.pointSize:                 50
+                font.pointSize:                 30
                 anchors.top:                    parent.top
             }
         }
