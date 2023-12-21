@@ -334,7 +334,8 @@ ApplicationWindow {
     } */
     header: ToolBar {
         height:         ScreenTools.toolbarHeight  
-        visible:        !QGroundControl.videoManager.fullScreen
+        //visible:        !QGroundControl.videoManager.fullScreen
+        visible: activeVehicle ? !activeVehicle.parameterManager.loadProgress: true
         
         background: Rectangle {
             width: parent.width
