@@ -492,7 +492,7 @@ FlightMap {
     }
 
     // Handle guided mode clicks
-    MouseArea {
+    /* MouseArea {
         anchors.fill: parent
 
         QGCMenu {
@@ -535,7 +535,7 @@ FlightMap {
             }
             orbitMapCircle.hide()
             gotoLocationItem.hide()
-            var clickCoord = flightMap.toCoordinate(Qt.point(mouse.x, mouse.y), false /* clipToViewPort */)
+            var clickCoord = flightMap.toCoordinate(Qt.point(mouse.x, mouse.y), false)
             if (guidedActionsController.showGotoLocation && guidedActionsController.showOrbit) {
                 clickMenu.coord = clickCoord
                 clickMenu.popup()
@@ -547,7 +547,7 @@ FlightMap {
                 guidedActionsController.confirmAction(guidedActionsController.actionOrbit, clickCoord)
             }
         }
-    }
+    } */
 
     MapScale {
         id:                     mapScale
