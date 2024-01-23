@@ -1914,6 +1914,7 @@ Item {
         guidedController:           _guidedController
     }
 
+    //---------LOADING SCREEN
     Item {
         anchors.fill: parent
         visible: activeVehicle ? activeVehicle.parameterManager.loadProgress * parent.width : 0
