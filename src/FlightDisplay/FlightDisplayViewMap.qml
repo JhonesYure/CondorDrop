@@ -339,7 +339,7 @@ FlightMap {
     }
 
     // GoTo Location visuals
-    /* MapQuickItem {
+    MapQuickItem {
         id:             gotoLocationItem
         visible:        false
         z:              QGroundControl.zOrderMapItems
@@ -385,7 +385,7 @@ FlightMap {
         function actionCancelled() {
             hide()
         }
-    } */
+    }
 
     // Orbit editing visuals
     QGCMapCircleVisuals {
