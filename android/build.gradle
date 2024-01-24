@@ -37,9 +37,7 @@ android {
      * Changing them manually might break the compilation!
      *******************************************************/
 
-    compileSdkVersion 29
-
-    buildToolsVersion "25.0.3"
+    compileSdkVersion androidCompileSdkVersion.toInteger()
 
     sourceSets {
         main {
