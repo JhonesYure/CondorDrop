@@ -548,6 +548,7 @@ FlightMap {
             }
         }
     } */
+    
 
     MapScale {
         id:                     mapScale
