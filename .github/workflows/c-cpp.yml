@@ -69,7 +69,7 @@ jobs:
         unzip /tmp/android-ndk-r20-linux-x86_64.zip > /dev/null
         export ANDROID_NDK_ROOT=`pwd`/android-ndk-r20 
         export ANDROID_SDK_ROOT=/usr/local/lib/android/sdk
-        export PATH="${ANDROID_HOME}/cmake/3.10.2.4988404/bin:$PATH"
+        export PATH=`pwd`/android-ndk-r20:$PATH
         
         if [ "$BITNESS" == "64" ]; then
             if [ ! -f "/tmp/Qt5.12.6-android_arm64_v8a-min.tar.bz2" ]; then
