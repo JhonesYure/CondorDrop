@@ -44,7 +44,7 @@ jobs:
         BITNESS: ${{ matrix.config.BITNESS }}
         GSTREAMER_NAME: ${{ matrix.config.GSTREAMER_NAME }}
         GSTREAMER_VERSION: 1.14.4
-        ANDROID_HOME: $ANDROID_HOME/tools/bin/sdkmanager
+        ANDROID_HOME: $ANDROID_HOME
         ANDROID_NDK_PLATFORM: android-29
       run: |
         set -o xtrace
