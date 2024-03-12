@@ -44,12 +44,12 @@ jobs:
         BITNESS: ${{ matrix.config.BITNESS }}
         GSTREAMER_NAME: ${{ matrix.config.GSTREAMER_NAME }}
         GSTREAMER_VERSION: 1.14.4
-        ANDROID_HOME: /usr/local/lib/android/sdk
+        ANDROID_HOME: /usr/local/lib/android/tools/bin/sdkmanager
         ANDROID_NDK_PLATFORM: android-29
       run: |
         set -o xtrace
       
-        
+
         export PATH=$ANDROID_HOME/tools/bin:/opt/java/jdk1.8.0_131/bin:$PATH          
         
         ccache -s
