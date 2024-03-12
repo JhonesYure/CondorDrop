@@ -58,7 +58,7 @@ jobs:
                 
         rm -rf /tmp/shadow_build_dir
     
-        sudo $ANDROID_HOME/tools/bin/sdkmanager "build-tools;25.0.3" "platforms;android-29" "platform-tools" > /dev/null 
+        sudo $ANDROID_HOME/tools/bin/sdkmanager "build-tools;25.0.3" "platforms;android-29" "platform-tools" > /dev/null 2>&1
         
         wget --quiet https://gstreamer.freedesktop.org/data/pkg/android/${GSTREAMER_VERSION}/gstreamer-1.0-android-universal-${GSTREAMER_VERSION}.tar.bz2 &&
         mkdir gstreamer-1.0-android-universal-${GSTREAMER_VERSION} &&
