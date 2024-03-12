@@ -44,7 +44,7 @@ jobs:
         BITNESS: ${{ matrix.config.BITNESS }}
         GSTREAMER_NAME: ${{ matrix.config.GSTREAMER_NAME }}
         GSTREAMER_VERSION: 1.14.4
-        ANDROID_HOME: $ANDROID_HOME
+        ANDROID_HOME: /usr/local/lib/android/sdk/
         ANDROID_NDK_PLATFORM: android-29
       run: |
         set -o xtrace
@@ -57,7 +57,7 @@ jobs:
                 
         rm -rf /tmp/shadow_build_dir
 
-        sudo $ANDROID_HOME/tools/bin/sdkmanager "build-tools;25.0.3" "platforms;android-29" "platform-tools" > /dev/null
+        sudo $ANDROID_HOME/tools/bin/sdkmanager "build-tools;25.0.3" "platforms;android-29" "platform-tools" 
         
         wget --quiet https://gstreamer.freedesktop.org/data/pkg/android/${GSTREAMER_VERSION}/gstreamer-1.0-android-universal-${GSTREAMER_VERSION}.tar.bz2 &&
         mkdir gstreamer-1.0-android-universal-${GSTREAMER_VERSION} &&
