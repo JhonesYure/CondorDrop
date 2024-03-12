@@ -68,7 +68,7 @@ jobs:
         fi
         unzip /tmp/android-ndk-r20-linux-x86_64.zip > /dev/null
         export ANDROID_NDK_ROOT=`pwd`/android-ndk-r20 
-        export ANDROID_SDK_ROOT=/usr/local/lib/android/sdk
+        export ANDROID_SDK_ROOT=/usr/lib/android/sdk
         export PATH=`pwd`/android-ndk-r20:$PATH
         
         if [ "$BITNESS" == "64" ]; then
