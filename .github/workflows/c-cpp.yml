@@ -24,17 +24,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Install Git
-        run: |
-          apt-get update
-          apt-get install -y git wget curl speech-dispatcher libgstreamer-plugins-base1.0-dev libgstreamer1.0-0:amd64 libgstreamer1.0-dev libudev-dev android-sdk ccache
-          
-
 
       - name: Install dependencies
         run: |
-          sudo apt-get update
-          sudo apt-get install -y wget curl speech-dispatcher libgstreamer-plugins-base1.0-dev libgstreamer1.0-0:amd64 libgstreamer1.0-dev libudev-dev android-sdk ccache git # Adicionando a instalação do Git
+          apt-get update
+          apt-get install -y wget curl speech-dispatcher libgstreamer-plugins-base1.0-dev libgstreamer1.0-0:amd64 libgstreamer1.0-dev libudev-dev android-sdk ccache git # Adicionando a instalação do Git
           git --version # Verificar se o Git está instalado corretamente
           
       - name: Set up JDK 1.8
@@ -79,7 +73,7 @@ jobs:
                   
           rm -rf /tmp/shadow_build_dir
       
-          sudo $ANDROID_HOME/tools/bin/sdkmanager "build-tools;25.0.3" "platforms;android-29" "platform-tools" > /dev/null 2>&1
+          $ANDROID_HOME/tools/bin/sdkmanager "build-tools;25.0.3" "platforms;android-29" "platform-tools" > /dev/null 2>&1
           
           wget --quiet https://gstreamer.freedesktop.org/data/pkg/android/${GSTREAMER_VERSION}/gstreamer-1.0-android-universal-${GSTREAMER_VERSION}.tar.bz2 &&
           mkdir gstreamer-1.0-android-universal-${GSTREAMER_VERSION} &&
