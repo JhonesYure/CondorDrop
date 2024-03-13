@@ -50,7 +50,7 @@ jobs:
         set -o xtrace
       
 
-        export PATH=$ANDROID_HOME/tools/bin:/opt/java/jdk1.8.0_131/bin:$PATH          
+        export PATH=$ANDROID_HOME/tools/bin        
         
         ccache -s
     
