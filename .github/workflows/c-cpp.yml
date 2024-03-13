@@ -8,6 +8,9 @@ jobs:
   build:
     runs-on: ubuntu-20.04
 
+    container:
+      image: ubuntu:20.04
+
     strategy:
       matrix:
         config: 
@@ -24,7 +27,7 @@ jobs:
       - name: Install Git
         run: |
           apt-get update
-          apt-get install -y wget
+          apt-get install -y git wget curl speech-dispatcher libgstreamer-plugins-base1.0-dev libgstreamer1.0-0:amd64 libgstreamer1.0-dev libudev-dev android-sdk ccache
           
 
 
