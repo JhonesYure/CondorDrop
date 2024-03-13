@@ -4,7 +4,6 @@ on: [push, workflow_dispatch]
 
 jobs:
   build:
-
     runs-on: ubuntu-20.04
     strategy:
       matrix: 
@@ -15,27 +14,35 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+
     - name: Update apt cache
       run: sudo apt-get update
+
     - name: Install dependencies
-      run: sudo apt-get install wget curl speech-dispatcher libgstreamer-plugins-base1.0-dev libgstreamer1.0-0:amd64 libgstreamer1.0-dev libudev-dev android-sdk ccache
+      run: sudo apt-get install -y wget curl speech-dispatcher libgstreamer-plugins-base1.0-dev libgstreamer1.0-0:amd64 libgstreamer1.0-dev libudev-dev android-sdk ccache
+
     - name: Set up JDK 1.8
       uses: joschi/setup-jdk@v2
       with:
           java-version: 8
+
     - name: ccache
       uses: hendrikmuhs/ccache-action@v1.2
       with:
         key: ccache-${{ runner.os }}-${{ matrix.config.BITNESS }}
+
+    - name: Verify ccache setup
+      run: ccache -s
+
     - name: Cache zips
       uses: actions/cache@v3
       with:
         path: |
-          
           /tmp/android-ndk-r20-linux-x86_64.zip
           /tmp/Qt5.12.6-android_arm64_v8a-min.tar.bz2
           /tmp/Qt5.12.6-android_armv7-min.tar.bz2
         key: ${{ runner.os }}-${{ matrix.config.BITNESS }}
+
     - name: configure
       env: 
         JOBS: 16
@@ -50,12 +57,8 @@ jobs:
         ANDROID_NDK_PLATFORM: android-29
       run: |
         set -o xtrace
-      
-
         export PATH=$ANDROID_HOME/tools/bin        
         
-        ccache -s
-    
         git submodule update --init --recursive
                 
         rm -rf /tmp/shadow_build_dir
@@ -113,9 +116,6 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: ${{ matrix.config.BITNESS }}.zip
-        # A file, directory or wildcard pattern that describes what to upload
         path: |
           /tmp/shadow_build_dir/release/android-build/build/outputs/
           /tmp/shadow_build_dir/debug/android-build/build/outputs/
-
-          
