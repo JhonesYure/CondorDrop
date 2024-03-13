@@ -27,9 +27,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          sudo apt-get update
-          sudo apt-get install -y wget curl speech-dispatcher libgstreamer-plugins-base1.0-dev libgstreamer1.0-0:amd64 libgstreamer1.0-dev libudev-dev android-sdk ccache git # Adicionando a instalação do Git
-          git --version
+          apt-get update
           
       - name: Set up JDK 1.8
         uses: actions/setup-java@v1
