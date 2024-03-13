@@ -8,6 +8,10 @@ jobs:
   build:
     runs-on: ubuntu-20.04
 
+    container:
+      image: ubuntu:20.04
+      options: --user=root
+
     strategy:
       matrix:
         config: 
@@ -24,13 +28,8 @@ jobs:
       - name: Install Git
         run: |
           sudo apt-get update
-          sudo apt-get install -y wget
-          wget https://github.com/git/git/archive/refs/tags/v2.33.1.tar.gz
-          tar -zxvf v2.33.1.tar.gz
-          cd git-2.33.1
-          sudo apt-get install -y make libssl-dev libghc-zlib-dev libcurl4-gnutls-dev libexpat1-dev gettext unzip
-          make prefix=/usr/local all
-          sudo make prefix=/usr/local install
+          sudo apt-get install -y git
+          
 
 
       - name: Install dependencies
