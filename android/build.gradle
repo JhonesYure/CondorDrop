@@ -1,6 +1,5 @@
 buildscript {
     repositories {
-        google() 
         maven {
             url "https://repo1.maven.org/maven2"
         }
@@ -9,7 +8,6 @@ buildscript {
         classpath 'com.android.tools.build:gradle:4.1.0' 
     }
 }
-
 
 allprojects {
     repositories {
@@ -24,19 +22,6 @@ dependencies {
 }
 
 android {
-    /*******************************************************
-     * The following variables:
-     * - androidBuildToolsVersion,
-     * - androidCompileSdkVersion
-     * - qt5AndroidDir - holds the path to qt android files
-     *                   needed to build any Qt application
-     *                   on Android.
-     *
-     * are defined in gradle.properties file. This file is
-     * updated by QtCreator and androiddeployqt tools.
-     * Changing them manually might break the compilation!
-     *******************************************************/
-
     compileSdkVersion androidCompileSdkVersion.toInteger()
 
     sourceSets {
@@ -52,7 +37,7 @@ android {
        }
     }
     buildTypes {
-        debug{
+        debug {
             debuggable true
             minifyEnabled false
             multiDexEnabled true
