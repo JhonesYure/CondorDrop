@@ -14,9 +14,6 @@ jobs:
         shell: bash
 
     steps:
-    - name: Install GStreamer if not already installed
-      run: sudo apt-get install -y gstreamer1.0-plugins-base
-    
 
     - uses: actions/checkout@v2
     - name: apt
