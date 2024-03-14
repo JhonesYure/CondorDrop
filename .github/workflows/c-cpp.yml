@@ -14,6 +14,9 @@ jobs:
         shell: bash
 
     steps:
+    - name: Install GStreamer
+      run: sudo apt-get install -y gstreamer1.0-plugins-base
+
     - uses: actions/checkout@v2
     - name: apt
       run: sudo apt-get update && sudo apt-get install wget curl    speech-dispatcher    libgstreamer-plugins-base1.0-dev     libgstreamer1.0-0:amd64     libgstreamer1.0-dev     libudev-dev android-sdk ccache
