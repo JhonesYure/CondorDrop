@@ -678,7 +678,7 @@ void Joystick::startPolling(Vehicle* vehicle)
         // Only connect the new vehicle if it wants joystick data
         // if (vehicle->joystickEnabled()) {
         _pollingStartedForCalibration = false;
-        //UAS* uas = _activeVehicle->uas();
+        UAS* uas = _activeVehicle->uas();
         // connect(this, &Joystick::manualControl, uas, &UAS::setExternalControlSetpoint);
         connect(this, &Joystick::setArmed,           _activeVehicle, &Vehicle::setArmed);
         connect(this, &Joystick::setVtolInFwdFlight, _activeVehicle, &Vehicle::setVtolInFwdFlight);
