@@ -37,9 +37,9 @@ android {
      * Changing them manually might break the compilation!
      *******************************************************/
 
-    compileSdkVersion androidCompileSdkVersion.toInteger()
+    compileSdkVersion 29
 
-    buildToolsVersion androidBuildToolsVersion
+    buildToolsVersion "25.0.3"
 
     sourceSets {
         main {
@@ -53,9 +53,21 @@ android {
             jniLibs.srcDirs = ['libs']
        }
     }
+    buildTypes {
+        debug{
+            debuggable true
+            minifyEnabled false
+            multiDexEnabled true
+        }
+        release {
+            minifyEnabled false
+            multiDexEnabled true
+        }
+    }
 
     aaptOptions {
         cruncherEnabled = false
+        noCompress ''
     }
 
     lintOptions {
