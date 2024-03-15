@@ -85,7 +85,7 @@ VideoManager::setToolbox(QGCToolbox *toolbox)
     }
 
 #else
-//#error "Support not included"
+#error "Support not included"
 #endif
 }
 
