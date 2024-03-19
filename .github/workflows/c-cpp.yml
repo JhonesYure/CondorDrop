@@ -16,7 +16,8 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: apt
-      run: sudo apt-get update && sudo apt-get install wget curl    speech-dispatcher    libgstreamer-plugins-base1.0-dev     libgstreamer1.0-0:amd64     libgstreamer1.0-dev     libudev-dev android-sdk ccache
+      run: sudo apt-get update && sudo apt-get install wget curl    speech-dispatcher    libgstreamer-plugins-base1.0-dev     libgstreamer1.0-0:amd64     libgstreamer1.0-dev     libudev-dev android-sdk ccache libjson-glib-dev libgstreamer-plugins-base1.0-dev  libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev libgstreamer-plugins-bad1.0-dev gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly gstreamer1.0-libav gstreamer1.0-tools gstreamer1.0-x gstreamer1.0-alsa gstreamer1.0-gl gstreamer1.0-gtk3 gstreamer1.0-qt5 gstreamer1.0-pulseaudio
+      
     - name: Set up JDK 1.8
       uses: joschi/setup-jdk@v2
       with:
@@ -49,7 +50,15 @@ jobs:
       run: |
         set -o xtrace
         
-        export PATH=$ANDROID_HOME/tools/bin:/opt/java/jdk1.8.0_131/bin:$PATH          
+        export PATH=$ANDROID_HOME/tools/bin:/opt/java/jdk1.8.0_131/bin:$ANDROID_HOME/cmdline-tools/latest/bin:$PATH
+
+        echo "Here is Android Home"
+
+        ls -l $ANDROID_HOME
+
+        ls -l $ANDROID_HOME/cmdline-tools
+
+        ls -l $ANDROID_HOME/cmdline-tools/latest/bin
         
         ccache -s
 
@@ -57,12 +66,11 @@ jobs:
                 
         rm -rf /tmp/shadow_build_dir
 
-        sudo $ANDROID_HOME/tools/bin/sdkmanager "build-tools;25.0.3" "platforms;android-29" "platform-tools" > /dev/null
+        sudo $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager "build-tools;25.0.3" "platforms;android-29" "platform-tools" > /dev/null
         
         wget --quiet https://gstreamer.freedesktop.org/data/pkg/android/1.14.5/gstreamer-1.0-android-universal-1.14.5.tar.bz2 &&
         mkdir gstreamer-1.0-android-universal-1.14.5 &&
         tar xf gstreamer-1.0-android-universal-1.14.5.tar.bz2 -C gstreamer-1.0-android-universal-1.14.5
-        
         
         if [ ! -f "/tmp/android-ndk-r20-linux-x86_64.zip" ]; then
             wget -N --quiet https://dl.google.com/android/repository/android-ndk-r20-linux-x86_64.zip -O /tmp/android-ndk-r20-linux-x86_64.zip

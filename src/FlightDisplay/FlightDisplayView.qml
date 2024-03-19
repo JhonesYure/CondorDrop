@@ -1342,15 +1342,14 @@ Item {
                         MouseArea {
                             anchors.fill: parent
                             enabled: returnAltRadio.checked
-                            anchors.leftMargin: _margins
-                            anchors.left: returnAltRadio.right
-                            anchors.baseline: returnAltRadio.baseline
                             onClicked: {
                                 if (_rtlAltFact) { 
                                     var inputValue = parseFloat(altitudeTextField.text) * 100;
+                                    console.log("Input Value: " + inputValue);
                                     if (inputValue >= 1000) {
                                         _rtlAltFact.value = inputValue;
                                         console.log("Altitude alterada: " + _rtlAltFact.value);
+                                        txtAS.text = (_rtlAltFact.value / 100) + " m";
                                     } else {
                                         console.log("O valor deve ser maior ou igual a 1000.");
                                     }
@@ -1360,7 +1359,6 @@ Item {
                             }
                         }
                     }
-                    
 
                     QGCLabel {
                         id: txtAS
