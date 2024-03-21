@@ -1321,8 +1321,7 @@ Item {
 
                     property bool isActive: false
                     property bool isBlinking: false
-                    property Fact fact: null
-
+                    
                     QGCColoredImage {
                         id: image
                         height: _indicatorsHeight
@@ -1337,32 +1336,31 @@ Item {
                         font.pointSize: 15
                         color: "white"
                         anchors.bottom: parent.bottom
-                        signal update()
+                        
 
                         MouseArea {
+                            id: mouseArea
                             anchors.fill: parent
                             enabled: returnAltRadio.checked
+                            signal updateAltitude(real value)
+
                             onClicked: {
-                                if (_rtlAltFact) { 
-                                    var inputValue = parseFloat(altitudeTextField.text) * 100;
-                                    console.log("Input Value: " + inputValue);
-                                    if (inputValue >= 1000) {
-                                        _rtlAltFact.value = inputValue;
-                                        console.log("Altitude alterada: " + _rtlAltFact.value);
-                                        txtAS.text = (_rtlAltFact.value / 100) + " m";
-                                    } else {
-                                        console.log("O valor deve ser maior ou igual a 1000.");
-                                    }
+                                var inputValue = parseFloat(altitudeTextField.text) * 100;
+                                console.log("Input Value: " + inputValue);
+                                if (inputValue >= 1000) {
+                                    _rtlAltFact.value = inputValue; 
                                 } else {
-                                    console.log("_rtlAltFact não está definido ou é null.");
+                                    console.log("O valor deve ser maior ou igual a 1000.");
                                 }
                             }
                         }
+                    
                     }
 
                     QGCLabel {
                         id: txtAS
-                        text: _rtlAltFact ? _rtlAltFact.value == 0 ? qsTr("N/A") : (_rtlAltFact.value / 100) + " m" : ""
+                        text: returnAltRadio.checked ? (_rtlAltFact.rawValue === 0 ? qsTr("N/A") : _rtlAltFact.valueString) : qsTr("N/A")
+                        //text: qsTr("N/A")  //txtAS.text = (inputValue / 100) + " m";
                         opacity: 0.7
                         font.pointSize: 15
                         Layout.fillWidth: false
@@ -1913,7 +1911,7 @@ Item {
     }
 
     //---------LOADING SCREEN
-    Item {
+    /* Item {
         anchors.fill: parent
         visible: activeVehicle ? activeVehicle.parameterManager.loadProgress * parent.width : 0
         anchors.verticalCenter: parent.verticalCenter
@@ -2038,7 +2036,7 @@ Item {
                 anchors.top:                    parent.top
             }
         }
-    }
+    } */
 
 //---------------------------------------------------------------------------------------------------------------------
 } //FLY DISPLAY VIEW --------------------

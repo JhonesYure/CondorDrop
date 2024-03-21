@@ -249,7 +249,7 @@ Rectangle {
                 text:               qsTr("Firmware")
                 Layout.fillWidth:   true
 
-                onClicked: showPanel(this, "FirmwareUpgrade.qml")
+                onClicked: showPanel(this, "APMSafetyComponentCopter.qml")
             } */
 
             /* SubMenuButton {

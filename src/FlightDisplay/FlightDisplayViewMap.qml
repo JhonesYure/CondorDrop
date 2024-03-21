@@ -492,7 +492,7 @@ FlightMap {
     }
 
     // Handle guided mode clicks
-    /* MouseArea {
+    MouseArea {
         anchors.fill: parent
 
         QGCMenu {
@@ -547,7 +547,7 @@ FlightMap {
                 guidedActionsController.confirmAction(guidedActionsController.actionOrbit, clickCoord)
             }
         }
-    } */
+    }
     
 
     MapScale {

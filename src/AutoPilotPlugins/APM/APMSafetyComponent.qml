@@ -649,6 +649,17 @@ SetupPage {
                             fact:               _rtlAltFact
                             showUnits:          true
                             enabled:            returnAltRadio.checked
+                            onCompleted: {
+                            // Connect to a function that updates rtlAltField.value
+                            rtlAltField.value = _rtlAltFact.value;
+                        }
+                        Connections {
+                            target: mouseArea // mouseArea é o ID do MouseArea onde você definiu o sinal
+                            onUpdateAltitude: {
+                                console.log("Valor recebido do MouseArea:", value);
+                                rltAltField.value = value; // Atualiza o valor do FactTextField
+                            }
+                        }
                         }
 
                         QGCCheckBox {
@@ -747,6 +758,7 @@ SetupPage {
 
                             onClicked: _rtlAltFact.value = 10000
                         }
+                        property real value: 0
 
                         FactTextField {
                             id:                 rltAltField
@@ -756,6 +768,7 @@ SetupPage {
                             fact:               _rtlAltFact
                             showUnits:          true
                             enabled:            returnAltRadio.checked
+                            
                         }
                     } // Rectangle - RTL Settings
                 } // Column - RTL Settings
