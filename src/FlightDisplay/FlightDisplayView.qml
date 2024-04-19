@@ -1359,8 +1359,8 @@ Item {
 
                     QGCLabel {
                         id: txtAS
-                        text: returnAltRadio.checked ? (_rtlAltFact.rawValue === 0 ? qsTr("N/A") : _rtlAltFact.valueString) : qsTr("N/A")
-                        //text: qsTr("N/A")  //txtAS.text = (inputValue / 100) + " m";
+                        //text: returnAltRadio.checked ? (_rtlAltFact.rawValue === 0 ? qsTr("N/A") : _rtlAltFact.valueString) : qsTr("N/A")
+                        text: txtAS.text = (inputValue / 100) + " m";
                         opacity: 0.7
                         font.pointSize: 15
                         Layout.fillWidth: false
