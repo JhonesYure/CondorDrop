@@ -773,7 +773,7 @@ VideoReceiver::startRecording(const QString &videoFile)
     g_object_set(static_cast<gpointer>(_sink->filesink), "location", qPrintable(_videoFile), nullptr);
     qCDebug(VideoReceiverLog) << "New video file:" << _videoFile;
 
-    gst_base_parse_set_infer_ts(GST_BASE_PARSE(_sink->parse), true);
+    //gst_base_parse_set_infer_ts(GST_BASE_PARSE(_sink->parse), true);
     //gst_base_parse_set_pts_interpolation(GST_BASE_PARSE(_sink->parse), true);
 
     gst_object_ref(_sink->queue);
