@@ -44,7 +44,7 @@ jobs:
         CONFIG: ${{ matrix.config.CONFIG }}
         BITNESS: ${{ matrix.config.BITNESS }}
         GSTREAMER_NAME: ${{ matrix.config.GSTREAMER_NAME }}
-        GSTREAMER_VERSION: 1.14.4
+        GSTREAMER_VERSION: 1.18.6
         ANDROID_HOME: /usr/local/lib/android/sdk
         ANDROID_NDK_PLATFORM: android-29
       run: |
@@ -68,9 +68,9 @@ jobs:
 
         sudo $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager "build-tools;25.0.3" "platforms;android-29" "platform-tools" > /dev/null
         
-        wget --quiet https://gstreamer.freedesktop.org/data/pkg/android/1.14.5/gstreamer-1.0-android-universal-1.14.5.tar.bz2 &&
-        mkdir gstreamer-1.0-android-universal-1.14.5 &&
-        tar xf gstreamer-1.0-android-universal-1.14.5.tar.bz2 -C gstreamer-1.0-android-universal-1.14.5
+        wget --quiet https://gstreamer.freedesktop.org/data/pkg/android/1.18.6/gstreamer-1.0-android-universal-1.18.6.tar.xz &&
+        mkdir gstreamer-1.0-android-universal-1.18.6 &&
+        tar xf gstreamer-1.0-android-universal-1.18.6.tar.xz -C gstreamer-1.0-android-universal-1.18.6
         
         if [ ! -f "/tmp/android-ndk-r20-linux-x86_64.zip" ]; then
             wget -N --quiet https://dl.google.com/android/repository/android-ndk-r20-linux-x86_64.zip -O /tmp/android-ndk-r20-linux-x86_64.zip
