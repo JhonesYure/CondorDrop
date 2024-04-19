@@ -1911,7 +1911,7 @@ Item {
     }
 
     //---------LOADING SCREEN
-    /* Item {
+    Item {
         anchors.fill: parent
         visible: activeVehicle ? activeVehicle.parameterManager.loadProgress * parent.width : 0
         anchors.verticalCenter: parent.verticalCenter
@@ -2036,7 +2036,7 @@ Item {
                 anchors.top:                    parent.top
             }
         }
-    } */
+    }
 
 //---------------------------------------------------------------------------------------------------------------------
 } //FLY DISPLAY VIEW --------------------
