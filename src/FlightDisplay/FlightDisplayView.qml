@@ -217,6 +217,20 @@ Item {
         }
         return 0;
     }
+    Loader {
+        id: controllerLoader
+        active: _initialDownloadComplete 
+        sourceComponent: factPanelControllerComponent
+    }
+
+    Component {
+        id:     factPanelControllerComponent
+        FactPanelController {
+            id: controller
+        }
+        
+    }
+    property Fact fact1:    controllerLoader.item.getParameterFact(-1, "RTL_ALT")
     //--------------------------------- 
     //---------------------------------
     //---------------------------------
@@ -1320,7 +1334,7 @@ Item {
                     spacing: 8
 
                     property bool isActive: false
-                    property bool isBlinking: false
+                    property bool isBlinking: false                    
                     
                     QGCColoredImage {
                         id: image
@@ -1348,7 +1362,7 @@ Item {
                                 var inputValue = parseFloat(altitudeTextField.text) * 100;
                                 console.log("Input Value: " + inputValue);
                                 if (inputValue >= 1000) {
-                                    _rtlAltFact.value = inputValue; 
+                                    fact1.value = inputValue; 
                                 } else {
                                     console.log("O valor deve ser maior ou igual a 1000.");
                                 }
@@ -1360,7 +1374,7 @@ Item {
                     QGCLabel {
                         id: txtAS
                         //text: returnAltRadio.checked ? (_rtlAltFact.rawValue === 0 ? qsTr("N/A") : _rtlAltFact.valueString) : qsTr("N/A")
-                        text: _rtlAltFact.value + " " 
+                        text: fact1.valueString + " " 
                         opacity: 0.7
                         font.pointSize: 15
                         Layout.fillWidth: false
@@ -1911,7 +1925,7 @@ Item {
     }
 
     //---------LOADING SCREEN
-    Item {
+    /* Item {
         anchors.fill: parent
         visible: activeVehicle ? activeVehicle.parameterManager.loadProgress * parent.width : 0
         anchors.verticalCenter: parent.verticalCenter
@@ -2036,7 +2050,7 @@ Item {
                 anchors.top:                    parent.top
             }
         }
-    }
+    } */
 
 //---------------------------------------------------------------------------------------------------------------------
 } //FLY DISPLAY VIEW --------------------

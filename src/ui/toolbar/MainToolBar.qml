@@ -36,8 +36,8 @@ Item {
         function getPositionForBatteryPercentage() {
             if (activeVehicle && activeVehicle.battery.voltage.value !== -1) {
                 var batteryVoltage = activeVehicle.battery.voltage.value;
-                var minVoltage = 41.9;
-                var maxVoltage = 49.9;
+                var minVoltage = 9.9;
+                var maxVoltage = 11.9;
 
                 var position = (batteryVoltage - minVoltage) / (maxVoltage - minVoltage);
 
@@ -573,6 +573,7 @@ Item {
     Item {
         width: 1200
         height: 10
+        
         anchors {
             left: parent.left
             leftMargin: 630
@@ -701,6 +702,7 @@ Item {
                 color: "black" // Cor do texto
             }
         }
+        
         
     }
 
