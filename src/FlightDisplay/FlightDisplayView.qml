@@ -468,14 +468,6 @@ Item {
     
     QGCMapPalette { id: mapPal; lightColors: mainIsMap ? mainWindow.flightDisplayMap.isSatelliteMap : true }
 
-    
-    //-- Battery time Control
-    
-        Loader {
-            id:                     battTimeLoader
-            visible:                true
-            source:                 "qrc:/qml/QGroundControl/src/ui/toolbar/BatteryTime.qml"
-        }
     //--------
     //VOLTAGE
             QGCColoredImage {
@@ -1063,9 +1055,12 @@ Item {
 
 
         }
+        //-----------------BOTÃO DE DISPARO
+        
         //------------------
         
     }
+
      //EDIT SKYDRONES ----------
     Item {
         id:     backgroundImage
@@ -1468,28 +1463,148 @@ Item {
         }            
     }
 
-    //----------- Numero de Disparo Frontal
+
+    // Bandeja Frontal
+    Item {
+        id: bandejaFront
+        width: 150 
+        height: 150 
+        x: parent.width - width - 100
+        y: parent.height - height - 650
+        visible: activeVehicle
+
+        property int valorMunicao: 0
+
+        Rectangle {
+            Image {
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.verticalCenter: parent.verticalCenter
+                source: "/res/BandejaFrontal"
+                fillMode: Image.PreserveAspectCrop
+
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: {
+                        if (activeVehicle.armed){
+                            multiDisparos.visible = !multiDisparos.visible;
+                            toolStripButton.visible = !toolStripButton.visible;
+                            if (multiDisparos.visible) {
+                                multiDisparosBack.visible = false; 
+                            } 
+                            if (toolStripButton.visible) {
+                                toolStripBack.visible = false; 
+                            } 
+                        } 
+                    }
+                }
+                Timer {
+                    interval: 3000 // Tempo em milissegundos para verificar periodicamente
+                    running: true
+                    repeat: true
+                    onTriggered: {
+                        if (!activeVehicle.armed) {
+                            multiDisparos.visible = false; // Oculta a bandeja se o veículo não estiver mais "armed"
+                        }
+                    }
+                }
+            }
+
+            Column {
+                anchors.centerIn: parent
+                spacing: 15 
+
+                Text {
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    text: qsTr("Bandeja Frontal")
+                    font.bold: true
+                    color: "white"
+                    font.pixelSize: 35 
+                }
+
+                Rectangle {
+                    id: barraMunicao
+                    width: 400
+                    height: 50
+                    color: "black"
+                    border.color: "white"
+                    border.width: 10
+                    radius: 100
+
+                    // Círculo representando a esfera (será movido na barra)
+                    Rectangle {
+                        id: esfera
+                        width: 60
+                        height: 60
+                        color: "white"
+                        radius: width / 2
+                        anchors.verticalCenter: parent.verticalCenter
+                        x: calcularPosicaoEsfera()
+                        
+                        Text {
+                            id: valorTexto
+                            text: bandejaFront.valorMunicao.toString()
+                            anchors.centerIn: parent
+                            color: "black"
+                        }
+                        MouseArea {
+                            id: dragArea
+                            anchors.fill: parent
+                            drag.target: esfera
+                            enabled: activeVehicle ? !activeVehicle.armed : true
+                            onPositionChanged: {
+                                // Limita o movimento da esfera dentro da barra
+                                if (esfera.x < 0) {
+                                    esfera.x = 0;
+                                } else if (esfera.x > barraMunicao.width - esfera.width) {
+                                    esfera.x = barraMunicao.width - esfera.width;
+                                }
+
+                                // Calcula o valor com base na posição da esfera
+                                var percentagem = esfera.x / (barraMunicao.width - esfera.width);
+                                var valor = Math.round(percentagem * 12);
+
+                                // Atualiza o valor do texto e o valor de munição apenas se estiver dentro do intervalo 0-12
+                                if (valor >= 0 && valor <= 12) {
+                                    valorTexto.text = valor.toString();
+                                    bandejaFront.valorMunicao = valor;
+                                }
+                            }
+                        }
+                    }
+
+                    function calcularPosicaoEsfera() {
+                        return (barraMunicao.width - esfera.width) * (bandejaFront.valorMunicao / 12);
+                    }
+
+                    function atualizarValorEsfera(valor) {
+                        bandejaFront.valorMunicao = valor;
+                        esfera.x = calcularPosicaoEsfera();
+                        valorTexto.text = valor.toString();
+                    }
+                }
+            }
+        }
+    }
+    // Numero de Disparo Frontal
     Item {
         id: multiDisparos
         width: 150 
         height: 150 
-        x: parent.width - width -   30
+        x: parent.width - width - 30
         y: parent.height - height - 330
-        //anchors.verticalCenter: parent.verticalCenter
-        visible:    false  
+        visible: false  
 
         property int clickCount: 0 
 
         // Botão maior (esfera maior)
-        Rectangle   {
-            id:         buttonValue
-            visible:    false
+        Rectangle {
+            id: buttonValue
+            visible: false
             Image {
-                source:                     "/res/BollLarge"
-                width:                      200
-                height:                     200
-                anchors.rightMargin:        70
-                
+                source: "/res/BollLarge"
+                width: 200
+                height: 200
+                anchors.rightMargin: 70
 
                 Text {
                     id: buttonText
@@ -1512,8 +1627,8 @@ Item {
                 }
             }
             x: smallButton.x - width - 210 
-            //y: smallButton.y 
         }
+
         // Botão redondo (esfera menor)
         Rectangle {
             id: smallButton
@@ -1541,28 +1656,186 @@ Item {
             }
         }
     }
-    //----------- Numero de Disparo Traseira
+    // Botão de disparo
+    ToolStrip {
+        id: toolStripButton
+        visible:      activeVehicle ? activeVehicle.armed: false
+        anchors.leftMargin: isInstrumentRight() ? _toolsMargin : undefined
+        anchors.left: isInstrumentRight() ? _mapAndVideo.left : undefined
+        anchors.topMargin: 720
+        anchors.top: parent.top
+        z: _mapAndVideo.z + 4
+        maxHeight: parent.height
+        radius: 80
+
+        model: [
+            {
+                name: "AS", 
+                iconSource: "/res/Battery100.svg",
+                //action: _guidedController.actionRTL
+            }
+        ]
+
+        MouseArea{            
+            anchors.fill: parent
+            onClicked: {
+                if (activeVehicle.armed && multiDisparos.clickCount > 0) {
+                    console.log("Valor de munição disparada: " + multiDisparos.clickCount);
+                    if (bandejaFront.valorMunicao >= multiDisparos.clickCount) {
+                        bandejaFront.valorMunicao -= multiDisparos.clickCount;
+                        barraMunicao.atualizarValorEsfera(bandejaFront.valorMunicao);
+                    } else {
+                        console.log("Munição insuficiente para disparar.");
+                    }
+                } else {
+                    console.log("Veículo não armado ou valor de disparo inválido.");
+                }
+            }
+        }
+    }
+
+    // Bandeja Traseira
+    Item {
+        id: bandejaBack
+        width: 150 
+        height: 150 
+        x: parent.width - width - 100
+        y: parent.height - height - 450
+        visible: activeVehicle
+
+        property int valorMunicao: 0
+
+        Rectangle {
+            Image {
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.verticalCenter: parent.verticalCenter
+                source: "/res/BandejaFrontal"
+                fillMode: Image.PreserveAspectCrop
+
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: {
+                        if (activeVehicle.armed) {
+                            multiDisparosBack.visible = !multiDisparosBack.visible;
+                            toolStripBack.visible = !toolStripBack.visible;
+                            if (multiDisparosBack.visible) {
+                                multiDisparos.visible = false; 
+                            } 
+                            if (toolStripBack.visible) {
+                                toolStripButton.visible = false; 
+                            } 
+                        } 
+                    }
+                }
+                Timer {
+                    interval: 3000 // Tempo em milissegundos para verificar periodicamente
+                    running: true
+                    repeat: true
+                    onTriggered: {
+                        if (!activeVehicle.armed) {
+                            multiDisparosBack.visible = false; // Oculta a bandeja se o veículo não estiver mais "armed"
+                        }
+                    }
+                }
+            }
+
+            Column {
+                anchors.centerIn: parent
+                spacing: 15 
+
+                Text {
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    text: qsTr("Bandeja Traseira")
+                    font.bold: true
+                    color: "white"
+                    font.pixelSize: 35 
+                }
+
+                Rectangle {
+                    id: barraMunicaoBack
+                    width: 400
+                    height: 50
+                    color: "black"
+                    border.color: "white"
+                    border.width: 10
+                    radius: 100
+
+                    // Círculo representando a esfera (será movido na barra)
+                    Rectangle {
+                        id: esferaBack
+                        width: 60
+                        height: 60
+                        color: "white"
+                        radius: width / 2
+                        anchors.verticalCenter: parent.verticalCenter
+                        x: calcularPosicaoEsferaBack()
+                        
+                        Text {
+                            id: valorTextoBack
+                            text: bandejaBack.valorMunicao.toString()
+                            anchors.centerIn: parent
+                            color: "black"
+                        }
+                        MouseArea {
+                            id: dragAreaBack
+                            anchors.fill: parent
+                            drag.target: esferaBack
+                            enabled: activeVehicle ? !activeVehicle.armed : true
+                            onPositionChanged: {
+                                // Limita o movimento da esfera dentro da barra
+                                if (esferaBack.x < 0) {
+                                    esferaBack.x = 0;
+                                } else if (esferaBack.x > barraMunicaoBack.width - esferaBack.width) {
+                                    esferaBack.x = barraMunicaoBack.width - esferaBack.width;
+                                }
+
+                                // Calcula o valor com base na posição da esfera
+                                var percentagem = esferaBack.x / (barraMunicaoBack.width - esferaBack.width);
+                                var valor = Math.round(percentagem * 12);
+
+                                // Atualiza o valor do texto e o valor de munição apenas se estiver dentro do intervalo 0-12
+                                if (valor >= 0 && valor <= 12) {
+                                    valorTextoBack.text = valor.toString();
+                                    bandejaBack.valorMunicao = valor;
+                                }
+                            }
+                        }
+                    }
+
+                    function calcularPosicaoEsferaBack() {
+                        return (barraMunicaoBack.width - esferaBack.width) * (bandejaBack.valorMunicao / 12);
+                    }
+
+                    function atualizarValorEsferaBack(valor) {
+                        bandejaBack.valorMunicao = valor;
+                        esferaBack.x = calcularPosicaoEsferaBack();
+                        valorTextoBack.text = valor.toString();
+                    }
+                }
+            }
+        }
+    }
+
+    // Numero de Disparo Traseiro
     Item {
         id: multiDisparosBack
         width: 150 
         height: 150 
-        x: parent.width - width -   30
+        x: parent.width - width - 30
         y: parent.height - height - 330
-        //anchors.verticalCenter: parent.verticalCenter
-        visible:    false  
+        visible: false  
 
         property int clickCount: 0 
 
         // Botão maior (esfera maior)
-        Rectangle   {
-            id:         buttonValueBack
-            visible:    false
+        Rectangle {
+            id: buttonValueBack
+            visible: false
             Image {
-                source:                     "/res/BollLarge"
-                width:                      200
-                height:                     200
-                anchors.rightMargin:        70
-                
+                source: "/res/BollLarge"
+                width: 200
+                height: 200
+                anchors.rightMargin: 70
 
                 Text {
                     id: buttonTextBack
@@ -1585,8 +1858,8 @@ Item {
                 }
             }
             x: smallButtonBack.x - width - 210 
-            //y: smallButtonBack.y 
         }
+
         // Botão redondo (esfera menor)
         Rectangle {
             id: smallButtonBack
@@ -1615,245 +1888,45 @@ Item {
         }
     }
 
-    //-------- Bandeja Frontal
-    
-    Item {
-        id:                             bandejaFront
-        width: 150 
-        height: 150 
-        x: parent.width - width -   100
-        y: parent.height - height - 730
-        visible:    activeVehicle 
-            
-        Rectangle {
-            
-            Image {
-                anchors.horizontalCenter: parent.horizontalCenter
-                anchors.verticalCenter: parent.verticalCenter
-                source: "/res/BandejaFrontal"
-                fillMode: Image.PreserveAspectCrop
+    // Botão de disparo traseiro
+    ToolStrip {
+        id: toolStripBack
+        visible: activeVehicle ? activeVehicle.armed: false
+        anchors.leftMargin: isInstrumentRight() ? _toolsMargin : undefined
+        anchors.left: isInstrumentRight() ? _mapAndVideo.left : undefined
+        anchors.topMargin: 720
+        anchors.top: parent.top
+        z: _mapAndVideo.z + 4
+        maxHeight: parent.height
+        radius: 80
 
-                MouseArea {
-                    anchors.fill: parent
-                    onClicked: {
-                        if (activeVehicle.armed){
-                            multiDisparosBack.visible = !multiDisparosBack.visible;
-                            if (multiDisparosBack.visible) {
-                                multiDisparos.visible = false; 
-                            }
-                        }
-                    }
-                }
-                Timer {
-                    interval: 3000 // Tempo em milissegundos para verificar periodicamente
-                    running: true
-                    repeat: true
-                    onTriggered: {
-                        if (!activeVehicle.armed) {
-                            multiDisparosBack.visible = false; // Oculta a bandeja se o veículo não estiver mais "armed"
-                        }
-                    }
-                }
+        model: [
+            {
+                name: "AS", 
+                iconSource: "/res/Battery100.svg",
             }
+        ]
 
-            Column {
-                anchors.centerIn: parent
-                spacing: 15 
-
-                Text {
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    text: "Bandeja Frontal"
-                    font.bold: true
-                    color: "white"
-                    font.pixelSize: 35 
-                }
-
-                Rectangle {
-                    id:             barraMunicao
-                    width:          400
-                    height:         50
-                    color:          "black"
-                    //opacity:        0.5
-                    border.color:   "white"
-                    border.width:   10
-                    radius:         100
-                    
-                    // Círculo representando a esfera (será movido na barra)
-                    Rectangle {
-                        id: esfera
-                        width: 60
-                        height: 60
-                        color: "white"
-                        radius: width / 2
-                        anchors.verticalCenter: parent.verticalCenter
-                        x: calcularPosicaoEsfera()
-                        
-                        Text {
-                            id: valorTexto
-                            text: ""
-                            anchors.centerIn: parent
-                            color: "black"
-                        }
-                        MouseArea {
-                            id: dragArea
-                            anchors.fill: parent
-                            drag.target: esfera
-                            enabled: activeVehicle ? !activeVehicle.armed : true
-                            onPositionChanged: {
-                                // Limita o movimento da esfera dentro da barra
-                                if (esfera.x < 0) {
-                                    esfera.x = 0;
-                                } else if (esfera.x > barraMunicao.width - esfera.width) {
-                                    esfera.x = barraMunicao.width - esfera.width;
-                                }
-
-                                // Calcula o valor com base na posição da esfera
-                                var percentagem = esfera.x / (barraMunicao.width - esfera.width);
-                                var valor = Math.round(percentagem * 12);
-
-                                // Atualiza o valor do texto apenas se estiver dentro do intervalo 0-12
-                                if (valor >= 0 && valor <= 12) {
-                                    valorTexto.text = valor.toString();
-                                }
-                            }
-                        }
+        MouseArea{            
+            anchors.fill: parent
+            onClicked: {
+                if (activeVehicle.armed && multiDisparosBack.clickCount > 0) {
+                    console.log("Valor de munição disparada: " + multiDisparosBack.clickCount);
+                    if (bandejaBack.valorMunicao >= multiDisparosBack.clickCount) {
+                        bandejaBack.valorMunicao -= multiDisparosBack.clickCount;
+                        barraMunicaoBack.atualizarValorEsferaBack(bandejaBack.valorMunicao);
+                    } else {
+                        console.log("Munição insuficiente para disparar.");
                     }
-
-                    function calcularPosicaoEsfera() {
-                        return (barraMunicao.width - esfera.width) * (1 - (valorMunicao / 12));
-                    }
-                    function atualizarValorEsfera(valor) {
-                        if (valorEsfera >= valor) {
-                            valorEsfera -= valor;
-                        } else {
-                            valorEsfera = 0;
-                        }
-                    }
+                } else {
+                    console.log("Veículo não armado ou valor de disparo inválido.");
                 }
             }
         }
     }
 
-    //---------Bandeja Traseira
-    Item {
-        id:                             bandejaBack
-        ////anchors.horizontalCenter:       parent.horizontalCenter
-        //anchors.verticalCenter:         parent.verticalCenter
-        //anchors.top:                    parent.top
-        //anchors.topMargin:              150
-        width: 150 
-        height: 150 
-        x: parent.width - width -   100
-        y: parent.height - height - 580
-        visible:                activeVehicle 
-        Rectangle {
-            Image {
-                anchors.horizontalCenter: parent.horizontalCenter
-                anchors.verticalCenter: parent.verticalCenter
-                source: "/res/BandejaFrontal"
 
-                MouseArea {
-                    anchors.fill: parent
-                    onClicked: {
-                        if(activeVehicle.armed){
-                            multiDisparos.visible = !multiDisparos.visible;
-                            if (multiDisparos.visible) {
-                                multiDisparosBack.visible = false; 
-                            }
-                        }
-                    }
-                }
-                Timer {
-                    interval: 3000 
-                    running: true
-                    repeat: true
-                    onTriggered: {
-                        if (!activeVehicle.armed) {
-                            multiDisparos.visible = false;
-                        }
-                    }
-                }
-            }
 
-            Column {
-                anchors.centerIn: parent
-                spacing: 15 
-
-                Rectangle {
-                    id:             barraMunicaoback
-                    width:          400
-                    height:         50
-                    color:          "black"
-                    //opacity:        0.5
-                    border.color:   "white"
-                    border.width:   10
-                    radius:         100
-                    
-                    // Círculo representando a esfera (será movido na barra)
-                    Rectangle {
-                        id: esferaii
-                        width: 60
-                        height: 60
-                        color: "white" // Cor da esferaii (você pode ajustar)
-                        radius: width / 2
-                        anchors.verticalCenter: parent.verticalCenter // Mantém o círculo no centro vertical da barra
-                        x: calcularPosicaoEsfera() // Função para calcular a posição inicial da esfera
-                        Text{
-                            id:     valorTextoII
-                            text:       ""//buttonValue.visible ? buttonText.text : (multiDisparos.clickCount === 0 ? "0" : "x" + multiDisparos.clickCount)
-                            anchors.centerIn: parent
-                            anchors.horizontalCenter: parent.horizontalCenter
-                            anchors.verticalCenter: parent.verticalCenter
-                            
-                        }
-                    }
-                    MouseArea {
-                            id: dragAreaII
-                            anchors.fill: parent
-                            drag.target: esferaii
-                            enabled: activeVehicle ? !activeVehicle.armed : true
-                            onPositionChanged: {
-                                // Limita o movimento da esfera dentro da barra
-                                if (esferaii.x < 0) {
-                                    esferaii.x = 0;
-                                } else if (esferaii.x > barraMunicao.width - esferaii.width) {
-                                    esferaii.x = barraMunicao.width - esferaii.width;
-                                }
-
-                                // Calcula o valor com base na posição da esferaii
-                                var percentagem = esferaii.x / (barraMunicao.width - esferaii.width);
-                                var valor = Math.round(percentagem * 12);
-                                valorTextoII.text = valor.toString();
-
-                                // Atualiza o valor do texto de acordo com a direção do movimento
-                                if (dragAreaII.delta.x > 0) {
-                                    // Movimento para a direita, aumenta o valor
-                                    valorTextoII.text = (parseInt(valorTextoII.text) + 1).toString();
-                                } else if (dragAreaII.delta.x < 0) {
-                                    // Movimento para a esquerda, diminui o valor
-                                    valorTextoII.text = (parseInt(valorTextoII.text) - 1).toString();
-                                }
-                            }
-                        }
-                        
-
-                    function calcularPosicaoEsfera() {
-                        //return (barraMunicaoback.width - esferaii.width) * (1 - (valorMunicao / 20));
-                        return  0;
-                    }
-                }
-
-                Text {
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    text: "Bandeja Traseira"
-                    font.bold: true
-                    color: "white"
-                    font.pixelSize: 35 
-                }
-            }
-
-        }
-    }
 
     //-- Altitude slider
     GuidedAltitudeSlider {
@@ -1925,7 +1998,7 @@ Item {
     }
 
     //---------LOADING SCREEN
-    /* Item {
+    Item {
         anchors.fill: parent
         visible: activeVehicle ? activeVehicle.parameterManager.loadProgress * parent.width : 0
         anchors.verticalCenter: parent.verticalCenter
@@ -2050,7 +2123,7 @@ Item {
                 anchors.top:                    parent.top
             }
         }
-    } */
+    }
 
 //---------------------------------------------------------------------------------------------------------------------
 } //FLY DISPLAY VIEW --------------------
