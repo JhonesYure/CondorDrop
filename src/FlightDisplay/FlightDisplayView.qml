@@ -188,11 +188,11 @@ Item {
         return  // Valor padrão caso não haja veículo ativo
     }
     //----------------------EDIT VERSÃO DRONE PADRÃO -------------------------------------------------//
-    /* function getPositionForBatteryPercentage() {
+    function getPositionForBatteryPercentage() {
         if (activeVehicle && activeVehicle.battery.voltage.value !== -1) {
             var batteryVoltage = activeVehicle.battery.voltage.value;
-            var minVoltage = 41.9;
-            var maxVoltage = 49.9;
+            var minVoltage = 40.9;
+            var maxVoltage = 50.9;
 
             var position = (batteryVoltage - minVoltage) / (maxVoltage - minVoltage);
 
@@ -201,9 +201,9 @@ Item {
             return position;
         }
         return 0;
-    } */
+    }
     //----------------------EDIT VERSÃO DRONE MENOR -------------------------------------------------//
-    function getPositionForBatteryPercentage() {
+    /* function getPositionForBatteryPercentage() {
         if (activeVehicle && activeVehicle.battery.voltage.value !== -1) {
             var batteryVoltage = activeVehicle.battery.voltage.value;
             var minVoltage = 22.8;
@@ -216,7 +216,7 @@ Item {
             return position;
         }
         return 0;
-    }
+    } */
     Loader {
         id: controllerLoader
         active: _initialDownloadComplete 
@@ -1655,7 +1655,7 @@ Item {
             }
         }
     }
-    //----Aviso Traseiro
+    //----Aviso Frontal
     Rectangle{
         id:             notificationFront
         width:          400
