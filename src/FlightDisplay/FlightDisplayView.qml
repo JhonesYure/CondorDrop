@@ -866,67 +866,6 @@ Item {
 
             property bool _virtualJoystickEnabled: QGroundControl.settingsManager.appSettings.virtualJoystick.rawValue
         }
-
-        //----------------------At home SkyDrones
-        ToolStrip {
-            visible: (activeVehicle ? activeVehicle.guidedModeSupported : true) && !QGroundControl.videoManager.fullScreen
-            id: toolStripp
-
-            anchors.leftMargin: isInstrumentRight() ? _toolsMargin : undefined
-            anchors.left: isInstrumentRight() ? _mapAndVideo.left : undefined
-            anchors.rightMargin: isInstrumentRight() ? undefined : ScreenTools.defaultFontPixelWidth
-            anchors.right: isInstrumentRight() ? undefined : _mapAndVideo.right
-            anchors.topMargin: 320
-            anchors.top: parent.top
-            z: _mapAndVideo.z + 4
-            maxHeight: parent.height //- toolStrip.y + (_flightVideo.visible ? (_flightVideo.y - parent.height) : 0)
-            radius: 80
-
-            property var _actionModel: [
-                {
-                    title: _guidedController.startMissionTitle,
-                    text: _guidedController.startMissionMessage,
-                    action: _guidedController.actionStartMission,
-                    visible: _guidedController.showStartMission
-                },
-                {
-                    title: _guidedController.continueMissionTitle,
-                    text: _guidedController.continueMissionMessage,
-                    action: _guidedController.actionContinueMission,
-                    visible: _guidedController.showContinueMission
-                },
-                {
-                    title: _guidedController.changeAltTitle,
-                    text: _guidedController.changeAltMessage,
-                    action: _guidedController.actionChangeAlt,
-                    visible: _guidedController.showChangeAlt
-                },
-                {
-                    title: _guidedController.landAbortTitle,
-                    text: _guidedController.landAbortMessage,
-                    action: _guidedController.actionLandAbort,
-                    visible: _guidedController.showLandAbort
-                }
-            ]
-
-            model: [
-                {
-                    name:       "RTL",//_guidedController.rtlTitle,
-                    iconSource: "/qmlimages/AtHome.svg",
-                    //buttonVisible: _guidedController.showTakeoff,
-                    //buttonEnabled: _guidedController.showTakeoff,
-                    action: _guidedController.actionRTL
-                }
-            ]
-
-            onClicked: {
-                guidedActionsController.closeAll()
-                var action = model[index].action
-                if (action !== -1) {
-                    _guidedController.confirmAction(action)
-                }
-            }
-        }
         //---------------- TakeOff
         ToolStrip {
             visible: (activeVehicle ? activeVehicle.guidedModeSupported : true) && !QGroundControl.videoManager.fullScreen
@@ -972,9 +911,17 @@ Item {
                 {
                     name:       "Decolar",//_guidedController.takeoffTitle,
                     iconSource: "/qmlimages/TakeOffIcon.svg",
-                    action: _guidedController.actionTakeoff,
-                    visible:    true
+                    buttonVisible:      _guidedController.showTakeoff || !_guidedController.showLand,
+                    buttonEnabled:      _guidedController.showTakeoff,
+                    action:             _guidedController.actionTakeoff
                 },
+                {
+                    name:       "RTL",//_guidedController.rtlTitle,
+                    iconSource: "/qmlimages/AtHome.svg",
+                    buttonVisible:      _guidedController.showRTL && !_guidedController.showTakeoff,
+                    buttonEnabled:      _guidedController.showRTL,
+                    action:             _guidedController.actionRTL
+                }
             ]
 
             onClicked: {
@@ -1030,7 +977,7 @@ Item {
             model: [
                 {
                     name:       "Area",//_guidedController.takeoffTitle,
-                    iconSource: "/res/AreaIndicator",
+                    iconSource: "/res/BandejaTraseira",
                 },
             ]
 
@@ -1055,7 +1002,39 @@ Item {
 
 
         }
-        //-----------------BOTÃO DE DISPARO
+        //-----------------ALTURA DE SEGURANÇA
+        ToolStrip {
+            id: indicatorAS
+            visible:      activeVehicle ? activeVehicle.armed: false
+            anchors.leftMargin: isInstrumentRight() ? _toolsMargin : undefined
+            anchors.left: isInstrumentRight() ? _mapAndVideo.left : undefined
+            //anchors.rightMargin: isInstrumentRight() ? undefined : ScreenTools.defaultFontPixelWidth
+            //anchors.right: isInstrumentRight() ? undefined : _mapAndVideo.right
+            anchors.topMargin: 320
+            anchors.top: parent.top
+            z: _mapAndVideo.z + 4
+            maxHeight: parent.height //- toolStrip.y + (_flightVideo.visible ? (_flightVideo.y - parent.height) : 0)
+            radius: 80
+
+            model: [
+                {
+                    name: "Alt. Seg.", 
+                    iconSource: "/res/helicoptericon.svg",
+                }
+            ]
+            MouseArea {                
+                anchors.fill: parent
+                onClicked:  {
+                    var inputValue = parseFloat(altitudeTextField.text) * 100;
+                    console.log("Input Value: " + inputValue);
+                    if (inputValue >= 1000) {
+                        fact1.value = inputValue; 
+                    } else {
+                        console.log("O valor deve ser maior ou igual a 1000.");
+                    }
+                }
+            }
+        }
         
         //------------------
         
@@ -1143,7 +1122,7 @@ Item {
                 anchors.left: parent.left 
                 anchors.leftMargin: 280
 
-            //-- DISTANCE -------------------------------------SkyDrones
+                //-- DISTANCE -------------------------------------SkyDrones
                 Row{
                     spacing:                8
                     
@@ -1182,7 +1161,7 @@ Item {
                 //-------------------------SkyDrones
 
 
-            //-- 3 ALTITUDE -------------------------SkyDrones
+                //-- 3 ALTITUDE -------------------------SkyDrones
                 Row {
                     spacing: 8
 
@@ -1219,7 +1198,7 @@ Item {
                     
                 //-------------------------SkyDrones
 
-            //-- GROUND SPEED
+                //-- GROUND SPEED
                 Row {
                     spacing: 8
 
@@ -1254,7 +1233,7 @@ Item {
                 //-------------------------SkyDrones
 
 
-            //-- VERTICAL SPEED //-------------------------SkyDrones
+                //-- VERTICAL SPEED //-------------------------SkyDrones
                 Row {
                     spacing: 8
 
@@ -1289,7 +1268,7 @@ Item {
                 }
                 //-------------------------SkyDrones
 
-            //AZIMUTE SKYDRONES ------------------- SKYDRONES 
+                //AZIMUTE SKYDRONES ------------------- SKYDRONES 
                 Row {
                     spacing: 8
 
@@ -1324,7 +1303,7 @@ Item {
                 }
                 //-----------------------------------SKYDRONES
 
-            //REGISTRO DE AS ----------------------SKYDRONES
+                //REGISTRO DE AS ----------------------SKYDRONES
                 Row {
                     spacing: 8
 
@@ -1345,31 +1324,12 @@ Item {
                         font.pointSize: 15
                         color: "white"
                         anchors.bottom: parent.bottom
-                        
-
-                        MouseArea {
-                            id: mouseArea
-                            anchors.fill: parent
-                            enabled: returnAltRadio.checked
-                            signal updateAltitude(real value)
-
-                            onClicked: {
-                                var inputValue = parseFloat(altitudeTextField.text) * 100;
-                                console.log("Input Value: " + inputValue);
-                                if (inputValue >= 1000) {
-                                    fact1.value = inputValue; 
-                                } else {
-                                    console.log("O valor deve ser maior ou igual a 1000.");
-                                }
-                            }
-                        }
-                    
                     }
 
                     QGCLabel {
                         id: txtAS
                         //text: returnAltRadio.checked ? (_rtlAltFact.rawValue === 0 ? qsTr("N/A") : _rtlAltFact.valueString) : qsTr("N/A")
-                        text: fact1.valueString + " " 
+                        text: fact1.valueString /100 + "m" 
                         opacity: 0.7
                         font.pointSize: 15
                         Layout.fillWidth: false
@@ -1408,7 +1368,7 @@ Item {
                 height: visible ? 70 : 0
                 visible: 
                     (notificationId === "gpsNotification" && activeVehicle && activeVehicle.gps.count.value < 12) || 
-                    (notificationId === "altitudeRtlNotification" && activeVehicle && _rtlAltFact && _rtlAltFact.value == 0) ||
+                    (notificationId === "altitudeRtlNotification" && activeVehicle && fact1 && fact1.value == 0) ||
                     (notificationId === "gpsNoSignalNotification" && activeVehicle && activeVehicle.gps.count.rawValue < 1 ) ||
                     (notificationId === "inFlyNotification" && _armed == 1) ||
                     (notificationId === "delocarNotification" && _initialDownloadComplete && _armed == 0)||
@@ -1670,8 +1630,8 @@ Item {
 
         model: [
             {
-                name: "AS", 
-                iconSource: "/res/Battery100.svg",
+                name: "B. Frontal", 
+                iconSource: "/res/AreaIndicator",
                 //action: _guidedController.actionRTL
             }
         ]
@@ -1686,6 +1646,8 @@ Item {
                         barraMunicao.atualizarValorEsfera(bandejaFront.valorMunicao);
                     } else {
                         console.log("Munição insuficiente para disparar.");
+                        notificationFront.visible = true;
+                        hideNotificationTimer.start();  // Inicia o temporizador para esconder a notificação após 3 segundos
                     }
                 } else {
                     console.log("Veículo não armado ou valor de disparo inválido.");
@@ -1693,6 +1655,34 @@ Item {
             }
         }
     }
+    //----Aviso Traseiro
+    Rectangle{
+        id:             notificationFront
+        width:          400
+        height:         200
+        color:          qgcPal.window
+        border.color:   "#fff"
+        radius:         10
+        visible:        false
+        anchors.horizontalCenter:   parent.horizontalCenter
+        anchors.verticalCenter:     parent.verticalCenter
+        Text    {
+            text:           "Munição Frontal insuficiente"
+            font.bold:      true
+            color:          "#fff"
+            anchors.centerIn: parent
+        }
+        Timer {
+            id:                 hideNotificationTimer
+            interval:           3000
+            running:            true
+            onTriggered:    {
+                    notificationFront.visible = false;
+            }
+        }
+
+    }
+
 
     // Bandeja Traseira
     Item {
@@ -1815,7 +1805,6 @@ Item {
             }
         }
     }
-
     // Numero de Disparo Traseiro
     Item {
         id: multiDisparosBack
@@ -1887,7 +1876,6 @@ Item {
             }
         }
     }
-
     // Botão de disparo traseiro
     ToolStrip {
         id: toolStripBack
@@ -1902,8 +1890,8 @@ Item {
 
         model: [
             {
-                name: "AS", 
-                iconSource: "/res/Battery100.svg",
+                name: "B. Traseira", 
+                iconSource: "/res/AreaIndicator",
             }
         ]
 
@@ -1917,12 +1905,41 @@ Item {
                         barraMunicaoBack.atualizarValorEsferaBack(bandejaBack.valorMunicao);
                     } else {
                         console.log("Munição insuficiente para disparar.");
+                        notificationBack.visible = true;
+                        hideNotificationTimerBack.start();  
                     }
                 } else {
                     console.log("Veículo não armado ou valor de disparo inválido.");
                 }
             }
         }
+    }
+    //----Aviso Traseiro
+    Rectangle{
+        id:             notificationBack
+        width:          400
+        height:         200
+        color:          qgcPal.window
+        border.color:   "#fff"
+        radius:         10
+        visible:        false
+        anchors.horizontalCenter:   parent.horizontalCenter
+        anchors.verticalCenter:     parent.verticalCenter
+        Text    {
+            text:           "Munição Traseira insuficiente"
+            font.bold:      true
+            color:          "#fff"
+            anchors.centerIn: parent
+        }
+        Timer {
+            id:                 hideNotificationTimerBack
+            interval:           3000
+            running:            true
+            onTriggered:    {
+                    notificationBack.visible = false;
+            }
+        }
+
     }
 
 
