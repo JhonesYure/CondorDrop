@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-20.04
     strategy:
       matrix: 
-        config: [ { BITNESS: '32', GSTREAMER_NAME: 'armv7', CONFIG: 'installer' }, { BITNESS: '64', GSTREAMER_NAME: 'arm64', CONFIG: 'installer' } ]
+        config: [ { BITNESS: '64', GSTREAMER_NAME: 'arm64', CONFIG: 'installer' } ]
     defaults:
       run:
         shell: bash
